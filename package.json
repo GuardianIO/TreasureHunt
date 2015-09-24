@@ -1,0 +1,25 @@
+{
+  "name": "file_dealer",
+  "version": "1.0.0",
+  "description": "Scavenger hunt for techies",
+  "main": "index.js",
+  "dependencies": {
+    "aws-sdk": "^2.2.4",
+    "express": "^4.13.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuardianIO/fileDealer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GuardianIO/fileDealer/issues"
+  },
+  "homepage": "https://github.com/GuardianIO/fileDealer#readme"
+}
