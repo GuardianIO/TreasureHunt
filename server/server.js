@@ -4,7 +4,7 @@ var app = express();
 
 // define routes
 app.get('/download/:url', requestHandlers.downloadHandler);
-
+app.get('/upload', requestHandlers.uploadHandler);
 
 // start server
 var server = app.listen(3000, function () {

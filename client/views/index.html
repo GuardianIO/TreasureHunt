@@ -1,9 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head></head>
-
-  <body>
-  <!-- input type of type 'file' will open file selection dialog box -->
-    <input type="file" name="file" id="file_upload" accept=".txt, .jpg, .png, .doc" multiple />    
+  <head>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../../node_modules/angular/angular.min.js"></script>
+    <!-- shim is needed to support non-HTML5 FormData browsers (IE8-9)-->
+    <script src="../../node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+    <script src="../../node_modules/ng-file-upload/dist/ng-file-upload.js"></script>
+    <script src="../app/controllers/mainController.js"></script>
+  </head>
+  <body ng-app="fileMaster">
+    Adapted from example found at <a href="https://angular-file-upload.appspot.com/">https://angular-file-upload.appspot.com/</a>
+    <div ng-controller="fileUploadCtrl">
+        <div ngf-drop ngf-select ng-model="files" class="drop-box" 
+            ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true" ngf-keep="true" ngf-keep-distinct="true"
+            accept="image/*,application/pdf" 
+            ngf-pattern="'image/*,application/pdf'">Drop documents or images here or click to upload</div>
+        <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+        Files:
+        <ul>
+          <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+        </ul>
+        <div class="preview">
+          <div>Preview: </div>
+          <div ng-repeat="file in files">
+          <img ngf-src="!file.$error && file" ng-click="remove(item)" />
+          </div>
+        </div>
+        <input type="button" value="Upload" ng-click="upload(files)">
+    </div>
   </body>  
 </html>
