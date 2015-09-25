@@ -16,6 +16,7 @@ angular.module('fileMaster.huntEditor', [])
       $scope.files.splice(index, 1);     
     };
 
+// TODO: upload() function should be refactored into a service
     $scope.upload = function (files) {
         if (files && files.length) {
             for (var i = 0; i < files.length; i++) {
