@@ -4,31 +4,16 @@
     <link rel="stylesheet" href="./css/styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.min.js"></script>
     <!-- shim is needed to support non-HTML5 FormData browsers (IE8-9)-->
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-route.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/7.3.8/ng-file-upload-shim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/7.3.8/ng-file-upload.min.js"></script>
     <script src="./app/app.js"></script>
-    <script src="./app/controllers/mainController.js"></script>
+    <script src="./app/controllers/create.js"></script>
+    <script src="./app/controllers/huntEditor.js"></script>
+    <script src="./app/controllers/initial.js"></script>
+    <script src="./app/app.js"></script>
   </head>
   <body ng-app="fileMaster">
-    Adapted from example found at <a href="https://angular-file-upload.appspot.com/">https://angular-file-upload.appspot.com/</a>
-    <div ng-controller="fileUploadCtrl">
-        <div ngf-drop ngf-select ng-model="files" class="drop-box" 
-            ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true" ngf-keep="true" ngf-keep-distinct="true"
-            accept="image/*,application/pdf" 
-            ngf-pattern="'image/*,application/pdf'">Drop documents or images here or click to upload</div>
-        <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-        Files:
-        <ul>
-          <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
-        </ul>
-        <div class="preview">
-          <div>Preview: </div>
-          <div ng-repeat="file in files">
-          <img ngf-src="!file.$error && file" ng-click="remove(item)" />
-          </div>
-        </div>
-        <input type="button" value="Upload" ng-click="upload(files)">
-    </div>
+    <div ng-view></div>
   </body>  
 </html>
