@@ -1,6 +1,9 @@
 angular.module('fileMaster', [
   'ngFileUpload',
-  'ngRoute'
+  'ngRoute', 
+  'fileMaster.create',
+  'fileMaster.huntEditor',
+  'fileMaster.initial'
 ])
 
 .config(function($routeProvider){
