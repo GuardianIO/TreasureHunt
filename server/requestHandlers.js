@@ -1,4 +1,5 @@
-var express = require('express');
+var util = require('util');
+var multiparty = require('multiparty');
 
 module.exports.downloadHandler = function(req, res){
   res.download('./server/testDownload.txt', function(err){
@@ -13,5 +14,13 @@ module.exports.downloadHandler = function(req, res){
 };
 
 module.exports.uploadHandler = function(req, res){
-  res.end("Uploading file ");
+  console.log("handling upload on server...");
+
+  var form = new multiparty.Form();
+
+  form.parse(req, function(err, fields, files) {
+    res.writeHead(200, {'content-type': 'text/plain'});
+    res.write('received upload:\n\n');
+    res.end(util.inspect({fields: fields, files: files}));
+  });
 };
