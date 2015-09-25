@@ -8,7 +8,9 @@
     "express": "^4.13.3",
     "mysql": "^2.9.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server/server.js"
