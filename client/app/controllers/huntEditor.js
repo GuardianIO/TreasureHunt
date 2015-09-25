@@ -16,20 +16,23 @@ angular.module('fileMaster.huntEditor', [])
       $scope.files.splice(index, 1);     
     };
 
+// TODO: upload() function should be refactored into a service
     $scope.upload = function (files) {
         if (files && files.length) {
             for (var i = 0; i < files.length; i++) {
               var file = files[i];
-              console.log("Uploading " + file);
+              console.log("Uploading " + file.name);
               if (!file.$error) {
                 Upload.upload({
-                    url: 'http://localhost:3000/upload/',
+                    url: '/upload',
                     file: file
                 }).progress(function (evt) {
                     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                     $scope.log = 'progress: ' + progressPercentage + '% ' +
                                 evt.config.file.name + '\n' + $scope.log;
                 }).success(function (data, status, headers, config) {
+                    console.log("JSON.stringify(data): "+ JSON.stringify(data));
+                    console.log("config.file.name: " + config.file.name)
                     $timeout(function() {
                         $scope.log = 'file: ' + config.file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log;
                     });
