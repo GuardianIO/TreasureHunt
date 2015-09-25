@@ -1,5 +1,5 @@
 //inject angular file upload directives and services.
-var app = angular.module('fileMaster', ['ngFileUpload']);
+
 
 app.controller('fileUploadCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
     $scope.$watch('files', function () {
