@@ -1,13 +1,18 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
-var watchify = require('watchify');
-var server = require('gulp-server-livereload');
+var concat = require('gulp-concat');
 
-gulp.task('default', function() {
+var paths = [
+    './client/app/controllers/*.js',
+    './client/app/app.js'
+  ];
 
+gulp.task('concat', function() {
+  return gulp.src(paths)
+    .pipe(concat('main.js'))
+    .pipe(gulp.dest('./client/'));
 });
 
-gulp.task('test_build', function(){
-
-
+gulp.task('watch', function(){
+  gulp.watch(paths, ['concat']);
 });
