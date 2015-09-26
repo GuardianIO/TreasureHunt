@@ -9,9 +9,10 @@ var connection = mysql.createConnection({
 connection.connect();
 
 module.exports = {
-  createNewGame: function(params, cb) {
+
+  createGameName: function(params, cb) {
       var queryStr = "INSERT into gameTable(game_name) VALUES(?)";
-      connection.query(queryStr, params.name, function(err, results){
+      connection.query(queryStr, params, function(err, results){
         if(err){
           console.log(err);
         }
@@ -31,7 +32,6 @@ module.exports = {
 };
 
 module.exports.createNewGame("hunt");
-  
 // gameName
 // timelineKey, geolocation{lat:, long}, hint, image
 
