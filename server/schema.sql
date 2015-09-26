@@ -22,8 +22,9 @@ CREATE TABLE treasureInfo (
   imageFileName INT NOT NULL AUTO_INCREMENT,
   gameId INT,
   timelineKey INT(3),
-  geolocation VARCHAR(20) NOT NULL,
-  hint VARCHAR(50),
+  la DECIMAL(20,20),
+  lon DECIMAL(20,20),
+  hint VARCHAR(140),
 
   PRIMARY KEY (imageFileName),
   FOREIGN KEY (gameId) REFERENCES gameTable(gameId)
