@@ -1,5 +1,8 @@
 angular.module('fileMaster.create', [])
 
-.controller('CreateCtrl', function(){
-  //
-});
+.controller('CreateCtrl', ['$scope', function($scope){
+  $scope.createGame = function(){
+    alert("Creating game " + $scope.gameName);
+  }
+}]);
+
