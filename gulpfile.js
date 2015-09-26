@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var concat = require('gulp-concat');
-var watch = require('gulp-watch');
 
 var paths = [
     './client/app/controllers/*.js',
