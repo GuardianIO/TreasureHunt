@@ -1,7 +1,9 @@
 var express = require('express');
 var requestHandlers = require('./requestHandlers');
+var bodyParser = require('body-parser');
 var app = express();
 
+app.use(bodyParser);
 app.use(express.static(__dirname + '/../client'));
 
 // console.log(__dirname + /)
@@ -10,6 +12,15 @@ app.use(express.static(__dirname + '/../client'));
 // define routes
 app.get('/download/:url', requestHandlers.downloadHandler);
 app.get('/upload', requestHandlers.uploadHandler);
+
+app.post('/newGame', function(req, res){
+  console.log('new game: ', req.body);
+  res.sendStatus(200);
+});
+app.post('/gameNode', function(req, res){
+  console.log('new gameNode: ', req.body);
+  res.sendStatus(200);
+});
 
 // start server
 var server = app.listen( (process.env.PORT || 3000), function () {
