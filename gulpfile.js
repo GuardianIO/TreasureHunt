@@ -17,7 +17,7 @@ gulp.task('concat', function() {
     })
 });
 
-gulp.task('watch', function(){
+gulp.task('watch', ['concat'], function(){
   gulp.watch(paths, ['concat']);
 });
 

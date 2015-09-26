@@ -15,3 +15,8 @@ module.exports.downloadHandler = function(req, res){
 module.exports.uploadHandler = function(req, res){
   res.end("Uploading file ");
 };
+
+module.exports.createGame = function(req, res){
+  console.log('creating game on server for game: ' + req.body.gameName);
+  res.send({gameId: 001})
+}

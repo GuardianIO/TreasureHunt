@@ -1,8 +1,10 @@
-angular.module('fileMaster.create', [])
+angular.module('fileMaster.create', ['fileMaster.factory'])
 
-.controller('CreateCtrl', ['$scope', function($scope){
-  $scope.createGame = function(){
-    alert("Creating game " + $scope.gameName);
+.controller('CreateCtrl', ['$scope', '$http', 'RequestFactory', function($scope, $http, RequestFactory){
+  $scope.createGame = function(gameName){
+    console.log("sending to server to create game " + gameName)
+    RequestFactory.postNewGame(gameName);
   }
 }]);
 
+//

@@ -1,5 +1,4 @@
-angular.module('fileMaster.initial', [
-])
+angular.module('fileMaster.initial', [])
 
 .controller('InitialCtrl', function(){
   //
