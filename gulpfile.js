@@ -11,13 +11,14 @@ var paths = [
 gulp.task('concat', function() {
   return gulp.src(paths)
     .pipe(concat('main.js'))
-    .pipe(gulp.dest('./client/'));
+    .pipe(gulp.dest('./client/'))
+    .on('error', function(err){
+      console.log(err);
+    })
 });
 
 gulp.task('watch', function(){
   gulp.watch(paths, ['concat']);
 });
 
-gulp.task();
-
-gulp.task('deploy', ['concat', ]);
+gulp.task('deploy', ['concat']);
