@@ -22,8 +22,7 @@ module.exports = {
       });
   },
   createTreasureInfo: function(params, cb){
-    var queryStr = "INSERT into treasureInfo(gameId, timelineKey, lat, long, hint) VALUES(?)";
-    var long = params.geolocation
+    var queryStr = "INSERT into treasureInfo(gameId, timelineKey, lat, long, hint) VALUES(?)"; var long = params.geolocation
     connection.query(queryStr, params)
   },
   getPlayerContact: function(params,cb) {
