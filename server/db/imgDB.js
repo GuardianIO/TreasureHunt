@@ -1,25 +1,19 @@
 var AWS = require('aws-sdk');
-var fs = require('fs');
+var bucket = 'biggerbucket';
 
 
-AWS.config.loadFromPath('./config.json');
 
+AWS.config.loadFromPath('./server/db/config.json');
 
-fs.readFile('schema.png', function(err, data){
-  if(err){
-    throw err;
-  }
-  var base64data = new Buffer(data, 'binary');
-
+module.exports.saveImagePart = function(part, key){
   var s3 = new AWS.S3();
-
   s3.putObject({
-    Bucket : 'biggerbucket',
-    Key : 'schema.png',
-    Body : base64data
-  },  function(resp){
-    console.log(arguments);
-    console.log('upload Successfully');
+    Bucket : bucket,
+    Key : key,
+    Body : part,
+    ContentLength : part.byteCount
+    }, function(err, data){
+      if(err) throw err;
+      console.log('image upload complete', data);
   });
-
-});
+};

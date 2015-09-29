@@ -1,19 +1,21 @@
-angular.module('fileMaster.huntEditor', ['ngFileUpload'])
+angular.module('fileMaster.huntEditor', ['ngFileUpload', 'fileMaster.services'])
 
-.controller('HuntEditorCtrl', ['$scope', 'Upload', '$timeout', 
-    function ($scope, Upload, $timeout) {
-    $scope.$watch('files', function () {
-        $scope.upload($scope.files);
-    });
-    $scope.$watch('file', function () {
-        if ($scope.file != null) {
-            $scope.upload([$scope.file]);
-        }
-    });
+.controller('HuntEditorCtrl', ['$scope', 'Upload', '$timeout', 'RequestFactory',
+    function ($scope, Upload, $timeout, RequestFactory) {
+
+    // $scope.$watch('files', function () {
+    //     $scope.upload($scope.files);
+    // });
+    // $scope.$watch('file', function () {
+    //     if ($scope.file != null) {
+    //         $scope.upload([$scope.file]);
+    //     }
+    // });
     $scope.log = '';
 
     $scope.remove = function(item) { 
       var index = $scope.files.indexOf(item);
+      console.log(item);
       $scope.files.splice(index, 1);     
     };
 
@@ -23,9 +25,11 @@ angular.module('fileMaster.huntEditor', ['ngFileUpload'])
               var file = files[i];
               console.log("Uploading " + file);
               if (!file.$error) {
+                console.log('sending gameId ', RequestFactory.getGameId());
                 Upload.upload({
-                    url: 'http://localhost:3000/upload/',
-                    file: file
+                    url: '/upload',
+                    file: file,
+                    data:{ gameId : RequestFactory.getGameId() }
                 }).progress(function (evt) {
                     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                     $scope.log = 'progress: ' + progressPercentage + '% ' +

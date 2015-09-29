@@ -1,5 +1,8 @@
 var express = require('express');
-var db = require('./db/index.js')
+var db = require('./db/index.js');
+var imgDB = require('./db/imgDB.js');
+var multiparty = require('multiparty');
+var bucket = 'biggerbucket';
 
 module.exports.downloadHandler = function(req, res){
   res.download('./server/testDownload.txt', function(err){
@@ -14,7 +17,22 @@ module.exports.downloadHandler = function(req, res){
 };
 
 module.exports.uploadHandler = function(req, res){
-  res.end("Uploading file ");
+  var form = new multiparty.Form();
+
+  form.on('field', function(name, value){
+    console.log('name',name);
+    console.log('value', value);
+  });
+
+  form.on('part', function(part){
+    var imgKey = Date.now() + '.png';
+    imgDB.saveImagePart(part, imgKey);
+  });
+
+  form.parse(req);
+
+  console.log('got to uploadHandler')
+  res.send("Uploading file ");
 };
 
 module.exports.createGame = function(req, res){
