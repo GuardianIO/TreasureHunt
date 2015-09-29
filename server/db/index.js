@@ -11,13 +11,14 @@ connection.connect();
 module.exports = {
 
   createGameName: function(params, cb) {
-      var queryStr = "INSERT into gameTable(game_name) VALUES(?)";
-      connection.query(queryStr, params, function(err, results){
+      var gameTable = "INSERT into gameTable(game_name) VALUES(?)";
+      connection.query(gameTable, params, function(err, results){
         if(err){
           console.log(err);
         }
         else{
-          cb(results.insertId); //gameId <- results.insertId
+          //gameId = results.insertId
+          cb(results.insertId);
         }
       });
   },
