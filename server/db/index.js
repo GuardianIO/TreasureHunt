@@ -31,7 +31,7 @@ module.exports = {
   }
 };
 
-module.exports.createNewGame("hunt");
+// module.exports.createNewGame("hunt");
 // gameName
 // timelineKey, geolocation{lat:, long}, hint, image
 
