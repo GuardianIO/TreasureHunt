@@ -3,7 +3,8 @@ angular.module('fileMaster', [
   'ngRoute', 
   'fileMaster.create',
   'fileMaster.huntEditor',
-  'fileMaster.initial'
+  'fileMaster.initial',
+  'fileMaster.singleNode'
 ])
 
 .config(function($routeProvider){
@@ -19,6 +20,10 @@ angular.module('fileMaster', [
   .when('/',{
     templateUrl:'/app/views/initial.html',
     controller:'InitialCtrl'
+  })
+  .when('/addSingleNode', {
+    templateUrl:'app/views/addSingleNode.html',
+    controller:'AddSingleNodeCtrl'
   })
   .otherwise({
     redirectTo:'/'

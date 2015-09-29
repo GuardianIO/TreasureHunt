@@ -1,6 +1,7 @@
-angular.module('fileMaster.huntEditor', [])
+angular.module('fileMaster.huntEditor', ['ngFileUpload'])
 
-.controller('HuntEditorCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
+.controller('HuntEditorCtrl', ['$scope', 'Upload', '$timeout', 
+    function ($scope, Upload, $timeout) {
     $scope.$watch('files', function () {
         $scope.upload($scope.files);
     });

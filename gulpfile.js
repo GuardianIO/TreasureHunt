@@ -3,8 +3,8 @@ var gutil = require('gulp-util');
 var concat = require('gulp-concat');
 
 var paths = [
-    './client/app/controllers/*.js',
     './client/app/services/*.js',
+    './client/app/controllers/*.js',
     './client/app/app.js'
   ];
 
