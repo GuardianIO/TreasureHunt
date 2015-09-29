@@ -3,6 +3,10 @@ angular.module('fileMaster.services', ['ngFileUpload'])
     var gameId = "";
 
     return {
+      gameId : gameId,
+      getGameId : function(){
+        return gameId;
+      },
       postNewGame: function(gameName){
         $http.post('/createGame', { gameName: gameName })
           .then(function(resp){

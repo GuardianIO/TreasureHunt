@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 
 // define routes
 app.get('/download/:url', requestHandlers.downloadHandler);
-app.get('/upload', requestHandlers.uploadHandler);
+app.post('/upload', requestHandlers.uploadHandler);
 
 app.post('/createGame', requestHandlers.createGame);
 

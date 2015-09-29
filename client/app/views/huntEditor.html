@@ -11,7 +11,7 @@
     <div class="preview">
       <div>Preview: </div>
       <div ng-repeat="file in files">
-      <img ngf-src="!file.$error && file" ng-click="remove(item)" />
+      <img ngf-src="!file.$error && file" ng-click="remove(file)" />
       </div>
     </div>
     <input type="button" value="Upload" ng-click="upload(files)">
