@@ -1,4 +1,5 @@
 var express = require('express');
+var db = require('./db/index.js')
 
 module.exports.downloadHandler = function(req, res){
   res.download('./server/testDownload.txt', function(err){
@@ -18,5 +19,8 @@ module.exports.uploadHandler = function(req, res){
 
 module.exports.createGame = function(req, res){
   console.log('creating game on server for game: ' + req.body.gameName);
-  res.send({gameId: 001})
+  var gameName = req.body.gameName;
+  db.createGameName(gameName, function(gameId){
+    res.send({gameId: gameId});
+  });
 }
