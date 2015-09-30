@@ -59,11 +59,11 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
 }])
 
 // invitePlayers method will submit post request to '/invite' with array of invities and server will email each invitee
-  .factory('InvitePlayers', ['$http', '$location', function($http, $location){
+  .factory('InvitePlayers', ['$http', '$location', 'RequestFactory', function($http, $location, RequestFactory){
     return {
       invitePlayers: function(arrayOfEmailAddresses){
         console.log(arrayOfEmailAddresses + " in invite players");
-        $http.post('/invite', { inviteeEmailAddresses: arrayOfEmailAddresses })
+        $http.post('/invite', { inviteeEmailAddresses: arrayOfEmailAddresses, gameId: RequestFactory.getGameId() })
           .then(function(resp){
             // on success
             

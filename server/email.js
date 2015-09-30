@@ -4,14 +4,14 @@ var sendgrid = require('sendgrid')('SG.dbawh5BrTlKPwEEKEUF5jA.Wa9EAZnn0zvgcM7UgE
 var urlHtml ='';
 var host =  host ||'http://127.0.0.1:3000/game/';
 
-module.exports.emailInvitee = function (email, url) {
-  console.log('sendgrid data * * * : ', email, url, host)
+module.exports.emailInvitee = function (email, gameId) {
+  console.log('sendgrid data * * * : ', email, gameId, host)
   sendgrid.send({
     to: email,
     from: 'tbutman@gmail.com',
     subject: 'Welcome to Scavenger Hunt!',
     text: 'Howdy Urban Adventurer,' + '\n\nYou have been invited by a friend to play Scavenger Hunter, the premier online scavenger hunt game.'+
-          '\n\nPlease click the following link to embark on your journey: ' + host +
+          '\n\nPlease click the following link to embark on your journey: ' + host + gameId +
           '\n\n\nSincerely,\n\nThe Scavenger Hunt Team'
   },
   function (err, json) {
