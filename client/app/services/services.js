@@ -23,20 +23,20 @@ angular.module('fileMaster.services', ['ngFileUpload'])
     }
   }])
 
-  .factory('SendPicAndLoc', ['$rootScope', '$http', '$location', 'Upload', 
-    function($rootScope, $http, $location, Upload){
+  .factory('SendPicAndLoc', ['$rootScope', '$http', '$location', 'Upload', 'RequestFactory',
+    function($rootScope, $http, $location, Upload, RequestFactory){
 
       function postPic(file, loc){
-        console.log('sending file');
         Upload.upload({
           url:'/upload',
-          data: {
-            file:file,
+          file: file,
+          data:{
+            gameId:RequestFactory.getGameId(),
             location:loc
-        })
-        .success(function(){
-          console.log('success');
-        });
+          }})
+          .success(function(){
+            console.log('success');
+          });
       };
 
       return {
@@ -51,6 +51,9 @@ angular.module('fileMaster.services', ['ngFileUpload'])
         },
         sendPic:function(file){
           postPic(file, this.loc);
-        }.bind(this)
+        }
       };
 }]);
+
+
+

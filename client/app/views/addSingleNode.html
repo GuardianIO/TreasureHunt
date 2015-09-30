@@ -1,7 +1,10 @@
 <div id="singleNode">
   <div ng-show="status.canUpload">
-    <button type="file" ngf-select ng-model="file" name="file" accept="image/*" >Select File</button>
-    <input type="button" value="submit" ng-click="send()">
+    <button 
+      type="file" ngf-select ngf-resize="{width: 500, height: 500, quality: .8}"  
+      ng-model="file" name="file" accept="image/*" >Take Picture</button>
+    <img src="file">
+    <button ng-click="send()">Add Point</button>
   </div>
   <div ng-if="!status.canUpload">
     <p>Waiting for location...</p>

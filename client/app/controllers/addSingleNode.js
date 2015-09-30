@@ -10,16 +10,12 @@ angular.module('fileMaster.singleNode', ['fileMaster.services'])
     };
 
     $scope.$on('locReady', function(){
-      $scope.status.canUpload = true;
-      $scope.$apply();
-      console.log('location ready, canUpload: ', $scope.status);
+      $scope.$apply($scope.status.canUpload = true);
     });
 
     $scope.send = function(){
-      console.log('submit');
-      // if($scope.file){
-      //   console.log('send');
-      //   SendPicAndLoc.sendPic($scope.file);
-      // }
+      if($scope.file){
+        SendPicAndLoc.sendPic($scope.file);
+      }
     }
 }]);
