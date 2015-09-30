@@ -1,4 +1,4 @@
-angular.module('fileMaster.initial', [])
+angular.module('treasureHunt.initial', [])
 
 .controller('InitialCtrl', function(){
   //

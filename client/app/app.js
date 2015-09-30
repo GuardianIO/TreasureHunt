@@ -1,10 +1,10 @@
-angular.module('fileMaster', [
+angular.module('treasureHunt', [
   'ngFileUpload',
   'ngRoute', 
-  'fileMaster.create',
-  'fileMaster.huntEditor',
-  'fileMaster.initial',
-  'fileMaster.singleNode'
+  'treasureHunt.create',
+  'treasureHunt.huntEditor',
+  'treasureHunt.initial',
+  'treasureHunt.singleNode'
 ])
 
 .config(function($routeProvider){
@@ -24,6 +24,10 @@ angular.module('fileMaster', [
   .when('/addSingleNode', {
     templateUrl:'app/views/addSingleNode.html',
     controller:'AddSingleNodeCtrl'
+  })
+  .when('/nodeList', {
+    templateUrl: '/app/views/nodeList.html',
+    controller: 'NodeListCtrl'
   })
   .otherwise({
     redirectTo:'/'

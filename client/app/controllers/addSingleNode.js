@@ -1,4 +1,4 @@
-angular.module('fileMaster.singleNode', ['fileMaster.services'])
+angular.module('treasureHunt.singleNode', ['treasureHunt.services'])
 
 .controller('AddSingleNodeCtrl', ['$scope', 'SendPicAndLoc', 
   function($scope, SendPicAndLoc){

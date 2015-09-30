@@ -1,4 +1,4 @@
-angular.module('fileMaster.huntEditor', ['ngFileUpload', 'fileMaster.services'])
+angular.module('treasureHunt.huntEditor', ['ngFileUpload', 'treasureHunt.services'])
 
 
 .controller('HuntEditorCtrl', ['$scope', 'Upload', '$timeout', 'RequestFactory',
