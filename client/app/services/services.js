@@ -19,6 +19,11 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
       },
     postNewNode: function(){
 
+    },
+    loadGames: function(){
+      $http.get('/games').then(function(resp){
+        
+      });
     }
   }
 }])

@@ -51,4 +51,10 @@ module.exports.createGame = function(req, res){
   db.createGameName(gameName, function(gameId){
     res.send({gameId: gameId});
   });
-}
+};
+
+module.exports.getAllGames = function(req, res){
+  db.showGames(function(results){
+    res.send(results);
+  });
+};

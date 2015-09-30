@@ -4,6 +4,7 @@ angular.module('treasureHunt', [
   'treasureHunt.create',
   'treasureHunt.huntEditor',
   'treasureHunt.initial',
+  'treasureHunt.games',
   'treasureHunt.singleNode',
   'treasureHunt.invite'
 ])
@@ -42,6 +43,10 @@ angular.module('treasureHunt', [
   .when('/invite', {
     templateUrl: 'app/views/invite.html',
     controller: 'InviteCtrl'
+  })
+  .when('/games', {
+    templateUrl: mobileBrowser ? 'app/mobile/games.html' : '/app/views/games.html',
+    controller: 'GamesCtrl'
   })
   .otherwise({
     redirectTo:'/'

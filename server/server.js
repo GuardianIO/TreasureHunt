@@ -17,6 +17,7 @@ app.use(cookieParser());
 app.get('/game/:gameId', playerHandlers.checkGameCallbacks);
 app.get('/download/:url', requestHandlers.downloadHandler);
 app.post('/upload', requestHandlers.uploadHandler);
+app.get('/games', requestHandlers.getAllGames);
 
 app.post('/createGame', requestHandlers.createGame);
 
