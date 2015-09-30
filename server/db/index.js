@@ -22,10 +22,11 @@ module.exports = {
         }
       });
   },
-  createTreasureInfo: function(params, cb){
-    var queryStr = "INSERT into treasureInfo(gameId, timelineKey, lat, long, hint) VALUES(?)";
+  createNodeInfo: function(params, cb){
+    var queryStr = "INSERT into treasureInfo(gameId, nodeId, image, lat, lon, clue) VALUES(?,(SELECT nodeId FROM treasureInfo ORDER BY nodeId LIMIT 1)+1,?,?,?,?)";
     var long = params.geolocation
-    connection.query(queryStr, params)
+    console.log('createTreasureInfo params',params);
+    // connection.query(queryStr, params)
   },
   getPlayerContact: function(params,cb) {
 
