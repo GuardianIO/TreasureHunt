@@ -18,14 +18,24 @@ module.exports.downloadHandler = function(req, res){
 
 module.exports.uploadHandler = function(req, res){
   var form = new multiparty.Form();
+  var params = {};
+  var longitude;
+  var latitude;
+  var gameId;
 
   form.on('field', function(name, value){
-    console.log('name',name);
-    console.log('value', value);
+    var nodeData = JSON.parse(value);
+    params.gameId = nodeData.gameId
+    params.longitude = nodeData.longitude;
+    params.latitude = nodeData.latitude;
+    params.clue = nodeData.clue || "haha";
+    // console.log(gameId, longitude, latitude);
   });
 
   form.on('part', function(part){
     var imgKey = Date.now() + '.png';
+    params.imgKey = imgKey;
+    db.createNodeInfo(params);
     imgDB.saveImagePart(part, imgKey);
   });
 

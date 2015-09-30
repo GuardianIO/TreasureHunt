@@ -5,7 +5,7 @@ var bucket = 'biggerbucket';
 
 AWS.config.loadFromPath('./server/db/config.json');
 
-module.exports.saveImagePart = function(part, key){
+module.exports.saveImagePart = function(part, key, cb){
   var s3 = new AWS.S3();
   s3.putObject({
     Bucket : bucket,
