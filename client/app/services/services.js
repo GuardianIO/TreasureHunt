@@ -21,7 +21,7 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
 
     }
   }
-}]);
+}])
 
 .factory('SendPicAndLoc', ['$rootScope', '$http', '$location', 'Upload', 'RequestFactory',
   function($rootScope, $http, $location, Upload, RequestFactory){
