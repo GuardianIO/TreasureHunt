@@ -3,8 +3,8 @@ angular.module('treasureHunt.singleNode', ['treasureHunt.services'])
 .controller('AddSingleNodeCtrl', ['$scope', 'SendPicAndLoc', 
   function($scope, SendPicAndLoc){
 
-
     SendPicAndLoc.getLoc();
+    
     $scope.status = {
       canUpload:false
     };
