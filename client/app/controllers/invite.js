@@ -1,4 +1,4 @@
-angular.module('fileMaster.invite', ['fileMaster.services'])
+angular.module('treasureHunt.invite', ['treasureHunt.services'])
   .controller('InviteCtrl', ['$scope', '$http', 'InvitePlayers',
     function($scope, $http, InvitePlayers){
       $scope.invitees = [];

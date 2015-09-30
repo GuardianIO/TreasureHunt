@@ -1,4 +1,6 @@
-var sendgrid = require('sendgrid')('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');
+// var sendgrid = require('sendgrid')('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');
+var sendgrid = require('sendgrid')('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');
+
 var urlHtml ='';
 var host =  host ||'http://127.0.0.1:3000/game/';
 

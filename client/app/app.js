@@ -4,7 +4,7 @@ angular.module('treasureHunt', [
   'treasureHunt.create',
   'treasureHunt.huntEditor',
   'treasureHunt.initial',
-  'treasureHunt.singleNode'
+  'treasureHunt.singleNode',
   'treasureHunt.invite'
 ])
 
@@ -38,6 +38,7 @@ angular.module('treasureHunt', [
   .when('/nodeList', {
     templateUrl: mobileBrowser ? 'app/mobile/nodeList.html' : '/app/views/nodeList.html',
     controller: 'NodeListCtrl'
+  })
   .when('/invite', {
     templateUrl: 'app/views/invite.html',
     controller: 'InviteCtrl'

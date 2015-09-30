@@ -20,7 +20,6 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
     postNewNode: function(){
 
     }
-<<<<<<< HEAD
   }
 }])
 
@@ -48,8 +47,13 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
             this.loc = data;
             $rootScope.$broadcast('locReady');
           }.bind(this))
-=======
-  }])
+        }
+      },
+      sendPic:function(file){
+        postPic(file, this.loc);
+      }
+    };
+}])
 
 // invitePlayers method will submit post request to '/invite' with array of invities and server will email each invitee
   .factory('InvitePlayers', ['$http', '$location', function($http, $location){
@@ -67,43 +71,6 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
       }
     }
   }])
-
-  .factory('SendPicAndLoc', ['$rootScope', '$http', '$location', 'Upload', 'RequestFactory',
-    function($rootScope, $http, $location, Upload, RequestFactory){
-
-      function postPic(file, loc){
-        Upload.upload({
-          url:'/upload',
-          file: file,
-          data:{
-            gameId:RequestFactory.getGameId(),
-            location:loc
-          }})
-          .success(function(){
-            console.log('success');
-          });
-      };
-
-      return {
-        loc:null,
-        getLoc:function(){
-          if(navigator && navigator.geolocation){
-            navigator.geolocation.getCurrentPosition(function(data){
-              this.loc = data;
-              $rootScope.$broadcast('locReady');
-            }.bind(this))
-          }
-        },
-        sendPic:function(file){
-          postPic(file, this.loc);
->>>>>>> [feat] setup sendgrid api to email player invitiations
-        }
-      },
-      sendPic:function(file){
-        postPic(file, this.loc);
-      }
-    };
-}])
 
 .factory('NodeList', ['$scope','$http',  function($scope, $http){
   return {
