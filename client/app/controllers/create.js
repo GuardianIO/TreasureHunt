@@ -1,4 +1,4 @@
-angular.module('fileMaster.create', ['fileMaster.services'])
+angular.module('treasureHunt.create', ['treasureHunt.services'])
 
 .controller('CreateCtrl', ['$scope', '$http', 'RequestFactory', 
   function($scope, $http, RequestFactory){
