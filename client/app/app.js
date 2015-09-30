@@ -7,7 +7,8 @@ angular.module('treasureHunt', [
   'treasureHunt.singleNode'
 ])
 
-.config(function($routeProvider){
+.config(['$routeProvider', '$locationProvider', 
+  function($routeProvider, $locationProvider){
   $routeProvider
   .when('/create', {
     templateUrl:'app/views/create.html',
@@ -32,4 +33,10 @@ angular.module('treasureHunt', [
   .otherwise({
     redirectTo:'/'
   })
-});
+
+  $locationProvider.html5Mode({
+    enabled: true,
+    requireBase: false
+  });
+
+}]);
