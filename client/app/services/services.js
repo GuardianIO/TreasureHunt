@@ -27,12 +27,15 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
   function($rootScope, $http, $location, Upload, RequestFactory){
 
     function postPic(file, loc){
+      console.log('loc is', loc.coords);
       Upload.upload({
         url:'/upload',
         file: file,
         data:{
-          gameId:RequestFactory.getGameId(),
-          location:loc
+          gameId : RequestFactory.getGameId(),
+          latitude : loc.coords.latitude,
+          longitude : loc.coords.longitude
+          // location:loc.coords
         }})
         .success(function(){
           console.log('success');
