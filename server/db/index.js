@@ -24,6 +24,7 @@ module.exports = {
   },
   createNodeInfo: function(params, cb){
     var queryStr = "INSERT into treasureInfo(gameId, nodeId, image, lat, lon, clue) VALUES(?,(SELECT nodeId FROM treasureInfo ORDER BY nodeId LIMIT 1)+1,?,?,?,?)";
+    var selectStr ="SELECT nodeId FROM treasureInfo WHERE gameId=? ORDER BY nodeId DESC limit 1";
     var long = params.geolocation
     console.log('createTreasureInfo params',params);
     // connection.query(queryStr, params)
