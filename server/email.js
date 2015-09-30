@@ -11,8 +11,8 @@ module.exports.emailInvitee = function (email, url) {
     from: 'tbutman@gmail.com',
     subject: 'Welcome to Scavenger Hunt!',
     text: 'Howdy Urban Adventurer,' + '\n\nYou have been invited by a friend to play Scavenger Hunter, the premier online scavenger hunt game.'+
-          '\n\nPlease click the following link to embark on your journey: ' + host + url +
-          'Sincerely,\n\nThe Scavenger Hunt Team'
+          '\n\nPlease click the following link to embark on your journey: ' + host +
+          '\n\n\nSincerely,\n\nThe Scavenger Hunt Team'
   },
   function (err, json) {
     if(err) {return console.error(err);}
