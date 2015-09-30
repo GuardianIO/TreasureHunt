@@ -26,27 +26,31 @@ angular.module('fileMaster.services', ['ngFileUpload'])
   .factory('SendPicAndLoc', ['$rootScope', '$http', '$location', 'Upload', 
     function($rootScope, $http, $location, Upload){
 
-      function postPic(file){
-        Upload({
+      function postPic(file, loc){
+        console.log('sending file');
+        Upload.upload({
           url:'/upload',
-          file: file,
-          loc:location
+          data: {
+            file:file,
+            location:loc
         })
         .success(function(){
-          sendPicAndLocSuccess = true;
+          console.log('success');
         });
       };
 
       return {
+        loc:null,
         getLoc:function(){
           if(navigator && navigator.geolocation){
             navigator.geolocation.getCurrentPosition(function(data){
+              this.loc = data;
               $rootScope.$broadcast('locReady');
             }.bind(this))
           }
         },
         sendPic:function(file){
-          postPic(file);
-        }
+          postPic(file, this.loc);
+        }.bind(this)
       };
 }]);

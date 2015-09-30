@@ -1,16 +1,16 @@
 angular.module('fileMaster.huntEditor', ['ngFileUpload', 'fileMaster.services'])
 
+
 .controller('HuntEditorCtrl', ['$scope', 'Upload', '$timeout', 'RequestFactory',
     function ($scope, Upload, $timeout, RequestFactory) {
-
-    // $scope.$watch('files', function () {
-    //     $scope.upload($scope.files);
-    // });
-    // $scope.$watch('file', function () {
-    //     if ($scope.file != null) {
-    //         $scope.upload([$scope.file]);
-    //     }
-    // });
+    $scope.$watch('files', function () {
+        $scope.upload($scope.files);
+    });
+    $scope.$watch('file', function () {
+        if ($scope.file != null) {
+            $scope.upload([$scope.file]);
+        }
+    });
     $scope.log = '';
 
     $scope.remove = function(item) { 

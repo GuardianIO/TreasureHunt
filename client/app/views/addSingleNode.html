@@ -1,8 +1,9 @@
 <div id="singleNode">
   <div ng-show="status.canUpload">
-    <button type="file" ngf-select="send($file)" accept="image/*" >Select File</button>
+    <button type="file" ngf-select ng-model="file" name="file" accept="image/*" >Select File</button>
+    <input type="button" value="submit" ng-click="send()">
   </div>
   <div ng-if="!status.canUpload">
-    <p>Waiting for location...{{status.canUpload}}</p>
+    <p>Waiting for location...</p>
   </div>
 </div>
