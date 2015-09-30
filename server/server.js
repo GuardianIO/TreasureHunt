@@ -25,6 +25,9 @@ app.post('/gameNode', function(req, res){
   res.sendStatus(200);
 });
 
+// invite players
+app.post('/invite', playerHandlers.invitePlayers);
+
 // start server
 var server = app.listen( (process.env.PORT || 3000), function () {
   var host = server.address().address;

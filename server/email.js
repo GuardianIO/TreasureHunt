@@ -1,0 +1,19 @@
+var sendgrid = require('sendgrid')('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');
+var urlHtml ='';
+var host =  host ||'http://127.0.0.1:3000/game/';
+
+module.exports.emailInvitee = function (email, url) {
+  console.log('sendgrid data * * * : ', email, url, host)
+  sendgrid.send({
+    to: email,
+    from: 'tbutman@gmail.com',
+    subject: 'Welcome to Scavenger Hunt!',
+    text: 'Howdy Urban Adventurer,' + '\n\nYou have been invited by a friend to play Scavenger Hunter, the premier online scavenger hunt game.'+
+          '\n\nPlease click the following link to embark on your journey: ' + host + url +
+          'Sincerely,\n\nThe Scavenger Hunt Team'
+  },
+  function (err, json) {
+    if(err) {return console.error(err);}
+    console.log('sendgrid api error:', json);
+  });
+};
