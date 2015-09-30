@@ -22,9 +22,10 @@ module.exports.sendResponse = function(req, res){
 module.exports.invitePlayers = function(req, res){
   // get array of email addresses from post request data 
   var inviteeEmails = req.body.inviteeEmailAddresses;
+  var gameId = req.body.gameId;
 
   console.log("attempting to send email from playerHandler");
-  utils.invitePlayersViaEmail(inviteeEmails);
+  utils.invitePlayersViaEmail(inviteeEmails, gameId);
   res.end("Invitations sent")
 }
 

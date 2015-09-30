@@ -11,10 +11,10 @@ module.exports.decodeGameUrl = function(ob){
   return jwt.decode(ob, _secret);
 }
 
-module.exports.invitePlayersViaEmail = function(listOfEmailAddresses){
+module.exports.invitePlayersViaEmail = function(listOfEmailAddresses, gameId){
   console.log("in utils to send email");
   for(var i = 0; i < listOfEmailAddresses.length; i++){
-    email.emailInvitee(listOfEmailAddresses[i]);
+    email.emailInvitee(listOfEmailAddresses[i], gameId);
   }
 }
 
