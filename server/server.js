@@ -1,12 +1,20 @@
 var express = require('express');
 var requestHandlers = require('./requestHandlers');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var playerHandlers = require('./playerHandlers');
 var app = express();
 
 app.use(express.static(__dirname + '/../client'));
 app.use(bodyParser.json());
+// cookie-parser middleware will parse cookie data from headers of request object and will 
+// assign assign them to a variable on the request object on req.cookie
+app.use(cookieParser());
 
 // define routes
+// player will access game using a link with the gameId
+// a route can be handled using an array of callbacks
+app.get('/game/:gameId', playerHandlers.checkGameCallbacks);
 app.get('/download/:url', requestHandlers.downloadHandler);
 app.post('/upload', requestHandlers.uploadHandler);
 

@@ -35,6 +35,15 @@ module.exports.uploadHandler = function(req, res){
   res.send("Uploading file ");
 };
 
+module.exports.gameHandler = function(req, res){
+  console.log("Cookies: " + req.cookie);
+  if(!req.cookie){
+    res.cookie('gameId', req.params.gameId);
+    res.cookie('roundNumber', 0);
+  }
+  res.send("Accessing game with id: " + req.params.gameId);  
+};
+
 module.exports.createGame = function(req, res){
   console.log('creating game on server for game: ' + req.body.gameName);
   var gameName = req.body.gameName;
