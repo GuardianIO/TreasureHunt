@@ -32,8 +32,8 @@ module.exports = {
         console.error(err);
       }
       else{
-        console.log('SELECT RESUTLS',results)
-        if(results[0].nodeId){
+        console.log('SELECT results',results)
+        if(results[0]){
           nodeId = results[0].nodeId+1;
         }
         console.log('this should be nodeid ',nodeId);
