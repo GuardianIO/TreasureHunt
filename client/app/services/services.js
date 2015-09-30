@@ -47,7 +47,6 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
             $rootScope.$broadcast('locReady');
           }.bind(this))
         }
-<<<<<<< Updated upstream
       },
       sendPic:function(file){
         postPic(file, this.loc);
@@ -60,12 +59,3 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
 
   }
 }]);
-
-
-
-
-
-=======
-      };
-}]);
->>>>>>> Stashed changes
