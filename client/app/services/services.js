@@ -60,8 +60,3 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
 
   }
 }]);
-
-
-
-
-

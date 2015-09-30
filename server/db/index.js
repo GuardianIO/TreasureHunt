@@ -11,20 +11,23 @@ connection.connect();
 module.exports = {
 
   createGameName: function(params, cb) {
-      var queryStr = "INSERT into gameTable(game_name) VALUES(?)";
-      connection.query(queryStr, params, function(err, results){
+      var gameTable = "INSERT into gameTable(game_name) VALUES(?)";
+      connection.query(gameTable, params, function(err, results){
         if(err){
           console.log(err);
         }
         else{
-          cb(results.insertId); //gameId <- results.insertId
+          //gameId = results.insertId
+          cb(results.insertId);
         }
       });
   },
-  createTreasureInfo: function(params, cb){
-    var queryStr = "INSERT into treasureInfo(gameId, timelineKey, lat, long, hint) VALUES(?)";
+  createNodeInfo: function(params, cb){
+    var queryStr = "INSERT into treasureInfo(gameId, nodeId, image, lat, lon, clue) VALUES(?,(SELECT nodeId FROM treasureInfo ORDER BY nodeId LIMIT 1)+1,?,?,?,?)";
+    var selectStr ="SELECT nodeId FROM treasureInfo WHERE gameId=? ORDER BY nodeId DESC limit 1";
     var long = params.geolocation
-    connection.query(queryStr, params)
+    console.log('createTreasureInfo params',params);
+    // connection.query(queryStr, params)
   },
   getPlayerContact: function(params,cb) {
 
