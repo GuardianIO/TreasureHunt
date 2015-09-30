@@ -19,14 +19,13 @@ CREATE TABLE gameTable(
 /*****TABLE TREASURE INFO******/
 
 CREATE TABLE treasureInfo (
-  imageFileName INT NOT NULL AUTO_INCREMENT,
   gameId INT,
-  timelineKey INT(3),
-  la DECIMAL(20,20),
-  lon DECIMAL(20,20),
-  hint VARCHAR(140),
+  nodeId INT(3),
+  image VARCHAR(20),
+  lat DECIMAL(10,7),
+  lon DECIMAL(10,7),
+  clue VARCHAR(140),
 
-  PRIMARY KEY (imageFileName),
   FOREIGN KEY (gameId) REFERENCES gameTable(gameId)
 );
 

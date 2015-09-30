@@ -20,7 +20,6 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
     postNewNode: function(){
 
     }
-  }
 }])
 
 .factory('SendPicAndLoc', ['$rootScope', '$http', '$location', 'Upload', 'RequestFactory',
@@ -48,6 +47,7 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
             $rootScope.$broadcast('locReady');
           }.bind(this))
         }
+<<<<<<< Updated upstream
       },
       sendPic:function(file){
         postPic(file, this.loc);
@@ -65,3 +65,7 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
 
 
 
+=======
+      };
+}]);
+>>>>>>> Stashed changes
