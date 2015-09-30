@@ -1,6 +1,6 @@
-angular.module('treasureHunt.singleNode', ['treasureHunt.services'])
+angular.module('treasureHunt.addWaypoint', ['treasureHunt.services'])
 
-.controller('AddSingleNodeCtrl', ['$scope', '$location', 'SendPicAndLoc', 
+.controller('addWaypoint', ['$scope', '$location', 'SendPicAndLoc', 
   function($scope, $location, SendPicAndLoc){
 
     SendPicAndLoc.getLoc();

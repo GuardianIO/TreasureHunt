@@ -5,7 +5,7 @@ angular.module('treasureHunt', [
   'treasureHunt.huntEditor',
   'treasureHunt.initial',
   'treasureHunt.games',
-  'treasureHunt.singleNode',
+  'treasureHunt.addWaypoint',
   'treasureHunt.invite'
 ])
 
@@ -29,12 +29,12 @@ angular.module('treasureHunt', [
     controller:'CreateCtrl'
   })
   .when('/huntEditor', {
-    templateUrl:mobileBrowser ? 'app/mobile/huntEditor.html' : 'app/views/huntEditor.html',
+    templateUrl: mobileBrowser ? 'app/mobile/huntEditor.html' : 'app/views/huntEditor.html',
     controller:'HuntEditorCtrl'
   })
-  .when('/addSingleNode', {
-    templateUrl:mobileBrowser ? 'app/mobile/addSingleNode.html' : 'app/views/addSingleNode.html',
-    controller:'AddSingleNodeCtrl'
+  .when('/addWaypoint', {
+    templateUrl: mobileBrowser ? 'app/mobile/addWaypoint.html' : 'app/views/addWaypoint.html',
+    controller:'AddWaypoint'
   })
   .when('/nodeList', {
     templateUrl: mobileBrowser ? 'app/mobile/nodeList.html' : '/app/views/nodeList.html',

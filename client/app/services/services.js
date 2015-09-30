@@ -12,7 +12,7 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
         .then(function(resp){
           gameId = resp.data.gameId;
           console.log("Game created with ID: " + gameId);
-          $location.path('/huntEditor');
+          $location.path('/addWaypoint');
         }, function(resp){
           console.log(resp.data);
         })        
