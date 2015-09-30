@@ -12,7 +12,7 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
         .then(function(resp){
           gameId = resp.data.gameId;
           console.log("Game created with ID: " + gameId);
-          $location.path('/huntEditor');
+          $location.path('/addWaypoint');
         }, function(resp){
           console.log(resp.data);
         })        
@@ -31,24 +31,27 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
 .factory('SendPicAndLoc', ['$rootScope', '$http', '$location', 'Upload', 'RequestFactory',
   function($rootScope, $http, $location, Upload, RequestFactory){
 
-    function postPic(file, loc){
-      console.log('loc is', loc.coords);
+    function postPic(file, loc, clue){
       Upload.upload({
-        url:'/upload',
+        url:'/addWaypoint',
         file: file,
         data:{
           gameId : RequestFactory.getGameId(),
           latitude : loc.coords.latitude,
-          longitude : loc.coords.longitude
-          // location:loc.coords
+          longitude : loc.coords.longitude,
+          clue: clue
         }})
-        .success(function(){
-          console.log('success');
-        });
+        .success(function(data, status, headers, config){
+          console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+        })
+        .error(function(data, status, headers, config){
+          console.log('error status: ', status);
+        })
     };
 
     return {
       loc:null,
+      clue:'',
       getLoc:function(){
         if(navigator && navigator.geolocation){
           navigator.geolocation.getCurrentPosition(function(data){
@@ -58,7 +61,7 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
         }
       },
       sendPic:function(file){
-        postPic(file, this.loc);
+        postPic(file, this.loc, this.clue);
       }
     };
 }])

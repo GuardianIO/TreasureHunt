@@ -28,7 +28,7 @@ module.exports.uploadHandler = function(req, res){
     params.gameId = nodeData.gameId
     params.longitude = nodeData.longitude;
     params.latitude = nodeData.latitude;
-    params.clue = nodeData.clue || "haha";
+    params.clue = nodeData.clue;
     // console.log(gameId, longitude, latitude);
   });
 

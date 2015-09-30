@@ -1,6 +1,6 @@
-angular.module('treasureHunt.singleNode', ['treasureHunt.services'])
+angular.module('treasureHunt.addWaypoint', ['treasureHunt.services'])
 
-.controller('AddSingleNodeCtrl', ['$scope', '$location', 'SendPicAndLoc', 
+.controller('AddWaypoint', ['$scope', '$location', 'SendPicAndLoc', 
   function($scope, $location, SendPicAndLoc){
 
     SendPicAndLoc.getLoc();
@@ -15,11 +15,12 @@ angular.module('treasureHunt.singleNode', ['treasureHunt.services'])
 
     $scope.send = function(){
       if($scope.file){
+        SendPicAndLoc.clue = $scope.clue;
         SendPicAndLoc.sendPic($scope.file);
       }
     };
-
-    $scope.createGame = function(){
+    
+    $scope.done = function(){
       $location.path('/invite');
     }
 }]);
