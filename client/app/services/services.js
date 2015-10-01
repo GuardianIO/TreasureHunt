@@ -24,12 +24,12 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
         return resp.data;
       });
     },
-    getGame:function(gameId){
+    getGame:function(gameId, cb){
       $http.post('/game', {
         gameId:gameId
       })
       .then(function(results){
-        console.log(results);
+        cb(results.data);
       }, function(err){
         console.error(err);
       })
