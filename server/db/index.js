@@ -10,7 +10,7 @@ connection.connect();
 
 module.exports = {
 
-  createGameName: function(params, cb) {
+  createGame: function(params, cb) {
       var gameTable = "INSERT into gameTable(game_name,description, created_date) VALUES(?,?,?)";
       // var gameTable = "INSERT into gameTable(game_name) VALUES(?)";
       var today = new Date();
@@ -77,7 +77,7 @@ module.exports = {
     });
   },
   //list all games
-  
+
   //retrieve the only the first image 
   showGames: function(cb){
     var queryStr = "select gameTable.gameId, gameTable.game_name, gameTable.description, gameTable.created_date, treasureInfo.image from gameTable, treasureInfo WHERE gameTable.gameId = treasureInfo.gameId AND treasureInfo.nodeId =1";
