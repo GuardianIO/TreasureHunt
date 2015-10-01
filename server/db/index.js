@@ -98,8 +98,8 @@ module.exports = {
     connection.query(selectStr, id, function(err, results){
       if(err){
         console.error(err);
-      }
-      else{
+      }else{
+>>>>>>> b9def436326d371883bf94d9f2ecf56e2ae61217
         console.log(results);
         cb(results);
       }
