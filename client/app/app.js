@@ -23,23 +23,23 @@ angular.module('treasureHunt', [
 
   $routeProvider
   .when('/',{
-    templateUrl: mobileBrowser ? 'app/mobile/initial.html' : 'app/views/initial.html',
+    templateUrl: mobileBrowser ? 'app/views/mobile/initial.html' : 'app/views/desktop/initial.html',
     controller:'InitialCtrl'
   })
   .when('/create', {
-    templateUrl: mobileBrowser ? 'app/mobile/create.html' : 'app/views/create.html',
+    templateUrl: mobileBrowser ? 'app/views/mobile/create.html' : 'app/views/desktop/create.html',
     controller:'CreateCtrl'
   })
   .when('/huntEditor', {
-    templateUrl: mobileBrowser ? 'app/mobile/huntEditor.html' : 'app/views/huntEditor.html',
+    templateUrl: mobileBrowser ? 'app/views/mobile/huntEditor.html' : 'app/views/desktop/huntEditor.html',
     controller:'HuntEditorCtrl'
   })
   .when('/addWaypoint', {
-    templateUrl: mobileBrowser ? 'app/mobile/addWaypoint.html' : 'app/views/addWaypoint.html',
+    templateUrl: mobileBrowser ? 'app/views/mobile/addWaypoint.html' : 'app/views/desktop/addWaypoint.html',
     controller:'AddWaypoint'
   })
   .when('/nodeList', {
-    templateUrl: mobileBrowser ? 'app/mobile/nodeList.html' : 'app/views/nodeList.html',
+    templateUrl: mobileBrowser ? 'app/views/mobile/nodeList.html' : 'app/views/desktop/nodeList.html',
     controller: 'NodeListCtrl'
   })
   .when('/invite', {
