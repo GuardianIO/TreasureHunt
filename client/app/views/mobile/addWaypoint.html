@@ -1,0 +1,12 @@
+<div id="singleNode" class="mobile.main">
+  <div >
+    <img ng-show="file" ngf-src="file">
+    <button 
+      type="file" ngf-select ngf-resize="{width: 500, height: 500, quality: .8}"
+      ng-model="file" name="file" accept="image/*">Take Picture</button>
+    <button ng-show="status.canUpload" ng-click="send()">Add Waypoint</button>
+    <input type="text" ng-model="clue" placeholder="Clue or description...">
+    <button ng-show="!status.canUpload">Waiting for location...</button>
+    <button ng-click="done()">I'm Done!</button>
+  </div>
+</div>
