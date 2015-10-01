@@ -3,12 +3,14 @@ angular.module('treasureHunt.game', ['treasureHunt.services'])
   function($scope, $location, $interval, RequestFactory){
     $scope.clue = '';
     var node = 0;
+
     $scope.arrived = false;
-    $scope.currentNode = {};
 
     updateNode = function(nodeNum){
-      $scope.currentNode =  RequestFactory.getNode(nodeNum);
+      angular.extend($scope.currentNode,RequestFactory.getNode(nodeNum));
+      console.log($scope.currentNode);
     }
+
     getGame = function(){
       var gameId = $location.url().split('/').pop();
       if(gameId){
@@ -37,8 +39,12 @@ angular.module('treasureHunt.game', ['treasureHunt.services'])
     }, 1000);
 
     getGame();
+
+    $scope.currentNode;
+    if(!$scope.currentNode){
+      updateNode(node);
+    }
     
-    navigator.geolocation.getCurrentPosition(checkCoords);
     $scope.next = function(){
       updateNode(++node);
     }
