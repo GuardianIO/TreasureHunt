@@ -9,7 +9,6 @@ angular.module('treasureHunt.game', ['treasureHunt.services'])
     updateNode = function(nodeNum){
       $scope.currentNode =  RequestFactory.getNode(nodeNum);
     }
-
     getGame = function(){
       var gameId = $location.url().split('/').pop();
       if(gameId){
@@ -36,13 +35,9 @@ angular.module('treasureHunt.game', ['treasureHunt.services'])
       updateNode(node);
       navigator.geolocation.getCurrentPosition(checkCoords);
     }, 1000);
-    // navigator.geolocation.watchPosition(function(loc){
-    //   updateNode(node);
-    //   $scope.$apply($scope.currentLocation = loc.coords);
-    //   checkCoords();
-    // });
-    
+
     getGame();
+    
     navigator.geolocation.getCurrentPosition(checkCoords);
     $scope.next = function(){
       updateNode(++node);
