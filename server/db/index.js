@@ -11,12 +11,12 @@ connection.connect();
 module.exports = {
 
   createGameName: function(params, cb) {
-      // var gameTable = "INSERT into gameTable(game_name,description, created_date) VALUES(?,?,?)";
-      var gameTable = "INSERT into gameTable(game_name) VALUES(?)";
+      var gameTable = "INSERT into gameTable(game_name,description, created_date) VALUES(?,?,?)";
+      // var gameTable = "INSERT into gameTable(game_name) VALUES(?)";
       var d = new Date();
-      var createdDate = d.getMonth()+1 + "/"+ d.getDate() + "/"+d.getFullYear();
-      connection.query(gameTable, params, function(err, results){
-      // connection.query(gameTable, [params.gameName, params.description, createdDate], function(err, results){
+      var createdDate = d.getMonth()  +1 + "/"+ d.getDate() + "/"+d.getFullYear();
+      // connection.query(gameTable, params, function(err, results){
+      connection.query(gameTable, [params.gameName, params.description, createdDate], function(err, results){
         if(err){
           console.error(err);
         }
@@ -79,8 +79,7 @@ module.exports = {
   //list all games
   //retrieve the only the first image 
   showGames: function(cb){
-    var queryStr = "SELECT gameTable.gameId, gameTable.game_name, gameTable.description,gameTable.created_date, treasureInfo.image FROM gameTable, treasureInfo WHERE gameTable.gameId = treasureInfo.gameId;";
-
+    var queryStr = "select gameTable.gameId, gameTable.game_name, gameTable.description, gameTable.created_date, treasureInfo.image from gameTable, treasureInfo where gameTable.gameId = treasureInfo.gameId AND treasureInfo.nodeId =1;"
     connection.query(queryStr, function(err, results){
       if(err){
         console.err(err);
@@ -91,7 +90,7 @@ module.exports = {
     });
   }
 };
-// module.exports.showGames(function(game){console.log(game)});
+module.exports.showGames(function(game){console.log(game)});
 
 
 // description, city, length, date created, author
