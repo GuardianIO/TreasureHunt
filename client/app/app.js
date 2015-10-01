@@ -42,7 +42,7 @@ angular.module('treasureHunt', [
     controller: 'NodeListCtrl'
   })
   .when('/invite', {
-    templateUrl: 'app/views/invite.html',
+    templateUrl: 'app/views/desktop/invite.html',
     controller: 'InviteCtrl'
   })
   .when('/games', {
