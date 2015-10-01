@@ -3,6 +3,8 @@ angular.module('treasureHunt.games',['treasureHunt.services'])
   function($scope, RequestFactory){
     $scope.games=[]
     $scope.getAllGames = function(){
-      $scope.games=RequestFactory.getGames();
-    }
+      RequestFactory.getGames().then(function(resp){
+        $scope.games = resp;
+      });
+    };
 }]);
