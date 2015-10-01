@@ -48,13 +48,17 @@ angular.module('treasureHunt', [
     templateUrl: mobileBrowser ? 'app/mobile/games.html' : '/app/views/games.html',
     controller: 'GamesCtrl'
   })
+  .when('/game/*', {
+    templateUrl: mobileBrowser ? 'app/mobile/game.html' : '/app/views/game.html',
+    controller: 'GameCtrl'
+  })
   .otherwise({
     redirectTo:'/'
   })
 
-  $locationProvider.html5Mode({
-    enabled: true,
-    requireBase: false
-  });
+  // $locationProvider.html5Mode({
+  //   enabled: true,
+  //   requireBase: false
+  // });
 
 }]);
