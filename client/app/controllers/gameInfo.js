@@ -1,5 +1,5 @@
 angular.module('tresureHunt.gameInfo',[])
 
-.controller('gameInfoCtrl', ['$scope', '$http', function($scope, $http){
+.controller('gameInfoCtrl', ['$scope', '$http','RequestFactory', function($scope, $http, RequestFactory){
 
 }]);
