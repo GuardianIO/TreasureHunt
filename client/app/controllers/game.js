@@ -1,5 +1,7 @@
 angular.module('treasureHunt.game', [])
 
-.controller('Game', ['$scope', function(){
-  
+.controller('GameCtrl', ['$scope', function(){
+  $scope.getGame = function(){
+
+  };
 }]);

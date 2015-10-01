@@ -5,6 +5,7 @@ angular.module('treasureHunt', [
   'treasureHunt.huntEditor',
   'treasureHunt.initial',
   'treasureHunt.games',
+  'treasureHunt.game',
   'treasureHunt.addWaypoint',
   'treasureHunt.invite'
 ])
@@ -48,7 +49,7 @@ angular.module('treasureHunt', [
     templateUrl: mobileBrowser ? 'app/mobile/games.html' : '/app/views/games.html',
     controller: 'GamesCtrl'
   })
-  .when('/game/*', {
+  .when('/game/:id', {
     templateUrl: mobileBrowser ? 'app/mobile/game.html' : '/app/views/game.html',
     controller: 'GameCtrl'
   })

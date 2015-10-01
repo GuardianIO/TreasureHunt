@@ -11,7 +11,7 @@ connection.connect();
 module.exports = {
 
   createGame: function(params, cb) {
-      var gameTable = "INSERT into gameTable(game_name,description, created_date) VALUES(?,?,?)";
+      var gameTable = "INSERT into gameTable(game_name, description, created_date) VALUES(?,?,?)";
       // var gameTable = "INSERT into gameTable(game_name) VALUES(?)";
       var today = new Date();
       var createdDate = today.getMonth()  +1 + "/"+ today.getDate() + "/"+ today.getFullYear();
@@ -68,7 +68,7 @@ module.exports = {
     var selectStr = "SELECT gameId, nodeId, image, lat, lon, clue FROM TreasureInfo WHERE gameId=(?)";
     connection.query(selectStr, params, function(err, results){
       if(err){
-        console.err(err);
+        console.error(err);
       }
       else{
         cb(results);
@@ -84,7 +84,7 @@ module.exports = {
     var countStr = "select gameId,count(nodeId) from treasureInfo group by gameId;";
     connection.query(queryStr, function(err, results){
       if(err){
-        console.err(err);
+        console.error(err);
       }
       else{
         connection.query(countStr, function(err, count){
@@ -105,7 +105,7 @@ module.exports = {
     });
   }
 };
-module.exports.showGames(function(game){console.log(game)});
+// module.exports.showGames(function(game){console.log(game)});
 
 
 // description, city, length, date created, author
