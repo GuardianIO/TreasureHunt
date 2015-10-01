@@ -94,11 +94,3 @@ module.exports = {
     });
   }
 };
-module.exports.showGames(function(game, count){console.log(game, count)});
-
-
-// description, city, length, date created, author
-// retrieve: all games, first pic,
-// all info: first pic, date created, number of nodes
-
-// module.exports = connection;
