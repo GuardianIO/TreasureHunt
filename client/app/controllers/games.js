@@ -10,6 +10,6 @@ angular.module('treasureHunt.games',['treasureHunt.services'])
 
     $scope.gameInfo = function(gameId){
       console.log(gameId);
-      $location.path('/game/'+gameId);
+      $location.path('/gameInfo/'+gameId);
     };
 }]);
