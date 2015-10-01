@@ -9,15 +9,15 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
     getGameId : function(){
       return gameId;
     },
-    postNewGame: function(gameName){
+    postNewGame: function(gameName, gameDescription){
       $http.post('/createGame', { gameName: gameName, gameDescription: gameDescription })
-        .then(function(resp){
+        .then( function(resp){
           gameId = resp.data.gameId;
           console.log("Game created with ID: " + gameId);
           $location.path('/addWaypoint');
-        }, function(resp){
-          console.log(resp.data);
-        })        
+        }, function(err){
+          console.error('Error ',err);
+        });        
     },
 
     getGames: function(){
