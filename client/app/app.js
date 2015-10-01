@@ -7,7 +7,8 @@ angular.module('treasureHunt', [
   'treasureHunt.games',
   'treasureHunt.game',
   'treasureHunt.addWaypoint',
-  'treasureHunt.invite'
+  'treasureHunt.invite',
+  'treasureHunt.gameInfo'
 ])
 
 .config(['$routeProvider', '$locationProvider', 
@@ -55,7 +56,7 @@ angular.module('treasureHunt', [
   })
   .when('/gameInfo/:id',{
     templateUrl: mobileBrowser ? 'app/mobile/gameInfo.html' : 'app/views/gameInfo.html',
-    controller: 'gameInfoCtrl'
+    controller: 'GameInfoCtrl'
   })
   .otherwise({
     redirectTo:'/'
