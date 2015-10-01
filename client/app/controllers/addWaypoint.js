@@ -24,4 +24,8 @@ angular.module('treasureHunt.addWaypoint', ['treasureHunt.services'])
     $scope.done = function(){
       $location.path('/invite');
     }
+
+    $scope.createGame = function(){
+      $location.path('/invite');
+    }
 }]);
