@@ -12,6 +12,8 @@ DROP TABLE IF EXISTS playerContact;
 CREATE TABLE gameTable(
   gameId INT NOT NULL AUTO_INCREMENT,
   game_name VARCHAR(20) NOT NULL,
+  description VARCHAR(50),
+  created_date VARCHAR(10),
 
   PRIMARY KEY(gameId)
 );
