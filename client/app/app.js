@@ -22,7 +22,7 @@ angular.module('treasureHunt', [
 
   $routeProvider
   .when('/',{
-    templateUrl: mobileBrowser ? 'app/mobile/initial.html' : '/app/views/initial.html',
+    templateUrl: mobileBrowser ? 'app/mobile/initial.html' : 'app/views/initial.html',
     controller:'InitialCtrl'
   })
   .when('/create', {
@@ -38,7 +38,7 @@ angular.module('treasureHunt', [
     controller:'AddWaypoint'
   })
   .when('/nodeList', {
-    templateUrl: mobileBrowser ? 'app/mobile/nodeList.html' : '/app/views/nodeList.html',
+    templateUrl: mobileBrowser ? 'app/mobile/nodeList.html' : 'app/views/nodeList.html',
     controller: 'NodeListCtrl'
   })
   .when('/invite', {
@@ -46,12 +46,16 @@ angular.module('treasureHunt', [
     controller: 'InviteCtrl'
   })
   .when('/games', {
-    templateUrl: mobileBrowser ? 'app/mobile/games.html' : '/app/views/games.html',
+    templateUrl: mobileBrowser ? 'app/mobile/games.html' : 'app/views/games.html',
     controller: 'GamesCtrl'
   })
   .when('/game/:id', {
     templateUrl: 'app/mobile/game.html',
     controller: 'GameCtrl'
+  })
+  .when('/gameInfo/:id',{
+    templateUrl: mobileBrowser ? 'app/mobile/gameInfo.html' : 'app/views/gameInfo.html',
+    controller: 'gameInfoCtrl'
   })
   .otherwise({
     redirectTo:'/'
