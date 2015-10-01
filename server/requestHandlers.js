@@ -48,7 +48,9 @@ module.exports.uploadHandler = function(req, res){
 module.exports.createGame = function(req, res){
   console.log('creating game on server for game: ' + req.body.gameName);
   var gameName = req.body.gameName;
-  db.createGameName(gameName, function(gameId){
+  var gameDescription = req.body.gameDescription;
+
+  db.createGameName({gameName: gameName, description: gameDescription}, function(gameId){
     res.send({gameId: gameId});
   });
 };

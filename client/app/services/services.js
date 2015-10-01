@@ -10,7 +10,7 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
       return gameId;
     },
     postNewGame: function(gameName){
-      $http.post('/createGame', { gameName: gameName })
+      $http.post('/createGame', { gameName: gameName, gameDescription: gameDescription })
         .then(function(resp){
           gameId = resp.data.gameId;
           console.log("Game created with ID: " + gameId);
