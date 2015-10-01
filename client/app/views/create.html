@@ -1,5 +1,18 @@
 <div id='create' ng-controller="CreateCtrl">
-  <p>Create a new hunt here</p>
-  <input type="text" ng-model="gameName">
-  <button ng-click="createGame(gameName)">Submit</button>
+  <table>
+    <tr>
+      <th colspan="2">Create a new hunt here</th> 
+    </tr>
+    <tr>
+      <td align="right">Game Name: </td>
+      <td><input type="text" ng-model="gameName"></td>
+    </tr>
+    <tr>
+      <td align="right">Game Description: </td>
+      <td><input type="text" ng-model="gameDescription"></td>
+    </tr>
+  </table>  
+  
+  <button ng-click="createGame(gameName, gameDescription)">Submit</button>
+
 </div>
