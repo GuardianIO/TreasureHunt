@@ -8,6 +8,7 @@
     "body-parser": "^1.14.0",
     "cookie-parser": "^1.4.0",
     "express": "^4.13.3",
+    "gulp-uglify": "^1.4.1",
     "jwt-simple": "^0.3.1",
     "multiparty": "^4.1.2",
     "mysql": "^2.9.0",
