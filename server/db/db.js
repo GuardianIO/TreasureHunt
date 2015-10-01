@@ -81,16 +81,38 @@ module.exports = {
 
   //retrieve the only the first image 
   showGames: function(cb){
-    var queryStr = "select gameTable.gameId, gameTable.game_name, gameTable.description, gameTable.created_date, treasureInfo.image from gameTable, treasureInfo WHERE gameTable.gameId = treasureInfo.gameId AND treasureInfo.nodeId =1";
-    var countStr = "select gameId,count(nodeId) from treasureInfo group by gameId;";
+    // var queryStr = "select gameTable.gameId, gameTable.game_name, gameTable.description, gameTable.created_date, treasureInfo.image from gameTable, treasureInfo WHERE gameTable.gameId = treasureInfo.gameId AND treasureInfo.nodeId =1";
+    // var countStr = "select gameId,count(nodeId) from treasureInfo group by gameId;";
+    var queryStr = "select distinct \
+        g.game_name, \
+        t.gameid, \
+        g.description, \
+        g.created_date, \
+        c.nodecount, \
+        i.image \
+        from gametable as g \
+        join treasureinfo as t \
+        on t.gameid = g.gameid \
+        join ( \
+          select gameid, \
+          count(nodeid) as nodecount \
+          from treasureinfo group by gameid ) as c \
+        on c.gameid = t.gameid \
+        join ( \
+          select gameid, \
+          image, min(nodeid) as nodeid \
+          from treasureinfo group by gameid ) as i \
+        on i.gameid = t.gameid;"
     connection.query(queryStr, function(err, results){
       if(err){
         console.error(err);
       }
       else{
-        connection.query(countStr, function(err, count){
-          cb(results, count);
-        });
+        for(var i = 0; i < results.length; i++){
+          results[i].image = "https://s3-us-west-1.amazonaws.com/biggerbucket/"+results[i].image;
+        }
+        console.log(results);
+        cb(results);
       }
     }); 
   },

@@ -1,8 +1,9 @@
 <div id="games" ng-init='getAllGames()'>
   <div id="gameListItem" ng-repeat="game in games">
-    <img src="{{game.imgKey}}">
-    <div>{{game.gameName}}</div>
-    <div>{{game.desc}}</div>
-    <div>{{game.length}}</div>
+    <img src="{{game.image}}">
+    <div>game name: {{game.game_name}}</div>
+    <div>description: {{game.description}}</div>
+    <div>node count: {{game.nodecount}}</div>
+    <div>created date: {{game.created_date}}</div>
   </div>
 </div>
