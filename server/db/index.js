@@ -51,6 +51,17 @@ module.exports = {
   },
   getPlayerContact: function(params,cb) {
 
+  },
+  getSingleGame : function(id, cb){
+    var selectStr = "SELECT * FROM treasureInfo WHERE gameId = (?)";
+    connection.query(selectStr, id, function(err, results){
+      if(err){
+        console.error(err);
+      }else{
+        console.log(results);
+        cb(results);
+      }
+    });
   }
 };
 
