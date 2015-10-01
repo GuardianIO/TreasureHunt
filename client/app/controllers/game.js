@@ -3,13 +3,10 @@ angular.module('treasureHunt.game', ['treasureHunt.services'])
   function($scope, $location, RequestFactory){
     $scope.clue = '';
     var node = 0;
-<<<<<<< HEAD
-
+    
     $scope.arrived = false;
     $scope.currentNode = {};
 
-=======
->>>>>>> Revert "[feat] implemented geo checking in game controller"
     updateNode = function(nodeNum){
       angular.extend($scope.currentNode,RequestFactory.getNode(nodeNum));
       console.log($scope.currentNode);
@@ -30,7 +27,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services'])
     navigator.geolocation.watchPosition(function(loc){
       $scope.$apply(angular.extend($scope.currentLocation, loc.coords))
     }
-    
+
     $interval(function(){
       updateNode(node);
       navigator.geolocation.getCurrentPosition(checkCoords);
