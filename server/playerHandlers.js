@@ -4,10 +4,11 @@ var db = require('./db/db.js');
 module.exports = {
   checkGame:function(req, res, next){
     console.log(req.url);
-    db.getSingleGame(req.url.split('/')[1], function(results){
-      if(results){
-        res.send('game exists');
+    db.getSingleGame(req.url.split('/')[1], function(err, results){
+      if(err){
+        res.send(500);
       }
+      res.send(results);
     });
     next();
   },

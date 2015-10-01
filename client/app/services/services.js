@@ -66,6 +66,24 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
     };
 }])
 
+.factory('GameFactory', ['$http', '$location', 'RequestFactory', function($http, $location, RequestFactory){
+  return {
+    getGame:function(gameId){
+      $http.post('/game', {
+        gameId:gameId
+      })
+      .then(function(results){
+        console.log(results.data[0]);
+      }, function(err){
+        console.error(err);
+      })
+    }, 
+    getAllGames:function(){
+      
+    }
+  };
+}])
+
 // invitePlayers method will submit post request to '/invite' with array of invities and server will email each invitee
 .factory('InvitePlayers', ['$http', '$location', 'RequestFactory', function($http, $location, RequestFactory){
   return {
@@ -80,16 +98,9 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
           console.log(resp.data);
         })
     }
-  }
+  };
 }])
 
-.factory('GameFactory', ['$scope','$http', function($scope, $http){
-  return {
-    getGame:function(){
 
-    },
-
-  }
-}]);
 
 

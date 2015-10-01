@@ -50,7 +50,7 @@ angular.module('treasureHunt', [
     controller: 'GamesCtrl'
   })
   .when('/game/:id', {
-    templateUrl: mobileBrowser ? 'app/mobile/game.html' : '/app/views/game.html',
+    templateUrl: 'app/mobile/game.html',
     controller: 'GameCtrl'
   })
   .otherwise({

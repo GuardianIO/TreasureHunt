@@ -51,7 +51,7 @@ module.exports.createGame = function(req, res){
   var gameName = req.body.gameName;
   var gameDescription = req.body.gameDescription;
 
-  db.createGameName({gameName: gameName, description: gameDescription}, function(gameId){
+  db.createGame({gameName: gameName, description: gameDescription}, function(gameId){
     res.send({gameId: gameId});
   });
 };
@@ -60,4 +60,18 @@ module.exports.getAllGames = function(req, res){
   db.showGames(function(results){
     res.send(results);
   });
+};
+
+module.exports.getGame = function(req, res, next){
+
+  db.getGameInfo(req.body.gameId, function(err, results){
+    if(err){
+      res.send(500);
+    }
+    console.log(results);
+    data = {
+      results:results
+    }
+    res.send(data);
+  })
 };

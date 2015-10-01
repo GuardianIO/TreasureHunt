@@ -20,6 +20,7 @@ app.get('/download/:url', requestHandlers.downloadHandler);
 app.post('/games', requestHandlers.getAllGames);
 app.post('/addWaypoint', requestHandlers.uploadHandler);
 
+app.post('/game', requestHandlers.getGame);
 app.post('/createGame', requestHandlers.createGame);
 
 app.post('/gameNode', function(req, res){
