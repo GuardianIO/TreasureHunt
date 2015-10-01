@@ -2,7 +2,7 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
 .factory('RequestFactory', ['$http', '$location', function($http, $location){
   var gameId = "";
   var games = [];
-
+  var currentGame = {};
   return {
     gameId : gameId,
     getGameId : function(){
@@ -24,16 +24,26 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
         return resp.data;
       });
     },
-    getGame:function(gameId){
+    getGame:function(gameId, cb){
       $http.post('/game', {
         gameId:gameId
       })
       .then(function(results){
-        console.log(results);
+        currentGame.nodes = results.data;
+        currentGame = {
+          name:results.data[0].game_name,
+          description: results.data[0].description,
+          nodes:results.data
+        };
       }, function(err){
         console.error(err);
       })
     }, 
+    getNode:function(nodeNum){
+      if(currentGame.nodes){
+        return currentGame.nodes[nodeNum];
+      }
+    }
 
   }
 }])
