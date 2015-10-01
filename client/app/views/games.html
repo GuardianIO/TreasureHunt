@@ -1,5 +1,5 @@
 <div id="games" ng-init='getAllGames()'>
-  <div ng-repeat="game in games">
+  <div id="gameListItem" ng-repeat="game in games">
     <img src="{{game.imgKey}}">
     <div>{{game.gameName}}</div>
     <div>{{game.desc}}</div>

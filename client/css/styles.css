@@ -32,3 +32,9 @@
   display: inline-block;
   margin-left: 10px;
 }  
+
+#gameListItem {
+  border: 1px solid black;
+  margin: 10px;
+  background-color: #FFFFCC;
+}
