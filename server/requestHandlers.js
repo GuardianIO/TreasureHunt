@@ -1,5 +1,5 @@
 var express = require('express');
-var db = require('./db/index.js');
+var db = require('./db/db.js');
 var imgDB = require('./db/imgDB.js');
 var multiparty = require('multiparty');
 var bucket = 'biggerbucket';

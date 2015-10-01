@@ -1,8 +1,8 @@
 angular.module('treasureHunt.huntEditor', ['ngFileUpload', 'treasureHunt.services'])
 
 
-.controller('HuntEditorCtrl', ['$scope', 'Upload', '$timeout', 'RequestFactory',
-    function ($scope, Upload, $timeout, RequestFactory) {
+.controller('HuntEditorCtrl', ['$scope', '$location', 'Upload', '$timeout', 'RequestFactory',
+    function ($scope, $location, Upload, $timeout, RequestFactory) {
     $scope.$watch('files', function () {
         $scope.upload($scope.files);
     });
@@ -17,6 +17,10 @@ angular.module('treasureHunt.huntEditor', ['ngFileUpload', 'treasureHunt.service
       var index = $scope.files.indexOf(item);
       console.log(item);
       $scope.files.splice(index, 1);     
+    };
+
+    $scope.addWaypoint = function(){
+      $location.path = '/addWaypoint';
     };
 
     $scope.upload = function (files) {

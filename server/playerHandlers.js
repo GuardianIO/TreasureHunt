@@ -1,5 +1,5 @@
 var utils = require("./utils.js");
-var db = require('./db/index.js');
+var db = require('./db/db.js');
 
 module.exports = {
   checkGame:function(req, res, next){
