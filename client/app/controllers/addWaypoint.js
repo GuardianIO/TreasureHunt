@@ -2,7 +2,7 @@ angular.module('treasureHunt.addWaypoint', ['treasureHunt.services'])
 
 .controller('AddWaypoint', ['$scope', '$location', 'SendPicAndLoc', 
   function($scope, $location, SendPicAndLoc){
-
+    //start requesting the user's location
     SendPicAndLoc.getLoc();
     
     $scope.status = {
@@ -10,6 +10,7 @@ angular.module('treasureHunt.addWaypoint', ['treasureHunt.services'])
     };
 
     $scope.$on('locReady', function(){
+      // swap dummy button for Add Waypoint button with functionality
       $scope.$apply($scope.status.canUpload = true);
     });
 

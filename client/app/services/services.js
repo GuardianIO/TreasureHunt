@@ -17,9 +17,6 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
           console.log(resp.data);
         })        
       },
-    postNewNode: function(){
-
-    },
     loadGames: function(){
       $http.get('/games').then(function(resp){
         
@@ -83,8 +80,3 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
     }
   }])
 
-.factory('NodeList', ['$scope','$http',  function($scope, $http){
-  return {
-
-  }
-}]);
