@@ -3,7 +3,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services'])
   function($scope, $location, RequestFactory){
     $scope.clue = '';
     var node = 0;
-    
+
     $scope.arrived = false;
     $scope.currentNode = {};
 
@@ -18,15 +18,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services'])
         RequestFactory.getGame(gameId);
       }
     };
-    updateNode = function(){
-    
-    };
-    checkCoords = function(){
 
-    };
-    navigator.geolocation.watchPosition(function(loc){
-      $scope.$apply(angular.extend($scope.currentLocation, loc.coords))
-    }
 
     $interval(function(){
       updateNode(node);
@@ -45,8 +37,6 @@ angular.module('treasureHunt.game', ['treasureHunt.services'])
       }else{
         console.log(distance);
       }
-
-
     };
 
     $interval(function(){
