@@ -13,10 +13,10 @@ module.exports = {
   createGameName: function(params, cb) {
       var gameTable = "INSERT into gameTable(game_name,description, created_date) VALUES(?,?,?)";
       // var gameTable = "INSERT into gameTable(game_name) VALUES(?)";
-      var d = new Date();
-      var createdDate = d.getMonth()  +1 + "/"+ d.getDate() + "/"+d.getFullYear();
+      var today = new Date();
+      var createdDate = today.getMonth()  +1 + "/"+ today.getDate() + "/"+ today.getFullYear();
       // connection.query(gameTable, params, function(err, results){
-      connection.query(gameTable, [params.gameName, params.description, createdDate], function(err, results){
+      connection.query(gameTable, [params.gameName, params.description, createdDate], function(err, results){        
         if(err){
           console.error(err);
         }
@@ -77,9 +77,9 @@ module.exports = {
     });
   },
   //list all games
+  
   //retrieve the only the first image 
   showGames: function(cb){
-    //min
     var queryStr = "select gameTable.gameId, gameTable.game_name, gameTable.description, gameTable.created_date, treasureInfo.image from gameTable, treasureInfo WHERE gameTable.gameId = treasureInfo.gameId AND treasureInfo.nodeId =1";
     var countStr = "select gameId,count(nodeId) from treasureInfo group by gameId;";
     connection.query(queryStr, function(err, results){
@@ -91,6 +91,29 @@ module.exports = {
           cb(results, count);
         });
       }
+    }); 
+  },
+  getSingleGame : function(id, cb){
+    var selectStr = "SELECT * FROM treasureInfo WHERE gameId = (?)";
+    connection.query(selectStr, id, function(err, results){
+      if(err){
+        console.error(err);
+      }
+      else{
+        console.log(results);
+        cb(results);
+      }
     });
   }
 };
+// module.exports.showGames(function(game){console.log(game)});
+
+
+// description, city, length, date created, author
+// retrieve: all games, first pic,
+// all info: first pic, date created, number of nodes
+
+// gameName
+// timelineKey, geolocation{lat:, long}, hint, image
+
+// module.exports = connection;
