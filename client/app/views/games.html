@@ -1,10 +1,10 @@
 <div id="games" ng-init='getAllGames()'>
   <div id="gameListItem" ng-repeat="game in games">
     <img src="{{game.image}}">
-    <div>game name: {{game.game_name}}</div>
+    <div>game name: {{game.gameName}}</div>
     <div>description: {{game.description}}</div>
-    <div>node count: {{game.nodecount}}</div>
-    <div>created date: {{game.created_date}}</div>
-    <button ng-click="gameInfo(game.gameid)">join this game</button>
+    <div>node count: {{game.nodeCount}}</div>
+    <div>created date: {{game.createdDate}}</div>
+    <button ng-click="gameInfo(game.gameId)">join this game</button>
   </div>
 </div>

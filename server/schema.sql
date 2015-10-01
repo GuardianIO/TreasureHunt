@@ -1,26 +1,26 @@
-DROP DATABASE IF EXISTS fileDealer_db;
+DROP DATABASE IF EXISTS gooseEggs;
 
-CREATE DATABASE fileDealer_db;
+CREATE DATABASE gooseEggs;
 
-USE fileDealer_db;
+USE gooseEggs;
 
 DROP TABLE IF EXISTS gameTable;
-DROP TABLE IF EXISTS treasureInfo;
+DROP TABLE IF EXISTS nodeInfo;
 DROP TABLE IF EXISTS playerContact;
 
 /*****GAME ID******/
-CREATE TABLE gameTable(
+CREATE TABLE gameInfo (
   gameId INT NOT NULL AUTO_INCREMENT,
-  game_name VARCHAR(20) NOT NULL,
+  gameName VARCHAR(20) NOT NULL,
   description VARCHAR(50),
-  created_date VARCHAR(10),
+  createdDate VARCHAR(10),
 
   PRIMARY KEY(gameId)
 );
 
 /*****TABLE TREASURE INFO******/
 
-CREATE TABLE treasureInfo (
+CREATE TABLE nodeInfo (
   gameId INT,
   nodeId INT(3),
   image VARCHAR(80),
@@ -28,13 +28,13 @@ CREATE TABLE treasureInfo (
   lon DECIMAL(10,7),
   clue VARCHAR(140),
 
-  FOREIGN KEY (gameId) REFERENCES gameTable(gameId)
+  FOREIGN KEY (gameId) REFERENCES gameInfo(gameId)
 );
 
 /*****PLAYER CONTACT******/
 
-CREATE TABLE playerContact (
+CREATE TABLE playerInfo (
   gameId INT,
   email VARCHAR(20),
-  FOREIGN KEY (gameId) REFERENCES gameTable(gameId)
+  FOREIGN KEY (gameId) REFERENCES gameInfo(gameId)
 );
