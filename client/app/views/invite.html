@@ -1,6 +1,15 @@
 <div id='invite' ng-controller="InviteCtrl">
   <p>Invite people to play</p>
-  <input type="text" ng-model="inviteeEmailAddress">
-  <button ng-click="addToEmailList(inviteeEmailAddress)">Add Email</button>
-  <button ng-click="sendInvites()">Send Invites</button>
+  <div>
+    <input id="email_field" type="text" ng-model="inviteeEmailAddress">
+    <button ng-click="addToEmailList(inviteeEmailAddress)">Add Email</button>
+    <button ng-click="sendInvites()">Send Invites</button>
+  </div>
+  <br>
+
+  <div class="email-well" ng-repeat="email in invitees">
+    <p class="email">{{ email }}</p>
+    <a class="remove" href="#" ng-click="remove(email)">X</a>
+  </div>
+
 </div>
