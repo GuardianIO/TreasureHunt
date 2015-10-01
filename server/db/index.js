@@ -79,25 +79,26 @@ module.exports = {
   //list all games
   //retrieve the only the first image 
   showGames: function(cb){
-    var queryStr = "select gameTable.gameId, gameTable.game_name, gameTable.description, gameTable.created_date, treasureInfo.image from gameTable, treasureInfo where gameTable.gameId = treasureInfo.gameId AND treasureInfo.nodeId =1;"
+    //min
+    var queryStr = "select gameTable.gameId, gameTable.game_name, gameTable.description, gameTable.created_date, treasureInfo.image from gameTable, treasureInfo WHERE gameTable.gameId = treasureInfo.gameId AND treasureInfo.nodeId =1";
+    var countStr = "select gameId,count(nodeId) from treasureInfo group by gameId;";
     connection.query(queryStr, function(err, results){
       if(err){
         console.err(err);
       }
       else{
-        cb(results);
+        connection.query(countStr, function(err, count){
+          cb(results, count);
+        });
       }
     });
   }
 };
-module.exports.showGames(function(game){console.log(game)});
+module.exports.showGames(function(game, count){console.log(game, count)});
 
 
 // description, city, length, date created, author
 // retrieve: all games, first pic,
 // all info: first pic, date created, number of nodes
-
-// gameName
-// timelineKey, geolocation{lat:, long}, hint, image
 
 // module.exports = connection;
