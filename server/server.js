@@ -16,11 +16,11 @@ app.use(cookieParser());
 // a route can be handled using an array of callbacks
 app.get('/game/:gameId', playerHandlers.checkGameCallbacks);
 app.get('/download/:url', requestHandlers.downloadHandler);
-app.get('/gameInfo/:id', requestHandlers.getAllGames);
 
 app.post('/games', requestHandlers.getAllGames);
 app.post('/addWaypoint', requestHandlers.uploadHandler);
 
+app.post('/gameInfo', requestHandlers.getGame);
 app.post('/game', requestHandlers.getGame);
 app.post('/createGame', requestHandlers.createGame);
 
