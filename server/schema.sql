@@ -23,7 +23,7 @@ CREATE TABLE gameTable(
 CREATE TABLE treasureInfo (
   gameId INT,
   nodeId INT(3),
-  image VARCHAR(20),
+  image VARCHAR(80),
   lat DECIMAL(10,7),
   lon DECIMAL(10,7),
   clue VARCHAR(140),
