@@ -10,7 +10,7 @@ connection.connect();
 
 module.exports = {
 
-  createGame: function(params, cb) {
+  createGameName: function(params, cb) {
       var gameTable = "INSERT into gameTable(game_name, description, created_date) VALUES(?,?,?)";
       // var gameTable = "INSERT into gameTable(game_name) VALUES(?)";
       var today = new Date();
@@ -21,8 +21,9 @@ module.exports = {
           console.error(err);
         }
         else{
-          //gameId = results.insertId
-          cb(results.insertId);
+          console.log('results ',results);
+          gameId = results.insertId
+          cb(gameId);
         }
       });
   },
