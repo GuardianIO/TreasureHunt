@@ -46,15 +46,15 @@ angular.module('treasureHunt', [
     controller: 'InviteCtrl'
   })
   .when('/games', {
-    templateUrl: mobileBrowser ? 'app/mobile/games.html' : 'app/views/games.html',
+    templateUrl: mobileBrowser ? 'app/views/mobile/games.html' : 'app/views/desktop/games.html',
     controller: 'GamesCtrl'
   })
   .when('/game/:id', {
-    templateUrl: 'app/mobile/game.html',
+    templateUrl: 'app/views/mobile/game.html',
     controller: 'GameCtrl'
   })
   .when('/gameInfo/:id',{
-    templateUrl: mobileBrowser ? 'app/mobile/gameInfo.html' : 'app/views/gameInfo.html',
+    templateUrl: mobileBrowser ? 'app/views/mobile/gameInfo.html' : 'app/views/desktop/gameInfo.html',
     controller: 'gameInfoCtrl'
   })
   .otherwise({
