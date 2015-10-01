@@ -41,7 +41,7 @@ module.exports = {
         if(results[0]){
           nodeId = results[0].nodeId+1;
         }
-        console.log('this should be nodeid ',nodeId);
+        console.log('this should be clue ',params.clue);
         connection.query(insertStr, [params.longitude, params.latitude, params.imgKey, params.clue, nodeId, params.gameId],
           function(err, results){
             if(err){
@@ -114,22 +114,13 @@ module.exports = {
     }); 
   },
   getGameInfo : function(id, cb){
-    var selectGameStr = "SELECT * FROM gameTable WHERE gameId = (?)";
-    var selectTreasureStr = "SELECT * FROM treasureInfo WHERE gameId = (?)";
-    connection.query(selectGameStr, id, function(err, gameTableResults){
+    var selectStr = "SELECT DISTINCT g.game_name, g.description, g.created_date, t.nodeId, t.lat, t.lon, t.image, t.clue FROM treasureInfo as t JOIN gameTable as g on g.gameId = t.gameId WHERE g.gameId = (?)";
+    connection.query(selectStr, id, function(err, results){
       if(err){
         console.error(err);
-      }else{
-        connection.query(selectTreasureStr, id, function(err, treasureInfoResults){
-          if(err){
-            console.error(err);
-          }else{
-            gameTableResults.nodes = treasureInfoResults;
-            console.log(gameTableResults);
-            cb(err, gameTableResults);
-          }
-        })
       }
+      console.log(results);
+      cb(err, results);
     });
   }
 };

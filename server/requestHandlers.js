@@ -30,7 +30,6 @@ module.exports.uploadHandler = function(req, res){
     params.longitude = nodeData.longitude;
     params.latitude = nodeData.latitude;
     params.clue = nodeData.clue;
-    // console.log(gameId, longitude, latitude);
   });
 
   form.on('part', function(part){
@@ -68,10 +67,7 @@ module.exports.getGame = function(req, res, next){
     if(err){
       res.send(500);
     }
-    console.log(results);
-    data = {
-      results:results
-    }
-    res.send(data);
+    res.send(results);
   })
 };
+
