@@ -30,7 +30,6 @@ module.exports.uploadHandler = function(req, res){
     params.longitude = nodeData.longitude;
     params.latitude = nodeData.latitude;
     params.clue = nodeData.clue;
-    // console.log(gameId, longitude, latitude);
   });
 
   form.on('part', function(part){
@@ -51,7 +50,7 @@ module.exports.createGame = function(req, res){
   var gameName = req.body.gameName;
   var gameDescription = req.body.gameDescription;
 
-  db.createGameName({gameName: gameName, description: gameDescription}, function(gameId){
+  db.createGame({gameName: gameName, description: gameDescription}, function(gameId){
     res.send({gameId: gameId});
   });
 };
@@ -61,3 +60,14 @@ module.exports.getAllGames = function(req, res){
     res.send(results);
   });
 };
+
+module.exports.getGame = function(req, res, next){
+
+  db.getGameInfo(req.body.gameId, function(err, results){
+    if(err){
+      res.send(500);
+    }
+    res.send(results);
+  })
+};
+

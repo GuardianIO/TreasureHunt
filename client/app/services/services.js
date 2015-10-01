@@ -23,7 +23,17 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
       return $http.post('/games').then(function(resp){
         return resp.data;
       });
-    }
+    },
+    getGame:function(gameId){
+      $http.post('/game', {
+        gameId:gameId
+      })
+      .then(function(results){
+        console.log(results);
+      }, function(err){
+        console.error(err);
+      })
+    }, 
 
   }
 }])
@@ -80,16 +90,9 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
           console.log(resp.data);
         })
     }
-  }
-}])
-
-.factory('GameFactory', ['$scope','$http', function($scope, $http){
-  return {
-    getGame:function(){
-
-    },
-
-  }
+  };
 }]);
+
+
 
 

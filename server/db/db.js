@@ -10,7 +10,7 @@ connection.connect();
 
 module.exports = {
 
-  createGameName: function(params, cb) {
+  createGame: function(params, cb) {
       var gameTable = "INSERT into gameTable(game_name, description, created_date) VALUES(?,?,?)";
       // var gameTable = "INSERT into gameTable(game_name) VALUES(?)";
       var today = new Date();
@@ -41,7 +41,7 @@ module.exports = {
         if(results[0]){
           nodeId = results[0].nodeId+1;
         }
-        console.log('this should be nodeid ',nodeId);
+        console.log('this should be clue ',params.clue);
         connection.query(insertStr, [params.longitude, params.latitude, params.imgKey, params.clue, nodeId, params.gameId],
           function(err, results){
             if(err){
@@ -113,15 +113,14 @@ module.exports = {
       }
     }); 
   },
-  getSingleGame : function(id, cb){
-    var selectStr = "SELECT * FROM treasureInfo WHERE gameId = (?)";
+  getGameInfo : function(id, cb){
+    var selectStr = "SELECT DISTINCT g.game_name, g.description, g.created_date, t.nodeId, t.lat, t.lon, t.image, t.clue FROM treasureInfo as t JOIN gameTable as g on g.gameId = t.gameId WHERE g.gameId = (?)";
     connection.query(selectStr, id, function(err, results){
       if(err){
         console.error(err);
-      }else{
-        console.log(results);
-        cb(results);
       }
+      console.log(results);
+      cb(err, results);
     });
   }
 };
