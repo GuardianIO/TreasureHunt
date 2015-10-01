@@ -1,6 +1,8 @@
 angular.module('treasureHunt.services', ['ngFileUpload'])
 .factory('RequestFactory', ['$http', '$location', function($http, $location){
   var gameId = "";
+  var games = [{gameName:'bigdicks',gameId: 1, desc: 'game1', length:5, imgKey:'https://s3-us-west-1.amazonaws.com/biggerbucket/1443654417129.png'},
+                  {gameName:'littledicks', gameId: 2, desc: 'game2', length:27, imgKey:'https://s3-us-west-1.amazonaws.com/biggerbucket/1443654802740.png'}];
 
   return {
     gameId : gameId,
@@ -16,12 +18,12 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
         }, function(resp){
           console.log(resp.data);
         })        
-      },
-    loadGames: function(){
-      $http.get('/games').then(function(resp){
-        
-      });
+    },
+
+    getGames: function(){
+      return games;
     }
+
   }
 }])
 
