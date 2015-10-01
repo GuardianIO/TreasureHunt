@@ -3,6 +3,7 @@ var db = require('./db/db.js');
 var imgDB = require('./db/imgDB.js');
 var multiparty = require('multiparty');
 var bucket = 'biggerbucket';
+var s3url = "https://s3-us-west-1.amazonaws.com/biggerbucket/";
 
 module.exports.downloadHandler = function(req, res){
   res.download('./server/testDownload.txt', function(err){
@@ -34,7 +35,7 @@ module.exports.uploadHandler = function(req, res){
 
   form.on('part', function(part){
     var imgKey = Date.now() + '.png';
-    params.imgKey = imgKey;
+    params.imgKey = s3url + imgKey;
     db.createNodeInfo(params);
     imgDB.saveImagePart(part, imgKey);
   });

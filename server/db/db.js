@@ -108,9 +108,6 @@ module.exports = {
         console.error(err);
       }
       else{
-        for(var i = 0; i < results.length; i++){
-          results[i].image = "https://s3-us-west-1.amazonaws.com/biggerbucket/"+results[i].image;
-        }
         console.log(results);
         cb(results);
       }
