@@ -90,18 +90,18 @@ module.exports = {
         g.created_date, \
         c.nodecount, \
         i.image \
-        from gametable as g \
-        join treasureinfo as t \
+        from gameTable as g \
+        join treasureInfo as t \
         on t.gameid = g.gameid \
         join ( \
           select gameid, \
           count(nodeid) as nodecount \
-          from treasureinfo group by gameid ) as c \
+          from treasureInfo group by gameid ) as c \
         on c.gameid = t.gameid \
         join ( \
           select gameid, \
           image, min(nodeid) as nodeid \
-          from treasureinfo group by gameid ) as i \
+          from treasureInfo group by gameid ) as i \
         on i.gameid = t.gameid;"
     connection.query(queryStr, function(err, results){
       if(err){
