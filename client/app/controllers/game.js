@@ -3,13 +3,9 @@ angular.module('treasureHunt.game', ['treasureHunt.services'])
   function($scope, $location, $interval, RequestFactory){
     $scope.clue = '';
     var node = 0;
-<<<<<<< HEAD
 
     $scope.arrived = false;
-=======
-    $scope.arrived = false;
     $scope.currentNode = {};
->>>>>>> [feat] implemented geo checking in game controller
 
     updateNode = function(nodeNum){
       $scope.currentNode =  RequestFactory.getNode(nodeNum);
@@ -21,7 +17,6 @@ angular.module('treasureHunt.game', ['treasureHunt.services'])
         RequestFactory.getGame(gameId);
       }
     };
-<<<<<<< HEAD
 
     checkCoords = function(data){
       var coords = data.coords;
@@ -42,7 +37,6 @@ angular.module('treasureHunt.game', ['treasureHunt.services'])
       updateNode(node);
       navigator.geolocation.getCurrentPosition(checkCoords);
     }, 1000);
-=======
 
     checkCoords = function(data){
       var coords = data.coords;
@@ -56,16 +50,12 @@ angular.module('treasureHunt.game', ['treasureHunt.services'])
       }else{
         console.log(distance);
       }
->>>>>>> [feat] implemented geo checking in game controller
+
 
     };
 
     $interval(function(){
       updateNode(node);
-<<<<<<< HEAD
-    }
-    
-=======
       navigator.geolocation.getCurrentPosition(checkCoords);
     }, 1000);
     // navigator.geolocation.watchPosition(function(loc){
@@ -76,7 +66,6 @@ angular.module('treasureHunt.game', ['treasureHunt.services'])
     
     getGame();
     navigator.geolocation.getCurrentPosition(checkCoords);
->>>>>>> [feat] implemented geo checking in game controller
     $scope.next = function(){
       updateNode(++node);
     }
