@@ -1,9 +1,11 @@
 <div id='invite' ng-controller="InviteCtrl">
-  <p>Invite people to play</p>
   <div>
-    <input id="email_field" type="text" ng-model="inviteeEmailAddress">
-    <button ng-click="addToEmailList(inviteeEmailAddress)">Add Email</button>
-    <button ng-click="sendInvites()">Send Invites</button>
+    <div id=class="container" style="text-align: center">
+      <h3 id="invite-players-header">Invite players</h3>
+      <input id="email_field" type="text" ng-model="inviteeEmailAddress">
+      <button id="invite-add-email-btn" ng-click="addToEmailList(inviteeEmailAddress)">Add Email</button>
+      <button id="send-invites-btn" class="btn btn-primary center-block" ng-click="sendInvites()">Send Invites</button>
+    </div>
   </div>
   <br>
 
