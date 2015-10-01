@@ -42,3 +42,14 @@
 #join-btn {
   margin-bottom: 10px;
 }
+
+#send-invites-btn {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+#invite-players-header {
+  margin-bottom: 20px;
+  color: blue;
+}
