@@ -99,14 +99,13 @@ module.exports = {
       if(err){
         console.error(err);
       }else{
->>>>>>> b9def436326d371883bf94d9f2ecf56e2ae61217
         console.log(results);
         cb(results);
       }
     });
   }
 };
-// module.exports.showGames(function(game){console.log(game)});
+module.exports.showGames(function(game){console.log(game)});
 
 
 // description, city, length, date created, author
