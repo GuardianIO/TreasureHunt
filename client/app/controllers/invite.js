@@ -6,6 +6,9 @@ angular.module('treasureHunt.invite', ['treasureHunt.services'])
       $scope.addToEmailList = function(inviteeEmailAddress){
         $scope.invitees.push(inviteeEmailAddress);
         console.log($scope.invitees);
+        var email_field = document.getElementById("email_field");
+        email_field.value = "";
+        email_field.focus();
       };
 
       $scope.sendInvites = function(){
@@ -13,5 +16,10 @@ angular.module('treasureHunt.invite', ['treasureHunt.services'])
           console.log("Sending invite to: " + $scope.invitees[i] + " (from controller)");
         }
         InvitePlayers.invitePlayers($scope.invitees);
-      }
+      }; 
+
+      $scope.remove = function(emailAddress) { 
+        var index = $scope.invitees.indexOf(emailAddress);
+        $scope.invitees.splice(index, 1);     
+      };
   }])
