@@ -1,11 +1,13 @@
 <div id="singleNode" >
-  <div >
-    <img ng-show="file" ngf-src="file">
-    <button 
-      type="file" ngf-select ngf-resize="{width: 500, height: 500, quality: .8}"
-      ng-model="file" name="file" accept="image/*">Take Picture</button>
-    <button ng-show="status.canUpload" ng-click="send()">Add Waypoint</button>
-    <input type="text" ng-model="clue" placeholder="Clue or description...">
+  <div class="container" style="text-align: center">
+    <img id="image-upload-thumbnail" ng-show="file" ngf-src="file">
+    <div id="image-upload-placeholder" ng-show="!file">
+      <button class="btn btn-large btn-primary" id="btn-upload-photo"
+        type="file" ngf-select ngf-resize="{width: 500, height: 500, quality: .8}"
+        ng-model="file" name="file" accept="image/*">Take Photo</button>
+    </div>
+    <textarea id="clue-textarea" ng-model="clue" placeholder="Clue or description..."></textarea>
+    <button ng-show="status.canUpload" ng-click="send()">Add Checkpoint</button>
     <button ng-show="!status.canUpload">Waiting for location...</button>
     <button ng-click="done()">I'm Done!</button>
   </div>
