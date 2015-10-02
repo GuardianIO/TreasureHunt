@@ -1,11 +1,11 @@
 <div id="gameInfo" ng-init="startGame()">
-<ul id="game-info-list" ng-repeat="gameInfo in game" class="showGameInfo">
+<ul id="game-info-list" class="showGameInfo">
     <center>
-    <li><img src="{{gameInfo.image}}"/></li>
-    <li>Game Name: {{gameInfo.gameName}}</li>
-    <li>About This Game: {{gameInfo.description}}</li>
-    <li>Numbers of Tasks: {{gameInfo.nodeCount}}</li>
-    <li>Created Date: {{gameInfo.createdDate}}</li>
+    <li><img ng-src="{{game.image}}"/></li>
+    <li>Game Name: {{game.gameName}}</li>
+    <li>About This Game: {{game.description}}</li>
+    <li>Numbers of Tasks: {{game.nodeCount}}</li>
+    <li>Created Date: {{game.createdDate}}</li>
     </center>
 </ul>
 <center><button ng-click="playGame()" class="startGameButton">Start</button></center>
