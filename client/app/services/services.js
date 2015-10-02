@@ -3,6 +3,15 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
   var gameId = "";
   var games = [];
   var currentGame = {};
+
+  gameSetup = function(){
+    if(Array.isArray(currentGame.nodes)){
+      currentGame.nodes.forEach(function(node){
+        node.found=false;
+      });
+    }
+  };
+
   return {
     gameId : gameId,
     getGameId : function(){
@@ -35,6 +44,7 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
           description: results.data[0].description,
           nodes:results.data
         };
+        gameSetup();
       }, function(err){
         console.error(err);
       })
@@ -43,6 +53,7 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
       if(currentGame.nodes){
         return currentGame.nodes[nodeNum];
       }
+      return null;
     }
 
   }
@@ -100,6 +111,23 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
           console.log(resp.data);
         })
     }
+  };
+}])
+
+.factory('geo', [function(){
+  return {
+    distance:function(lat1, lon1, lat2, lon2){
+      /* implemented from https://en.wikipedia.org/wiki/Great-circle_distance */
+      var c = Math.PI/180;
+      lat1 = lat1*c;
+      lat2 = lat2*c;
+      lon1 = lon1*c;
+      lon2 = lon2*c;
+      return 6371000 * 2 * Math.asin(Math.sqrt(
+          Math.sin((lat2-lat1) / 2) * Math.sin((lat2-lat1) / 2) + Math.cos(lat1)*Math.cos(lat2)*
+          Math.sin((lon2-lon1) / 2) * Math.sin((lon2-lon1) / 2)
+        ));
+    },
   };
 }]);
 
