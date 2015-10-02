@@ -39,6 +39,11 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
         console.error(err);
       })
     }, 
+    getGameInfo: function(gameId, cb){
+      $http.post('/gameInfo:id',{
+        $http.post('/gameInfo:id')
+      })
+    },
     getNode:function(nodeNum){
       if(currentGame.nodes){
         return currentGame.nodes[nodeNum];
