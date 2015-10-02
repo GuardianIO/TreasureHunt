@@ -53,3 +53,16 @@
   margin-bottom: 20px;
   color: blue;
 }
+
+#create-game-submit-info {
+  margin-top: 15px;
+}
+
+#create-hunt-title {
+  margin-bottom: 15px;
+}
+
+.td-input {
+  position: relative;
+  left: 10px;
+}
