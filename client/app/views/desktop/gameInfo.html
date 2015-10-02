@@ -1,5 +1,5 @@
 <div id="gameInfo" ng-init="startGame()">
-<ul ng-repeat="gameInfo in game" class="showGameInfo">
+<ul id="game-info-list" ng-repeat="gameInfo in game" class="showGameInfo">
     <center>
     <li><img src="{{gameInfo.image}}"/></li>
     <li>Game Name: {{gameInfo.gameName}}</li>

@@ -70,14 +70,16 @@
   left: 10px;
 }
 
-.showGameInfo{
+#game-info-list {
   list-style-type: none;
   margin: auto;
-  width: 60%;
-  padding 10px;
+  width: 100%;
+  padding 0px;
 }
 .startGameButton{
   width: 30%;
+  text-align: left;
+  padding-left: 0px;
 }
 
 #image-upload-thumbnail {
@@ -114,4 +116,32 @@
   float: left;
   display: inline;
   margin-right: 15px;
+}
+
+#gameInfo {
+  text-align: center;
+  width: 90%;
+}
+
+#game-info-img {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#btn-start-game {
+  position:relative;
+  left: 50%;
+  margin-top:95%;
+  margin-bottom: 10px;
+}
+
+#game-info-details {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.view-header {
+  text-align: center;
+  margin-bottom: 25px;
 }
