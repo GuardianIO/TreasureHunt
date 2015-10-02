@@ -6,7 +6,7 @@ angular.module('treasureHunt', [
   'treasureHunt.initial',
   'treasureHunt.games',
   'treasureHunt.game',
-  'treasureHunt.addWaypoint',
+  'treasureHunt.addNode',
   'treasureHunt.invite',
   'treasureHunt.gameInfo'
 ])
@@ -42,7 +42,7 @@ angular.module('treasureHunt', [
     .state('/addNode', {
       url:'/addNode',
       templateUrl: mobileBrowser ? 'app/views/mobile/addNode.html' : 'app/views/desktop/addNode.html',
-      controller:'AddWaypoint'
+      controller:'AddNode'
     })
     .state('/nodeList', {
       url:'/nodeList',
