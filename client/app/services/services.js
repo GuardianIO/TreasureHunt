@@ -40,18 +40,17 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
       })
     }, 
     getGameInfo: function(gameId, cb){
-      $http.post('/gameInfo',{
-          gameId:gameId
-        })
-        .then(function(results){
-          console.log('getGameInfo', results);
+      $http.post('/gameInfo', {
+        gameId:gameId
+      })
+        .then(function(results, err){
           currentGame = {
             name: results.data.gameName,
             description: results.data.description,
             createdDate: results.data.createdDate
           };
-          cb(currentGame);
-        }, function(err){
+          cb(results);
+        },function(err){
           console.error(err);
         }
       )

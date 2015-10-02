@@ -129,7 +129,6 @@ module.exports = {
     });
   },
   getGameIntro: function(id, cb){
-    console.log('gameIntro id', id);
     var selectStr = "SELECT DISTINCT \
         g.gameName, \
         n.gameId, \
