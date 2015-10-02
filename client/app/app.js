@@ -1,6 +1,6 @@
 angular.module('treasureHunt', [
   'ngFileUpload',
-  'ngRoute', 
+  'ui.router', 
   'treasureHunt.create',
   'treasureHunt.huntEditor',
   'treasureHunt.initial',
@@ -11,8 +11,8 @@ angular.module('treasureHunt', [
   'treasureHunt.gameInfo'
 ])
 
-.config(['$routeProvider', '$locationProvider', 
-  function($routeProvider, $locationProvider){
+.config(['$stateProvider', '$urlRouterProvider', 
+  function($stateProvider, $urlRouterProvider){
   var mobileBrowser = false;
   (function(a,b){
     if(/* RegExp from detectmobilebrowsers.com to detect mobile browsers */
@@ -20,51 +20,54 @@ angular.module('treasureHunt', [
     ){
       mobileBrowser = true;
   }})(navigator.userAgent||navigator.vendor||window.opera);
+  
+  $urlRouterProvider.otherwise('/');
 
-  $routeProvider
-  .when('/',{
-    templateUrl: mobileBrowser ? 'app/views/mobile/initial.html' : 'app/views/desktop/initial.html',
-    controller:'InitialCtrl'
-  })
-  .when('/create', {
-    templateUrl: mobileBrowser ? 'app/views/mobile/create.html' : 'app/views/desktop/create.html',
-    controller:'CreateCtrl'
-  })
-  .when('/huntEditor', {
-    templateUrl: mobileBrowser ? 'app/views/mobile/huntEditor.html' : 'app/views/desktop/huntEditor.html',
-    controller:'HuntEditorCtrl'
-  })
-  .when('/addWaypoint', {
-    templateUrl: mobileBrowser ? 'app/views/mobile/addWaypoint.html' : 'app/views/desktop/addWaypoint.html',
-    controller:'AddWaypoint'
-  })
-  .when('/nodeList', {
-    templateUrl: mobileBrowser ? 'app/views/mobile/nodeList.html' : 'app/views/desktop/nodeList.html',
-    controller: 'NodeListCtrl'
-  })
-  .when('/invite', {
-    templateUrl: 'app/views/desktop/invite.html',
-    controller: 'InviteCtrl'
-  })
-  .when('/games', {
-    templateUrl: mobileBrowser ? 'app/views/mobile/games.html' : 'app/views/desktop/games.html',
-    controller: 'GamesCtrl'
-  })
-  .when('/game/:id', {
-    templateUrl: 'app/views/mobile/game.html',
-    controller: 'GameCtrl'
-  })
-  .when('/gameInfo/:id',{
-    templateUrl: mobileBrowser ? 'app/views/mobile/gameInfo.html' : 'app/views/desktop/gameInfo.html',
-    controller: 'GameInfoCtrl'
-  })
-  .otherwise({
-    redirectTo:'/'
-  })
-
-  // $locationProvider.html5Mode({
-  //   enabled: true,
-  //   requireBase: false
-  // });
+  $stateProvider
+    .state('/',{
+      url:'/',
+      templateUrl: mobileBrowser ? 'app/views/mobile/initial.html' : 'app/views/desktop/initial.html',
+      controller:'InitialCtrl'
+    })
+    .state('/create', {
+      url:'/create',
+      templateUrl: mobileBrowser ? 'app/views/mobile/create.html' : 'app/views/desktop/create.html',
+      controller:'CreateCtrl'
+    })
+    .state('/nodeEditor', {
+      url:'/nodeEditor',
+      templateUrl: mobileBrowser ? 'app/views/mobile/nodeEditor.html' : 'app/views/desktop/nodeEditor.html',
+      controller:'HuntEditorCtrl'
+    })
+    .state('/addNode', {
+      url:'/addNode',
+      templateUrl: mobileBrowser ? 'app/views/mobile/addNode.html' : 'app/views/desktop/addNode.html',
+      controller:'AddWaypoint'
+    })
+    .state('/nodeList', {
+      url:'/nodeList',
+      templateUrl: mobileBrowser ? 'app/views/mobile/nodeList.html' : 'app/views/desktop/nodeList.html',
+      controller: 'NodeListCtrl'
+    })
+    .state('/invite', {
+      url:'/invite',
+      templateUrl: 'app/views/desktop/invite.html',
+      controller: 'InviteCtrl'
+    })
+    .state('/games', {
+      url:'/games',
+      templateUrl: mobileBrowser ? 'app/views/mobile/games.html' : 'app/views/desktop/games.html',
+      controller: 'GamesCtrl'
+    })
+    .state('/game/:id', {
+      url:'/game/:id',
+      templateUrl: 'app/views/mobile/game.html',
+      controller: 'GameCtrl'
+    })
+    .state('/gameInfo/:id',{
+      url:'/gameInfo/:id',
+      templateUrl: mobileBrowser ? 'app/views/mobile/gameInfo.html' : 'app/views/desktop/gameInfo.html',
+      controller: 'GameInfoCtrl'
+    })
 
 }]);

@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="./css/styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.min.js"></script>
     <!-- shim is needed to support non-HTML5 FormData browsers (IE8-9)-->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/7.3.8/ng-file-upload-shim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/7.3.8/ng-file-upload.min.js"></script>
     <script src="./main.js"></script>
@@ -46,7 +46,6 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-
-    <div class="container" ng-view></div>
+    <div class="container" ui-view></div>
   </body>  
 </html>
