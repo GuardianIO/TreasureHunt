@@ -1,6 +1,6 @@
 angular.module('treasureHunt.game', ['treasureHunt.services'])
-.controller('GameCtrl', ['$scope', '$location', 'RequestFactory',
-  function($scope, $location, RequestFactory){
+.controller('GameCtrl', ['$scope', '$location', '$interval', 'RequestFactory',
+  function($scope, $location, $interval, RequestFactory){
     $scope.clue = '';
     var node = 0;
 
