@@ -31,7 +31,7 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
       .then(function(results){
         currentGame.nodes = results.data;
         currentGame = {
-          name:results.data[0].game_name,
+          name:results.data[0].gameName,
           description: results.data[0].description,
           nodes:results.data
         };
@@ -39,6 +39,22 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
         console.error(err);
       })
     }, 
+    getGameInfo: function(gameId, cb){
+      $http.post('/gameInfo', {
+        gameId:gameId
+      })
+        .then(function(results, err){
+          currentGame = {
+            name: results.data.gameName,
+            description: results.data.description,
+            createdDate: results.data.createdDate
+          };
+          cb(results);
+        },function(err){
+          console.error(err);
+        }
+      )
+    },
     getNode:function(nodeNum){
       if(currentGame.nodes){
         return currentGame.nodes[nodeNum];

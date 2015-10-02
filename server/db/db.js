@@ -127,6 +127,38 @@ module.exports = {
       }
       cb(err, results);
     });
+  },
+  getGameIntro: function(id, cb){
+    var selectStr = "SELECT DISTINCT \
+        g.gameName, \
+        n.gameId, \
+        g.description, \
+        g.createdDate, \
+        c.nodeCount, \
+        i.image \
+        FROM gameInfo AS g \
+        JOIN nodeInfo AS n \
+        ON n.gameId = g.gameId \
+        JOIN ( \
+          SELECT gameId, \
+          COUNT(nodeId) AS nodeCount \
+          FROM nodeInfo GROUP BY gameId ) AS c \
+        ON c.gameId = n.gameId \
+        JOIN ( \
+          SELECT gameId, \
+          image, MIN(nodeId) AS nodeId \
+          FROM nodeInfo GROUP BY gameId ) AS i \
+        ON i.gameId = n.gameId \
+        WHERE n.gameId = (?)";
+    connection.query(selectStr, id, function(err, results){
+      if(err){
+        console.error(err);
+      }
+      else{
+        console.log('getGameIntro',results);
+        cb(results);
+      }
+    });
   }
 };
 

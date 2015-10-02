@@ -55,7 +55,7 @@ angular.module('treasureHunt', [
     controller: 'GameCtrl'
   })
   .when('/gameInfo/:id',{
-    templateUrl: mobileBrowser ? 'app/mobile/gameInfo.html' : 'app/views/gameInfo.html',
+    templateUrl: mobileBrowser ? 'app/mobile/gameInfo.html' : 'app/views/desktop/gameInfo.html',
     controller: 'GameInfoCtrl'
   })
   .otherwise({

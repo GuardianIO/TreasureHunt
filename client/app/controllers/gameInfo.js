@@ -1,10 +1,13 @@
-angular.module('treasureHunt.gameInfo',[])
+angular.module('treasureHunt.gameInfo',['treasureHunt.services'])
 
-.controller('GameInfoCtrl', ['$scope', '$http','RequestFactory', function($scope, $http, RequestFactory){
-  $scope.getGame = RequestFactory.getGame();
-  console.log($scope.getGame);
+.controller('GameInfoCtrl', ['$scope','RequestFactory', '$location', function($scope, RequestFactory, $location){
+  var vm = this;
+  vm.gameId = $location.url().split('/').pop();
   $scope.startGame = function(){
-
+    RequestFactory.getGameInfo(vm.gameId,function(game){
+      $scope.game = game.data;
+      console.log('get game', $scope.game);
+    });
   }
 
 }]);

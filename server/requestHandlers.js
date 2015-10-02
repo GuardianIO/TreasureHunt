@@ -65,9 +65,16 @@ module.exports.getGame = function(req, res, next){
 
   db.getGameInfo(req.body.gameId, function(err, results){
     if(err){
-      res.send(500);
+      res.sendStatus(500);
     }
     res.send(results);
   })
 };
 
+module.exports.getGameInfo = function(req, res, next){
+  console.log('getGameInfo', req);
+  db.getGameIntro(req.body.gameId, function(results){
+    console.log('results',results);
+    res.send(results);
+  })
+};
