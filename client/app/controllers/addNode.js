@@ -1,6 +1,6 @@
 angular.module('treasureHunt.addNode', ['treasureHunt.services'])
 
-.controller('AddWaypoint', ['$scope', '$location', 'SendPicAndLoc', 
+.controller('AddNode', ['$scope', '$location', 'SendPicAndLoc', 
   function($scope, $location, SendPicAndLoc){
     //start requesting the user's location
     SendPicAndLoc.getLoc();
