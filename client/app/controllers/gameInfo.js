@@ -9,5 +9,7 @@ angular.module('treasureHunt.gameInfo',['treasureHunt.services'])
       console.log('get game', $scope.game);
     });
   }
-
+  $scope.playGame = function(){
+    $location.path('/game/'+vm.gameId);
+  }
 }]);
