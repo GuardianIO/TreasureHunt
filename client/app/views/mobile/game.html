@@ -1,10 +1,11 @@
 <div id="game">
   <img ng-src={{currentNode.image}}><br>
   <span>Clue: {{currentNode.clue}}</span><br>
+  <span>Distance: {{distance | number : 0}} m</span><br>
   <span>Node Number: {{currentNode.nodeId}}</span><br>
   <span>Latitude: {{currentNode.lat}}</span><br>
   <span>longitude: {{currentNode.lon}}</span><br>
-  <span ng-if="arrived">Awesome! You found it! Press NEXT to keep playing.</span><br>
+  <span ng-if="found">Awesome! You found it! Press NEXT to keep playing.</span><br>
   <button ng-click="prev()">Prev</button>
-  <button ng-if="arrived" ng-click="next()">Next</button><br>
+  <button ng-if="found" ng-click="next()">Next</button><br>
 </div>

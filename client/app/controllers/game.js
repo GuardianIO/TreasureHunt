@@ -1,40 +1,48 @@
 angular.module('treasureHunt.game', ['treasureHunt.services'])
-.controller('GameCtrl', ['$scope', '$location', '$interval', 'RequestFactory',
-  function($scope, $location, $interval, RequestFactory){
+.controller('GameCtrl', ['$scope', '$location', '$interval', 'RequestFactory', '$q', 'geo',
+  function($scope, $location, $interval, RequestFactory, $q, geo){
     $scope.clue = '';
     var node = 0;
-    $scope.arrived = false;
+    $scope.found = false;
     $scope.currentNode = {};
+    $scope.distance = NaN;
 
     updateNode = function(nodeNum){
-      angular.extend($scope.currentNode,RequestFactory.getNode(nodeNum));
-      console.log($scope.currentNode);
+      return $q(function(){
+        $scope.currentNode = RequestFactory.getNode(nodeNum);
+      });
     }
 
     getGame = function(){
       var gameId = $location.url().split('/').pop();
       if(gameId){
-        RequestFactory.getGame(gameId);
+        RequestFactory.getGame(gameId, function(){});
       }
     };
 
-    $interval(function(){
+    nodeFound = function(){
+      $scope.found = true;
+      console.log('found!');
+      $interval.cancel(stop);
+      $scope.currentNode.found = true;
+    };
+
+    var stop = $interval(function(){
       updateNode(node);
       navigator.geolocation.getCurrentPosition(checkCoords);
     }, 1000);
 
     checkCoords = function(data){
-      var coords = data.coords;
-      var x = coords.latitude - $scope.currentNode.lat;
-      var y = coords.longitude - $scope.currentNode.lon;
-      var distance = Math.sqrt( (x)*(x) + (y)*(y) );
-
-      if(distance < 0.0001){
-        $scope.arrived = true;
-        console.log('arrived!');
-      }else{
-        console.log(distance);
-      }
+      $scope.$apply(function(){
+        var coords = data.coords;
+        var distance = geo.distance(coords.latitude, coords.longitude, $scope.currentNode.lat, $scope.currentNode.lon);
+        $scope.distance = distance;
+        if(distance < 25){
+          nodeFound();
+        }else{
+          console.log(distance);
+        }
+      });
     };
 
     getGame();
@@ -45,8 +53,12 @@ angular.module('treasureHunt.game', ['treasureHunt.services'])
     }
     $scope.next = function(){
       updateNode(++node);
+      $scope.found = false;
     }
     $scope.prev = function(){
-      updateNode(--node);
+      updateNode(--node)
+      .then(function(){
+        $scope.found = $currentNode.found;
+      });
     }
 }]);
