@@ -2,11 +2,11 @@
   <h1 class="view-header">{{ game.gameName }}</h1>
   <img id="game-info-img" ng-src="{{game.image}}"/>
   <div id="game-info-details">
-    <ul id="game-info-list">
-        <li>Game Description: {{game.description}}</li>
-        <li># of Checkpoints: {{game.nodeCount}}</li>
-        <li>Created Date: {{game.createdDate}}</li>
-    </ul>    
+    <div id="game-info-list">
+        <div>Game Description: {{game.description}}</div>
+        <div># of Checkpoints: {{game.nodeCount}}</div>
+        <div>Created Date: {{game.createdDate}}</div>
+    </div>    
   </div>
 
   <div class="btn-start-game">
