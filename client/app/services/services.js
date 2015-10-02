@@ -104,7 +104,13 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
           navigator.geolocation.getCurrentPosition(function(data){
             this.loc = data;
             $rootScope.$broadcast('locReady');
-          }.bind(this))
+          }.bind(this), 
+          function(err){
+            console.error(err);
+          }, {
+            enableHighAccuracy:true
+          }
+          )
         }
       },
       sendPic:function(file, cb){
