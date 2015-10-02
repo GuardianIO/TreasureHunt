@@ -113,12 +113,12 @@ module.exports = {
     }); 
   },
   getGameInfo : function(id, cb){
-
+    console.log(id);
     var selectStr = "SELECT DISTINCT \
       g.gameName, g.description, g.createdDate, \
       n.nodeId, n.lat, n.lon, n.image, n.clue \
       FROM nodeInfo AS n \
-      JOIN gameTable AS g \
+      JOIN gameInfo AS g \
       ON g.gameId = n.gameId \
       WHERE g.gameId = (?)";
     connection.query(selectStr, id, function(err, results){
