@@ -2,7 +2,7 @@ angular.module('treasureHunt', [
   'ngFileUpload',
   'ui.router', 
   'treasureHunt.create',
-  'treasureHunt.huntEditor',
+  'treasureHunt.nodeEditor',
   'treasureHunt.initial',
   'treasureHunt.games',
   'treasureHunt.game',
@@ -37,7 +37,7 @@ angular.module('treasureHunt', [
     .state('/nodeEditor', {
       url:'/nodeEditor',
       templateUrl: mobileBrowser ? 'app/views/mobile/nodeEditor.html' : 'app/views/desktop/nodeEditor.html',
-      controller:'HuntEditorCtrl'
+      controller:'NodeEditorCtrl'
     })
     .state('/addNode', {
       url:'/addNode',
