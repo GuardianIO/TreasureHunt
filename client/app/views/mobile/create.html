@@ -1,18 +1,18 @@
 <div id='create' ng-controller="CreateCtrl">
-  <table>
-    <tr>
-      <th colspan="2">Create a new hunt here</th> 
-    </tr>
-    <tr>
-      <td align="right">Game Name: </td>
-      <td><input type="text" ng-model="gameName"></td>
-    </tr>
-    <tr>
-      <td align="right">Game Description: </td>
-      <td><input type="text" ng-model="gameDescription"></td>
-    </tr>
-  </table>  
-  
-  <button ng-click="createGame(gameName, gameDescription)">Submit</button>
-
+  <div class="container" style="text-align: center">
+  <h2 id="create-hunt-title">Create a new hunt</h2>
+    <table>
+      <tr>
+        <td align="right">Game Name </td>
+        <td class="td-input"><input type="text" ng-model="gameName"></td>
+      </tr>
+      <tr><td><br></td></tr>
+      <tr>
+        <td align="right">Description </td>
+        <td class="td-input"><textarea ng-model="gameDescription"></textarea></td>
+      </tr>
+    </table>  
+    
+    <button id="create-game-submit-info" class="btn btn-primary" ng-click="createGame(gameName, gameDescription)">Submit</button>  
+  </div>
 </div>
