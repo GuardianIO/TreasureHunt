@@ -5,7 +5,8 @@ angular.module('treasureHunt.gameInfo',['treasureHunt.services'])
   vm.gameId = $location.url().split('/').pop();
   $scope.startGame = function(){
     RequestFactory.getGameInfo(vm.gameId,function(game){
-      console.log('getGame', game);
+      $scope.game = game.data;
+      console.log('get game', $scope.game);
     });
   }
 

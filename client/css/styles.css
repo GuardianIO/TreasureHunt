@@ -66,3 +66,7 @@
   position: relative;
   left: 10px;
 }
+
+.showGameInfo{
+  list-style-type: none;
+}
