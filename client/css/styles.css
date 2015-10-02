@@ -33,6 +33,9 @@
   margin-left: 10px;
 }  
 
+#games {
+}
+
 #gameListItem {
   border: 1px solid black;
   margin: 10px;
@@ -69,4 +72,40 @@
 
 .showGameInfo{
   list-style-type: none;
+}
+
+#image-upload-thumbnail {
+  width: 90%;
+}
+
+#image-upload-placeholder {
+  margin: auto;
+  width: 90%;
+  height: 200px;
+  background-color: grey;
+}
+
+#btn-upload-photo {
+  vertical-align: middle;
+  margin-top: 85px;
+}
+
+#clue-textarea {
+  height: 75px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 90%;
+}
+
+#gameListItem {
+  width: 90%;
+  padding-top:10px;
+  padding-bottom: 10px;
+}
+
+#list-item-image {
+  width: 50%;
+  float: left;
+  display: inline;
+  margin-right: 15px;
 }

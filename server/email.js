@@ -2,7 +2,7 @@
 var sendgrid = require('sendgrid')('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');
 
 var urlHtml ='';
-var host =  host ||'http://127.0.0.1:3000/game/';
+var host =  host ||'http://127.0.0.1:3000/#/gameInfo/';
 
 module.exports.emailInvitee = function (email, gameId) {
   console.log('sendgrid data * * * : ', email, gameId, host)
