@@ -78,7 +78,7 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
 .factory('SendPicAndLoc', ['$rootScope', '$http', '$location', 'Upload', 'RequestFactory',
   function($rootScope, $http, $location, Upload, RequestFactory){
 
-    function postPic(file, loc, clue){
+    function postPic(file, loc, clue, cb){
       Upload.upload({
         url:'/addWaypoint',
         file: file,
@@ -89,6 +89,7 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
           clue: clue
         }})
         .success(function(data, status, headers, config){
+          cb();
           console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
         })
         .error(function(data, status, headers, config){
@@ -107,8 +108,8 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
           }.bind(this))
         }
       },
-      sendPic:function(file){
-        postPic(file, this.loc, this.clue);
+      sendPic:function(file, cb){
+        postPic(file, this.loc, this.clue,cb);
       }
     };
 }])

@@ -17,7 +17,10 @@ angular.module('treasureHunt.addWaypoint', ['treasureHunt.services'])
     $scope.send = function(){
       if($scope.file){
         SendPicAndLoc.clue = $scope.clue;
-        SendPicAndLoc.sendPic($scope.file);
+        SendPicAndLoc.sendPic($scope.file, function(){
+          $scope.file=null;
+          $scope.clue='';
+        });
       }
     };
     
