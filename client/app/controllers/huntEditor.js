@@ -1,7 +1,7 @@
-angular.module('treasureHunt.huntEditor', ['ngFileUpload', 'treasureHunt.services'])
+angular.module('treasureHunt.nodeEditor', ['ngFileUpload', 'treasureHunt.services'])
 
 
-.controller('HuntEditorCtrl', ['$scope', '$location', 'Upload', '$timeout', 'RequestFactory',
+.controller('NodetEditorCtrl', ['$scope', '$location', 'Upload', '$timeout', 'RequestFactory',
     function ($scope, $location, Upload, $timeout, RequestFactory) {
     $scope.$watch('files', function () {
         $scope.upload($scope.files);
