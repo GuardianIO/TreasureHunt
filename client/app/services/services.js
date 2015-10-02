@@ -22,7 +22,7 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
         .then( function(resp){
           gameId = resp.data.gameId;
           console.log("Game created with ID: " + gameId);
-          $location.path('/addWaypoint');
+          $location.path('/addNode');
         }, function(err){
           console.error('Error ',err);
         });        
