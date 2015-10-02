@@ -37,13 +37,14 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
         gameId:gameId
       })
       .then(function(results){
-        currentGame.nodes = results.data;
-        currentGame = {
-          name:results.data[0].gameName,
-          description: results.data[0].description,
-          nodes:results.data
-        };
-        gameSetup();
+        if(results.data.length){
+          currentGame = {
+            name:results.data[0].gameName,
+            description: results.data[0].description,
+            nodes:results.data
+          };
+          gameSetup();
+        }
       }, function(err){
         console.error(err);
       })
@@ -104,7 +105,13 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
           navigator.geolocation.getCurrentPosition(function(data){
             this.loc = data;
             $rootScope.$broadcast('locReady');
-          }.bind(this))
+          }.bind(this), 
+          function(err){
+            console.error(err);
+          }, {
+            enableHighAccuracy:true
+          }
+          )
         }
       },
       sendPic:function(file, cb){

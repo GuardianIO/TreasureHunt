@@ -29,7 +29,13 @@ angular.module('treasureHunt.game', ['treasureHunt.services'])
 
     var stop = $interval(function(){
       updateNode(node);
-      navigator.geolocation.getCurrentPosition(checkCoords);
+      navigator.geolocation.getCurrentPosition(checkCoords, function(err){
+        console.error(err)
+      },
+        {
+          enableHighAccuracy:true
+        }
+      );
     }, 1000);
 
     checkCoords = function(data){
