@@ -4,10 +4,14 @@ angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
   var games = [];
   var currentGame = {};
 
-  gameSetup = function(){
+  gameSetup = function(currentNodeNum){
     if(Array.isArray(currentGame.nodes)){
-      currentGame.nodes.forEach(function(node){
-        node.found=false;
+      currentGame.nodes.forEach(function(node, index){
+        if(index <= currentNodeNum - 1){
+          node.found = true;
+        }else{
+          node.found=false;
+        }
       });
     }
   };
@@ -32,7 +36,7 @@ angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
         return resp.data;
       });
     },
-    getGame:function(gameId, cb){
+    getGame:function(gameId, currentNodeNum,  cb){
       $http.post('/game', {
         gameId:gameId
       })
@@ -43,7 +47,7 @@ angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
             description: results.data[0].description,
             nodes:results.data
           };
-          gameSetup();
+          gameSetup(currentNodeNum);
         }
         cb(currentGame.nodes.length);
       }, function(err){
