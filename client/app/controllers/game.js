@@ -58,9 +58,13 @@ angular.module('treasureHunt.game', ['treasureHunt.services'])
 
     if(!$scope.currentNode){
       updateNode(node);
+      $scope.checkLastNode(node);
     }
     $scope.next = function(){
       updateNode(++node);
+      if(node === $scope.gameLength){
+        $location.path('/finishGame');
+      }
       $scope.found = false;
     }
     $scope.prev = function(){
