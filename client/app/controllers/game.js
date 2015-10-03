@@ -2,44 +2,47 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
 .controller('GameCtrl', ['$scope', '$location', '$interval', 'RequestFactory', '$q', 'geo', '$cookies', 
   function($scope, $location, $interval, RequestFactory, $q, geo, $cookies){
     $scope.clue = '';
-    var node = 0;
     $scope.gameLength;
-    $scope.found = false;
     $scope.currentNode = {};
     $scope.distance = NaN;
+    var interval;
 
-    updateNode = function(nodeNum){
-      return $q(function(){
-        $scope.currentNode = RequestFactory.getNode(nodeNum);
-      });
-    }
-
-    getGame = function(){
-      var gameId = $location.url().split('/').pop();
-      if(gameId){
-        RequestFactory.getGame(gameId, function(numNodes){
-          $scope.gameLength = numNodes;
-        });
+    function searching(notFound){
+      if(notFound){
+        interval = $interval(function(){
+          navigator.geolocation.getCurrentPosition(checkCoords, function(err){
+            console.error(err)
+          },
+            {
+              enableHighAccuracy:true
+            }
+          );
+        }, 1000);
+      }else{
+        $interval.cancel(interval);
       }
     };
 
-    nodeFound = function(){
-      $scope.found = true;
-      console.log('found!');
-      $interval.cancel(stop);
-      $scope.currentNode.found = true;
+    $scope.next = function(){
+      searching(false);
+      $scope.currentNode = RequestFactory.getNode($scope.currentNode.nodeId);
+      searching(true);
     };
 
-    var stop = $interval(function(){
-      updateNode(node);
-      navigator.geolocation.getCurrentPosition(checkCoords, function(err){
-        console.error(err)
-      },
-        {
-          enableHighAccuracy:true
-        }
-      );
-    }, 1000);
+    $scope.prev = function(){
+      searching(false);
+      if($scope.currentNode.nodeId - 1){
+        $scope.currentNode = RequestFactory.getNode($scope.currentNode.nodeId-2);
+      }
+    }
+    
+    nodeFound = function(){
+      $scope.currentNode.found = true;
+      if($scope.currentNode.nodeId === $scope.gameLength){
+        console.log('Congrats!');
+        $location.path('/finishGame');
+      }
+    };
 
     checkCoords = function(data){
       $scope.$apply(function(){
@@ -54,24 +57,17 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
       });
     };
 
-    getGame();
-
-    if(!$scope.currentNode){
-      updateNode(node);
-      $scope.checkLastNode(node);
-    }
-    $scope.next = function(){
-      updateNode(++node);
-      if(node === $scope.gameLength){
-        $location.path('/finishGame');
+    (function(){
+      var gameId = $location.url().split('/').pop();
+      if(gameId){
+        RequestFactory.getGame(gameId, function(numNodes){
+          $scope.gameLength = numNodes;
+          if(numNodes){
+            $scope.currentNode = RequestFactory.getNode(0);
+          }
+          searching(true);
+        });
       }
-      $cookies.put('node', node);
-      $scope.found = false;
-    }
-    $scope.prev = function(){
-      updateNode(--node)
-      .then(function(){
-        $scope.found = $currentNode.found;
-      });
-    }
+    })();
+
 }]);
