@@ -67,13 +67,7 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
       return null;
     },
     getLastGame: function(gameId, cb){
-      $http.post('/finishGame', { gameId: gameId
-      })
-      .then(function(results, err){
-        cb(results);
-      }, function(err){
-        console.error(err);
-      })
+      return currentGame;
     }
   }
 }])

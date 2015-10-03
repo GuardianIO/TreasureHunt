@@ -78,11 +78,3 @@ module.exports.getGameInfo = function(req, res, next){
     res.send(results);
   })
 };
-
-module.exports.getLastGameInfo = function(req, res, next){
-  console.log('getGameInfo', req);
-  db.getGameIntro(req.body.gameId, function(results){
-    console.log('results',results);
-    res.send(results);
-  })
-};
