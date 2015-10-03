@@ -8,7 +8,8 @@ angular.module('treasureHunt', [
   'treasureHunt.game',
   'treasureHunt.addNode',
   'treasureHunt.invite',
-  'treasureHunt.gameInfo'
+  'treasureHunt.gameInfo',
+  'treasureHunt.finishGame'
 ])
 
 .config(['$stateProvider', '$urlRouterProvider', 
@@ -69,5 +70,9 @@ angular.module('treasureHunt', [
       templateUrl: mobileBrowser ? 'app/views/mobile/gameInfo.html' : 'app/views/desktop/gameInfo.html',
       controller: 'GameInfoCtrl'
     })
-
+    .state('/finishGame', {
+      url: '/finishGame',
+      templateUrl: mobileBrowser ? 'app/views/mobile/finish.html' : 'app/views/desktop/finish.html',
+      controller: 'FinishGameCtrl'
+    })
 }]);
