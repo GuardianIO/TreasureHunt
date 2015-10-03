@@ -7,6 +7,8 @@ angular.module('treasureHunt.finishGame',['treasureHunt.services'])
   $scope.script = "script";
   $scope.facebook = "facebook-jssdk";
 
+  $scope.currentGame = RequestFactory.currentGame;
+
   $scope.finishLine = function(){
     $scope.lastGame = RequestFactory.getLastGame();
     (function(d, s, id) {

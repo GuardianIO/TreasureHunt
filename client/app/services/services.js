@@ -21,6 +21,8 @@ angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
     getGameId : function(){
       return gameId;
     },
+    currentGame:currentGame,
+
     postNewGame: function(gameName, gameDescription){
       $http.post('/createGame', { gameName: gameName, gameDescription: gameDescription })
         .then( function(resp){
@@ -69,9 +71,6 @@ angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
         return currentGame.nodes[nodeNum];
       }
       return null;
-    },
-    getLastGame: function(gameId, cb){
-      return currentGame;
     }
   }
 }])
