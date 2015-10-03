@@ -111,6 +111,14 @@
   padding-bottom: 10px;
 }
 
+.gameImage {
+  height: 30vh;
+}
+
+.gameInfo {
+  height: 20vh;
+}
+
 #list-item-image {
   width: 50%;
   float: left;

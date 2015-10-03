@@ -45,6 +45,7 @@ angular.module('treasureHunt.services', ['ngFileUpload'])
           };
           gameSetup();
         }
+        cb(currentGame.nodes.length);
       }, function(err){
         console.error(err);
       })
