@@ -3,7 +3,7 @@ var db = require('./db/db.js');
 
 module.exports = {
   checkGame:function(req, res, next){
-    console.log(req.url);
+    // console.log('url', req.url);
     db.getSingleGame(req.url.split('/')[1], function(err, results){
       if(err){
         res.send(500);
@@ -19,17 +19,19 @@ module.exports = {
     // if it is user's first time to site, send back cookie with 
     // gameId and roundNumber to track progress
     // initialize roundNumber to 0 for new users
-    if(!req.cookie){
-      res.cookie('gameId', req.params.gameId);
-      res.cookie('roundNumber', 0);
-    }
+    // if(!req.cookies.jim){
+    //   res.cookie('jim', {cool:'yep, he is cool'})
+    // }else{
+    //   res.cookie('jim', {cool:"totallyBadass"});
+    // }
+    
     next();
   },
 
-  sendResponse : function(req, res){
-    var gameId = req.params.gameId;
-    res.send("Accessing game with id: " + utils.encodeGameUrl({ gameId: gameId }));    
-  },
+  // sendResponse : function(req, res){
+  //   var gameId = req.params.gameId;
+  //   res.send("Accessing game with id: " + utils.encodeGameUrl({ gameId: gameId }));    
+  // },
 
   invitePlayers : function(req, res){
     // get array of email addresses from post request data 
@@ -43,8 +45,6 @@ module.exports = {
 
 };
 
-module.exports.checkGameCallbacks = [
-    module.exports.checkGame,
-    module.exports.checkPlayerStatus,
-    module.exports.sendResponse
-]
+// module.exports.checkGameCallbacks = [
+//     module.exports.checkPlayerStatus
+// ]
