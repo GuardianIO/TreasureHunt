@@ -2,6 +2,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
 .controller('GameCtrl', ['$scope', '$location', '$interval', 'RequestFactory', '$q', 'geo', '$cookies', 
   function($scope, $location, $interval, RequestFactory, $q, geo, $cookies){
     $scope.clue = '';
+    $scope.numNodes = 0;
     $scope.gameLength;
     $scope.currentNode = null;
     $scope.distance = NaN;
@@ -25,9 +26,11 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
     };
 
     $scope.next = function(){
-      searching(false);
-      $scope.currentNode = RequestFactory.getNode($scope.currentNode.nodeId);
-      searching(true);
+      if($scope.currentNode.nodeId < $scope.numNodes){
+       searching(false);
+       $scope.currentNode = RequestFactory.getNode($scope.currentNode.nodeId);
+       searching(true); 
+     }
     };
 
     $scope.prev = function(){
@@ -62,7 +65,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
       if(gameId){
         var currentNodeNum = $cookies.getObject(gameId) && $cookies.getObject(gameId).progress ? $cookies.getObject(gameId).progress : 1;
         RequestFactory.getGame(gameId, currentNodeNum, function(numNodes){
-          console.log(currentNodeNum);
+          $scope.numNodes = numNodes;
           $scope.gameLength = numNodes;
           if(numNodes){
             $scope.currentNode = RequestFactory.getNode(currentNodeNum-1);
