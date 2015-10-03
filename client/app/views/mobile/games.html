@@ -1,5 +1,6 @@
 <div class="container" id="games" ng-init='getAllGames()'>
-  <div id="gameListItem" ng-repeat="game in games">
+  <label>Search Game: <input ng-model="searchGame"></label>
+  <div id="gameListItem" ng-repeat="game in games | filter:searchGame">
     <img id="list-item-image" ng-if="game.image" ng-src="{{game.image}}">
     <div>game name: {{game.gameName}}</div>
     <div>description: {{game.description}}</div>
