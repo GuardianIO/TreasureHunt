@@ -25,10 +25,20 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services'])
     };
     
     $scope.done = function(){
-      $location.path('/invite');
+      if($scope.file){
+        SendPicAndLoc.clue = $scope.clue;
+        SendPicAndLoc.sendPic($scope.file, function(){
+          $scope.file=null;
+          $scope.clue='';
+          $location.path('/invite');
+        });
+      }else{
+       $location.path('/invite'); 
+      }
     }
 
     $scope.createGame = function(){
       $location.path('/invite');
     }
 }]);
+
