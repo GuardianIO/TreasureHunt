@@ -6,6 +6,8 @@
         <div>Game Description: {{game.description}}</div>
         <div># of Checkpoints: {{game.nodeCount}}</div>
         <div>Created Date: {{game.createdDate}}</div>
+        <div ng-if="game.numOfRatings>0">Rating: {{game.avgRating}} {{game.numOfRatings}} reviews</div>
+        <div ng-if="game.numOfRatings===0">Rating: no reviews</div>
     </div>    
   </div>
 

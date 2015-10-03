@@ -5,6 +5,8 @@
     <div>game name: {{game.gameName}}</div>
     <div>description: {{game.description}}</div>
     <div>node count: {{game.nodeCount}}</div>
+    <div ng-if="game.numOfRatings">Rating: {{game.avgRating}} stars {{game.numOfRatings}} reviews</div>
+    <div ng-if="game.numOfRatings===0">Rating: no reviews</div>
     <div>created date: {{game.createdDate}}</div>
     <button ng-click="gameInfo(game.gameId)">join this game</button>
   </div>

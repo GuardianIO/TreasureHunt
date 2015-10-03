@@ -14,6 +14,8 @@ CREATE TABLE gameInfo (
   gameName VARCHAR(20) NOT NULL,
   description VARCHAR(50),
   createdDate VARCHAR(10),
+  avgRating DECIMAL(2,1),
+  numOfRatings int(5),
 
   PRIMARY KEY(gameId)
 );
@@ -27,6 +29,7 @@ CREATE TABLE nodeInfo (
   lat DECIMAL(10,7),
   lon DECIMAL(10,7),
   clue VARCHAR(140),
+
 
   FOREIGN KEY (gameId) REFERENCES gameInfo(gameId)
 );
