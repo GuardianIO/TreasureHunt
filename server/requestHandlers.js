@@ -41,7 +41,7 @@ module.exports.uploadHandler = function(req, res){
 
   form.parse(req);
  
-  console.log('got to uploadHandler')
+  // console.log('got to uploadHandler')
   res.send("Uploading file ");
 };
 
@@ -72,9 +72,10 @@ module.exports.getGame = function(req, res, next){
 };
 
 module.exports.getGameInfo = function(req, res, next){
-  console.log('getGameInfo', req);
+  // console.log('getGameInfo', req);
   db.getGameIntro(req.body.gameId, function(results){
-    console.log('results',results);
+    // console.log('results',results);
     res.send(results);
   })
-};
+}
+

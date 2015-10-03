@@ -19,7 +19,7 @@ module.exports = {
           console.error(err);
         }
         else{
-          console.log('results ',results);
+          // console.log('results ',results);
           gameId = results.insertId
           cb(gameId);
         }
@@ -46,7 +46,7 @@ module.exports = {
               console.error(err);
             }
             else{
-              console.log(results);
+              // console.log(results);
             }
           });
       }
@@ -59,7 +59,7 @@ module.exports = {
         console.error(err);
       }
       else{
-        console.log('playerContact results', results);
+        // console.log('playerContact results', results);
       }
     });
   },
@@ -73,7 +73,7 @@ module.exports = {
       }
       else{
         cb(results);
-        console.log('postNodeInfo', results);
+        // console.log('postNodeInfo', results);
       }
     });
   },
@@ -109,7 +109,7 @@ module.exports = {
         console.error(err);
       }
       else{
-        console.log(results);
+        // console.log(results);
         cb(results);
       }
     }); 

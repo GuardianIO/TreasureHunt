@@ -1,4 +1,4 @@
-angular.module('treasureHunt.services', ['ngFileUpload'])
+angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
 .factory('RequestFactory', ['$http', '$location', function($http, $location){
   var gameId = "";
   var games = [];
