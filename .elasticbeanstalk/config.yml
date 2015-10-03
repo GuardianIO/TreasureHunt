@@ -1,0 +1,10 @@
+branch-defaults:
+  master:
+    environment: goosedev
+global:
+  application_name: goosechase
+  default_ec2_keyname: goose
+  default_platform: Node.js
+  default_region: us-west-1
+  profile: eb-cli
+  sc: git
