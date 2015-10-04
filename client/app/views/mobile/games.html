@@ -1,13 +1,15 @@
 <div class="container" id="games" ng-init='getAllGames()'>
   <label>Search Game: <input ng-model="searchGame"></label>
-  <div id="gameListItem" ng-repeat="game in games | filter:searchGame">
-    <img id="list-item-image" ng-if="game.image" ng-src="{{game.image}}">
-    <div>game name: {{game.gameName}}</div>
-    <div>description: {{game.description}}</div>
-    <div>node count: {{game.nodeCount}}</div>
-    <div ng-if="game.numOfRatings">Rating: {{game.avgRating}} stars {{game.numOfRatings}} reviews</div>
-    <div ng-if="game.numOfRatings===0">Rating: no reviews</div>
-    <div>created date: {{game.createdDate}}</div>
-    <button ng-click="gameInfo(game.gameId)">join this game</button>
+    <div id="gameListItem" class="clearfix" ng-repeat="game in games | filter:searchGame">
+      <img id="list-item-image"  ng-if="game.image" ng-src="{{game.image}}">
+      <div class="game-info">
+        <div>game name: {{game.gameName}}</div>
+        <div>description: {{game.description}}</div>
+        <div>node count: {{game.nodeCount}}</div>
+        <div ng-if="game.numOfRatings">Rating: {{game.avgRating}} stars {{game.numOfRatings}} reviews</div>
+        <div ng-if="game.numOfRatings===0">Rating: no reviews</div>
+        <div>created date: {{game.createdDate}}</div>
+      </div>      
+    <button ng-click="gameInfo(game.gameId)">join this game</button>      
+    </div>
   </div>
-</div>
