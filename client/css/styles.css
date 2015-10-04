@@ -120,10 +120,15 @@
 }
 
 #list-item-image {
-  width: 50%;
   float: left;
+  max-height: 200px;
+  width: 50%;
   display: inline;
   margin-right: 15px;
+}
+
+.game-info {
+  /*float: right;*/
 }
 
 #gameInfo {
