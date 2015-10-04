@@ -17,12 +17,12 @@ angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
   };
 
   return {
-    gameId : gameId,
     getGameId : function(){
       return gameId;
     },
-    currentGame:currentGame,
-
+    currentGame: function(){
+      return currentGame;
+    },
     postNewGame: function(gameName, gameDescription){
       $http.post('/createGame', { gameName: gameName, gameDescription: gameDescription })
         .then( function(resp){
@@ -45,6 +45,7 @@ angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
       .then(function(results){
         if(results.data.length){
           currentGame = {
+            gameId: gameId,
             name:results.data[0].gameName,
             description: results.data[0].description,
             nodes:results.data
