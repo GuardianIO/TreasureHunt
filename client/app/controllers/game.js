@@ -6,6 +6,8 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
     $scope.gameLength;
     $scope.currentNode = null;
     $scope.distance = NaN;
+    $scope.isLastGame = false;
+
     var gameId = $location.url().split('/').pop();
     var interval;
 
@@ -45,10 +47,13 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
         progress: $scope.currentNode.nodeId
       });
       $scope.currentNode.found = true;
+      // console.log('scope.currentNode.nodeId',$scope.currentNode.nodeId);
       if($scope.currentNode.nodeId === $scope.gameLength){
-        $location.path('/finishGame');
+        // $location.path('/finishGame');
+        console.log($scope.currentNode);
+        $scope.isLastGame = true;
       }
-    };
+    };  
 
     checkCoords = function(data){
       $scope.$apply(function(){
