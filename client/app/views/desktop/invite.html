@@ -4,7 +4,7 @@
       <h1>Invite players</h1><br>
       <input id="email_field" size="20" type="text" ng-model="inviteeEmailAddress">
       <button id="invite-add-email-btn" ng-click="addToEmailList(inviteeEmailAddress)">Add Email</button>
-      <button id="send-invites-btn" class="btn btn-success center-block" ng-disabled="invitees.length === 0" ng-click="sendInvites()">Send Invites</button>
+      <button id="send-invites-btn" class="btn btn-success center-block" ng-disabled="invitees.length === 0" ng-click="sendInvites()">Send Invites <span class="glyphicon glyphicon-send"></span></button>
     </div>
   </div>
   <br>
@@ -15,5 +15,4 @@
       <a class="remove" ng-click="remove(email)"><span class="glyphicon glyphicon-remove"></span></a>    
     </div>
   </div>
-
 </div>
