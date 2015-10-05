@@ -19,7 +19,7 @@
 }
 
 .email-well {
-  padding: 5px;
+  padding: 10px;
   margin-bottom: 5px;
   background-color: #f5f5f5;
   border: 1px solid #e3e3e3;
@@ -252,6 +252,24 @@
   float: right;
   font-family: 'Pacifico', cursive;
   margin-left: 10px;
+}
+
+.invite-email-list-item > .email {
+  font-family: 'Oswald', sans-serif;
+  display: inline;
+  float: left;
+}
+
+.invite-email-list-item > .remove{
+  float: right;
+}
+
+.vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .clearfix:after {
