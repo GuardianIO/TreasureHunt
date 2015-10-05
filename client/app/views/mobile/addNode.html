@@ -7,8 +7,8 @@
         ng-model="file" name="file" accept="image/*">Take Photo</button>
     </div>
     <textarea id="clue-textarea" ng-model="clue" placeholder="Clue or description..."></textarea>
-    <button ng-show="status.canUpload" ng-click="send()">Add Checkpoint</button>
+    <button class="btn btn-md btn-info" ng-show="status.canUpload" ng-disabled="!file" ng-click="send()">Add Checkpoint</button>
     <button ng-show="!status.canUpload">Waiting for location...</button>
-    <button ng-click="done()">I'm Done!</button>
+    <button class="btn btn-md btn-success" ng-disabled="!file" ng-click="done()">I'm Done!</button>
   </div>
 </div>

@@ -5,7 +5,6 @@ angular.module('treasureHunt.create', ['treasureHunt.services'])
 
   this.createGame = function(gameName, gameDescription){
     if ($scope.createGameForm.$valid) {
-      alert("creating game");
       console.log("sending to server to create game");
       RequestFactory.postNewGame(gameName, gameDescription);
       $state.go('/addNode');
