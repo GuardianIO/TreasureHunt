@@ -14,7 +14,7 @@ angular.module('treasureHunt.singleNode', ['treasureHunt.services'])
     });
 
     $scope.send = function(){
-      if($scope.file){
+      if($scope.file && $scope.status.canUpload){
         SendPicAndLoc.sendPic($scope.file);
       }
     };
