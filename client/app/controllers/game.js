@@ -47,10 +47,8 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
         progress: $scope.currentNode.nodeId
       });
       $scope.currentNode.found = true;
-      // console.log('scope.currentNode.nodeId',$scope.currentNode.nodeId);
       if($scope.currentNode.nodeId === $scope.gameLength){
         // $location.path('/finishGame');
-        console.log($scope.currentNode);
         $scope.isLastGame = true;
       }
     };  
@@ -79,5 +77,14 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
         });
       }
     })();
+
+    // facebook share button
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;  
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'))
 
 }]);
