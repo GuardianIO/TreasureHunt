@@ -7,8 +7,9 @@ module.exports = {
     db.getSingleGame(req.url.split('/')[1], function(err, results){
       if(err){
         res.send(500);
+      }else{
+        res.send(results);
       }
-      res.send(results);
     });
     next();
   },

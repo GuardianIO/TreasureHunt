@@ -16,7 +16,7 @@ module.exports = {
       var createdDate = today.getMonth()  +1 + "/"+ today.getDate() + "/"+ today.getFullYear();
       connection.query(gameTable, [params.gameName, params.description, createdDate], function(err, results){        
         if(err){
-          console.error(err);
+          console.error('[MYSQL]createGame error: ',err);
         }
         else{
           // console.log('results ',results);
@@ -32,7 +32,7 @@ module.exports = {
     // console.log('createTreasureInfo params',params);
     connection.query(selectStr, [params.gameId], function(err, results){
       if(err){
-        console.error(err);
+        console.error('[MYSQL]createNodeInfo select error: ',err);
       }
       else{
         // console.log('SELECT results',results)
@@ -43,7 +43,7 @@ module.exports = {
         connection.query(insertStr, [params.longitude, params.latitude, params.imgKey, params.clue, nodeId, params.gameId],
           function(err, results){
             if(err){
-              console.error(err);
+              console.error('[MYSQL]createNodeInfo insert error: ',err);
             }
             else{
               // console.log(results);
@@ -56,10 +56,10 @@ module.exports = {
     var insertStr = "INSERT INTO playerInfo(gameId, email) VALUES(?,?)";
     connection.query(insertStr, [params.gameId, params.email], function(err, results){
       if(err){
-        console.error(err);
+        console.error('[MYSQL]getPlayerContact error: ',err);
       }
       else{
-        // console.log('playerContact results', results);
+        console.log('playerContact results', results);
       }
     });
   },
@@ -69,7 +69,7 @@ module.exports = {
     FROM nodeInfo WHERE gameId=(?)";
     connection.query(selectStr, params, function(err, results){
       if(err){
-        console.error(err);
+        console.error('[MYSQL]postNodeInfo error: ',err);
       }
       else{
         cb(results);
@@ -106,7 +106,7 @@ module.exports = {
         ON i.gameId = n.gameId";
     connection.query(queryStr, function(err, results){
       if(err){
-        console.error(err);
+        console.error('[MYSQL]showGames error: ',err);
       }
       else{
         // console.log(results);
@@ -125,7 +125,7 @@ module.exports = {
       WHERE g.gameId = (?)";
     connection.query(selectStr, id, function(err, results){
       if(err){
-        console.error(err);
+        console.error('[MYSQL]getGameInfo error: ',err);
       }
       cb(err, results);
     });
@@ -156,7 +156,7 @@ module.exports = {
         WHERE n.gameId = (?)";
     connection.query(selectStr, id, function(err, results){
       if(err){
-        console.error(err);
+        console.error('[MYSQL]getGameIntro error: ',err);
       }
       else{
         cb(results);
