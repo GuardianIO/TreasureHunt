@@ -4,7 +4,7 @@
     <div id="image-upload-placeholder" ng-show="!file">
       <button class="btn btn-large btn-primary" id="btn-upload-photo"
         type="file" ngf-select ngf-resize="{width: 500, height: 500, quality: .8}"
-        ng-model="file" name="file" accept="image/*">Take Photo</button>
+        ng-model="file" name="file" accept="image/*">Take Photo <span class="glyphicon glyphicon-camera"></span></button>
     </div>
     <textarea id="clue-textarea" ng-model="clue" placeholder="Clue or description..."></textarea>
     <button class="btn btn-md btn-info" ng-show="status.canUpload" ng-disabled="!file" ng-click="send()">Add Checkpoint</button>
