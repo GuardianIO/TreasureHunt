@@ -64,6 +64,11 @@
   left: 10px;
 }
 
+#squirrel-logo {
+  float:left;
+  width: 25px;
+}
+
 .startGameButton{
   width: 30%;
   text-align: left;
@@ -241,6 +246,12 @@
 .btn-start-game {
   text-align: center;
   margin-bottom: 20px;
+}
+
+.brandname {
+  float: right;
+  font-family: 'Pacifico', cursive;
+  margin-left: 10px;
 }
 
 .clearfix:after {
