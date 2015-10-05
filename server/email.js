@@ -15,7 +15,11 @@ module.exports.emailInvitee = function (email, gameId) {
           '\n\n\nSincerely,\n\nThe Scavenger Hunt Team'
   },
   function (err, json) {
-    if(err) {return console.error(err);}
-    console.log('sendgrid api error:', json);
+    if(err) {
+      console.error('[sendgrid]sent error: ',err);
+    }
+    else{
+      console.log('[sendgrid]sent:', json);
+    }
   });
 };
