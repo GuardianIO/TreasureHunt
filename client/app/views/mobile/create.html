@@ -1,6 +1,32 @@
-<div id='create' ng-controller="CreateCtrl">
+<div id='create' ng-controller="CreateCtrl as c">
+  <div class="container">
+  <h2 class="view-header">Create a new hunt</h2>
+
+  <form name="createGameForm" ng-submit="c.createGame(gameName, gameDescription)" novalidate>
+    <!-- Game Name -->
+    <div class="form-group" ng-class=" { 'has-error' : createGameForm.gameName.$invalid && !createGameForm.gameName.$pristine }">
+      <label>Game Name</label>
+      <input type="text" name="gameName" class="form-control" ng-model="gameName" autofocus required>
+      <p ng-show="createGameForm.gameName.$invalid && !createGameForm.gameName.$pristine" class="help-block">Game name is required.</p>
+    </div>
+
+    <!-- Hunt Description -->
+    <div class="form-group" ng-class="{ 'has-error': createGameForm.gameDescription.$invalid && !createGameForm.gameDescription.$pristine }">
+      <label>Describe your hunt</label>
+      <input type="text" class="form-control" ng-model="gameDescription" required>
+     <p ng-show="createGameForm.gameDescription.$invalid && !createGameForm.gameDescription.$pristine" class="help-block">Game description is required.</p>
+    </div>
+
+    <div style="text-align: center">
+      <button type="submit" class="btn btn-lg btn-success" ng-disabled="createGameForm.$invalid">Submit</button>  
+    </div>
+  </form>
+  </div>
+</div>
+
+<!-- <div id='create' ng-controller="CreateCtrl">
   <div class="container" style="text-align: center">
-  <h2 id="create-hunt-title">Create a new hunt</h2>
+  <h2 class="view-header">Create a new hunt</h2>
     <table>
       <tr>
         <td align="left">Game Name</td>
@@ -13,6 +39,6 @@
       </tr>
     </table>  
     
-    <button id="create-game-submit-info" class="btn btn-primary" ng-click="createGame(gameName, gameDescription)">Submit</button>  
+    <button id="create-game-submit-info" class="btn btn-primary" ng-disabled="gameDescription" ng-click="createGame(gameName, gameDescription)">Submit</button>  
   </div>
-</div>
+</div> -->
