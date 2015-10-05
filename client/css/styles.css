@@ -83,7 +83,8 @@
   margin: auto;
   width: 90%;
   height: 200px;
-  background-color: grey;
+  background: url('../img/photo-placeholder.jpg') no-repeat center;
+  background-size: 100% 100%;
 }
 
 #btn-upload-photo {

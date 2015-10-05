@@ -6,6 +6,9 @@
         type="file" ngf-select ngf-resize="{width: 500, height: 500, quality: .8}"
         ng-model="file" name="file" accept="image/*">Take Photo <span class="glyphicon glyphicon-camera"></span></button>
     </div>
+    <!-- Button for rotating image -->
+<!--     <button class="btn btn-md btn-default" ng-if="file"><span ng-if="file" class="glyphicon glyphicon-repeat"></span></button>
+         -->
     <textarea id="clue-textarea" ng-model="clue" placeholder="Clue or description..."></textarea>
     <button class="btn btn-md btn-info" ng-show="status.canUpload" ng-disabled="!file" ng-click="send()">Add Checkpoint</button>
     <button ng-show="!status.canUpload">Waiting for location...</button>
