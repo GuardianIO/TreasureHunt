@@ -36,12 +36,6 @@
 #games {
 }
 
-#gameListItem {
-  border: 1px solid black;
-  margin: 10px;
-  background-color: #FFFFCC;
-}
-
 #join-btn {
   margin-bottom: 10px;
 }
@@ -70,12 +64,6 @@
   left: 10px;
 }
 
-#game-info-list {
-  list-style-type: none;
-  margin: auto;
-  width: 100%;
-  padding 0px;
-}
 .startGameButton{
   width: 30%;
   text-align: left;
@@ -105,12 +93,6 @@
   width: 90%;
 }
 
-#gameListItem {
-  width: 90%;
-  padding-top:10px;
-  padding-bottom: 10px;
-}
-
 .gameImage {
   height: 30vh;
 }
@@ -119,27 +101,9 @@
   height: 20vh;
 }
 
-#list-item-image {
-  float: left;
-  max-height: 200px;
-  width: 50%;
-  display: inline;
-  margin-right: 15px;
-}
-
-.game-info {
-  /*float: right;*/
-}
-
 #gameInfo {
   text-align: center;
   width: 90%;
-}
-
-#game-info-img {
-  text-align: center;
-  width: 100%;
-  margin-bottom: 20px;
 }
 
 #btn-start-game {
@@ -149,12 +113,104 @@
   margin-bottom: 10px;
 }
 
-#game-info-details {
-  text-align: left;
-  margin-bottom: 20px;
-}
-
 .view-header {
   text-align: center;
   margin-bottom: 25px;
 }
+
+.game-info-img {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.game-info-list {
+  list-style-type: none;
+  margin: auto;
+  width: 100%;
+  padding 0px;
+}
+
+.game-info {
+  /*float: right;*/
+  overflow: hidden;
+}
+
+.game-list {
+}
+
+.game-list-item {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 3px;
+  margin: 10px;
+  background-color: #FFFFCC;
+
+}
+
+.game-list-item-field-description {
+  font-weight: bold;
+}
+
+.game-list-item-title {
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+.game-list-item-title > h2 {
+  margin-top: 0px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: bold;
+  color: blue;
+}
+
+.game-list-item-description {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.game-list-item-description p:first-child{
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+
+.game-list-item-image {
+  float: left;
+  max-height: 200px;
+  width: 50%;
+  margin-right: 15px;
+  overflow: hidden;
+}
+
+.game-list-item-details {
+  overflow: hidden;
+  text-align: left;
+}
+
+.game-list-item-details > p {
+  margin-bottom: 0px
+}
+
+.btn-join-game-container {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.btn-join-game {
+  clear: both;
+  margin: 0 auto;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+  }
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
