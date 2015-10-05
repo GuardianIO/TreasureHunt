@@ -151,6 +151,7 @@
 
 .game-list-item-field-description {
   font-weight: bold;
+  margin-bottom: 0px;
 }
 
 .game-list-item-title {
@@ -163,7 +164,6 @@
   margin-top: 0px;
   font-family: 'Oswald', sans-serif;
   font-weight: bold;
-  color: blue;
 }
 
 .game-list-item-description {
@@ -186,12 +186,9 @@
 
 .game-list-item-details {
   overflow: hidden;
-  text-align: left;
+  text-align: center;
 }
 
-.game-list-item-details > p {
-  margin-bottom: 0px
-}
 
 .btn-join-game-container {
   text-align: center;
@@ -202,6 +199,10 @@
 .btn-join-game {
   clear: both;
   margin: 0 auto;
+}
+
+.game-list-item-field-value {
+  margin-bottom: 10px;
 }
 
 .clearfix:after {
