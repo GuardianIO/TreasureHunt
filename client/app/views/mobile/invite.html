@@ -1,17 +1,19 @@
 <div id='invite' ng-controller="InviteCtrl">
   <div>
-    <div id=class="container" style="text-align: center">
-      <h3 id="invite-players-header">Invite players</h3>
-      <input id="email_field" type="text" ng-model="inviteeEmailAddress">
+    <div class="container view-header" style="text-align: center">
+      <h1>Invite players</h1><br>
+      <input id="email_field" size="30" type="text" ng-model="inviteeEmailAddress">
       <button id="invite-add-email-btn" ng-click="addToEmailList(inviteeEmailAddress)">Add Email</button>
-      <button id="send-invites-btn" class="btn btn-primary center-block" ng-click="sendInvites()">Send Invites</button>
+      <button id="send-invites-btn" class="btn btn-success center-block" ng-disabled="invitees.length === 0" ng-click="sendInvites()">Send Invites</button>
     </div>
   </div>
   <br>
 
-  <div class="email-well" ng-repeat="email in invitees">
-    <p class="email">{{ email }}</p>
-    <a class="remove" ng-click="remove(email)">X</a>
+  <div class="email-well vertical-align clearfix" ng-repeat="email in invitees">
+    <div class="invite-email-list-item">
+      <p class="email">{{ email }}</p>
+      <a class="remove" ng-click="remove(email)"><span class="glyphicon glyphicon-remove"></span></a>    
+    </div>
   </div>
 
 </div>

@@ -1,14 +1,29 @@
-<div class="container" id="gameInfo" ng-init="startGame()">
+<div class="container" class="gameInfo" ng-init="startGame()">
   <h1 class="view-header">{{ game.gameName }}</h1>
   <img id="game-info-img" ng-src="{{game.image}}"/>
   <div id="game-info-details">
-    <div id="game-info-list">
+    <div class="game-info-details">
+      <p class="game-info-field-description"># of Checkpoints: </p><p class="game-info-field-value">{{game.nodeCount}}</p>
+      <p class="game-info-field-description" ng-if="game.numOfRatings">Rating: {{game.avgRating}} stars out of {{game.numOfRatings}} reviews</p>
+      <p class="game-info-field-description" ng-if="game.numOfRatings===0">Rating: </p><p class="game-info-field-value">N/A</p>
+      <p class="game-info-field-description">Created on: </p><p class="game-info-field-value">{{game.createdDate}}</p>
+    </div>         
+  </div>
+  <div class="game-info-description">
+    <p>Game Description:</p>
+    <p>{{game.description}}</p>        
+  </div>
+
+
+
+
+<!--     <div id="game-info-list">
         <div>Game Description: {{game.description}}</div>
         <div># of Checkpoints: {{game.nodeCount}}</div>
         <div>Created Date: {{game.createdDate}}</div>
         <div ng-if="game.numOfRatings>0">Rating: {{game.avgRating}} {{game.numOfRatings}} reviews</div>
         <div ng-if="game.numOfRatings===0">Rating: no reviews</div>
-    </div>    
+    </div>   -->  
   </div>
 
   <div class="btn-start-game">
