@@ -6,9 +6,30 @@
     <div>Checkpoint {{currentNode.nodeId}} of {{gameLength}} is only <b>{{distance | number : 0}}</b> m away!</div><br>
     <div ng-if="found">Awesome! You found it! Press NEXT to keep playing.</div><br>
     <button ng-click="prev()">Prev</button>
-    <button ng-if="currentNode.found" ng-click="next()">Next</button><br>
+    <button ng-if="currentNode.found" ng-click="next()" ng-show="!isLastGame">Next</button><br>
+    <!-- modal button -->
+    <button ng-show="isLastGame" href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal">Done</button>
   </div>
   <div class="modal fade" id="currentImageModal">
     <img data-toggle="modal" data-target="#currentImageModal" ng-src={{currentNode.image}}>
   </div>
+<!-- modal view -->
+  <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+            <h4 class="modal-title" id="myModalLabel">Game: {{currentNode.gameName}}</h4>
+          </div>
+          <div class="modal-body">
+            <h3>Congratulation! You are done</h3>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+    </div>
+  </div>
+</div>
+
+
 </div>
