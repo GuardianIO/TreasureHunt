@@ -264,6 +264,11 @@
   float: right;
 }
 
+#email_field{
+  font-family: 'Arial', sans-serif;
+  size: 40;
+}
+
 .vertical-align {
   position: relative;
   top: 50%;
