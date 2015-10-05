@@ -6,6 +6,13 @@
         type="file" ngf-select ngf-resize="{width: 500, height: 500, quality: .8}"
         ng-model="file" name="file" accept="image/*">Take Photo <span class="glyphicon glyphicon-camera"></span></button>
     </div>
+
+    <div id="photo-options">
+      <button class="btn btn-info clearfix" ng-click="getManualLocation()"><span class=" glyphicon glyphicon-camera"></span></button>      
+      <button class="btn btn-info clearfix" ng-click=""><span class="glyphicon glyphicon-scissors"></span></button>
+      <button class="btn btn-info clearfix" ng-click="getManualLocation()"><span class=" glyphicon glyphicon-repeat"></span></button>
+      <button class="btn btn-info clearfix" ng-click="getManualLocation()"><span class="glyphicon glyphicon-map-marker"></span></button>
+    </div>
     <!-- Button for rotating image -->
 <!--     <button class="btn btn-md btn-default" ng-if="file"><span ng-if="file" class="glyphicon glyphicon-repeat"></span></button>
          -->
