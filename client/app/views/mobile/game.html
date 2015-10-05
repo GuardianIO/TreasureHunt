@@ -1,5 +1,6 @@
 <div id="game">
-  <div><img class="gameImage" data-toggle="modal" data-target="#currentImageModal" ng-src={{currentNode.image}}></div><br>
+  <div class="game-info-view">
+  <img id="game-info-img" data-toggle="modal" data-target="#currentImageModal" ng-src={{currentNode.image}}></div><br>
   <div class="gameInfo">
     <div>Clue: {{currentNode.clue}}</div><br>
     <div>Checkpoint {{currentNode.nodeId}} of {{gameLength}} is only <b>{{distance | number : 0}}</b> m away!</div><br>

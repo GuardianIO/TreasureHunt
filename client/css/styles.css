@@ -93,10 +93,6 @@
   width: 90%;
 }
 
-.gameImage {
-  height: 30vh;
-}
-
 .gameInfo {
   height: 20vh;
 }
@@ -106,15 +102,10 @@
   width: 90%;
 }
 
-#btn-start-game {
-  position:relative;
-  left: 50%;
-  margin-top:95%;
-  margin-bottom: 10px;
-}
-
 .view-header {
+  font-family: 'Oswald', sans-serif;
   text-align: center;
+  margin-top: 0px;
   margin-bottom: 25px;
 }
 
@@ -141,11 +132,11 @@
 
 .game-list-item {
   width: 90%;
-  padding: 10px;
+  padding: 20px;
   border: 1px solid black;
   border-radius: 3px;
   margin: 10px;
-  background-color: #FFFFCC;
+  background-color: #E6FFF2;
 
 }
 
@@ -154,7 +145,14 @@
   margin-bottom: 0px;
 }
 
+.game-list-item-field-value {
+  margin-bottom: 10px;
+  color: #1C5334;
+  font-weight: bold;
+}
+
 .game-list-item-title {
+  font-family: 'Oswald', sans-serif;
   text-align: center;
   margin-top: 0px;
   margin-bottom: 20px;
@@ -162,7 +160,6 @@
 
 .game-list-item-title > h2 {
   margin-top: 0px;
-  font-family: 'Oswald', sans-serif;
   font-weight: bold;
 }
 
@@ -201,8 +198,49 @@
   margin: 0 auto;
 }
 
-.game-list-item-field-value {
+.game-info-view {
+}
+
+#game-info-img {
+  display: block;
+  max-height: 50vh;
+  max-width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.game-info-field-description {
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+
+.game-info-field-value {
+  margin-bottom: 5px;
+  color: #1C5334;
+  font-weight: bold;
+}
+
+.game-info-description {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.game-info-description p:first-child{
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+
+#btn-start-game {
+  position:relative;
+  left: 50%;
+  margin-top:95%;
   margin-bottom: 10px;
+}
+
+.btn-start-game {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .clearfix:after {
