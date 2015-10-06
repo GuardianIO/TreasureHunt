@@ -18,7 +18,6 @@ app.use(bodyParser.json());
 // a route can be handled using an array of callbacks
 
 app.get('/download/:url', requestHandlers.downloadHandler);
-
 app.post('/games', requestHandlers.getAllGames);
 
 app.post('/addWaypoint', requestHandlers.uploadHandler);
@@ -34,6 +33,9 @@ app.post('/gameNode', function(req, res){
 
 // invite players
 app.post('/invite', playerHandlers.invitePlayers);
+//user authentication
+app.post('/register', playerHandlers.register);
+app.post('/signIn', playerHandlers.signIn);
 
 // start server
 var server = app.listen( (process.env.PORT || 3000), function () {

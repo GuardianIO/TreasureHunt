@@ -44,6 +44,19 @@ module.exports = {
     res.end("Invitations sent")
   },
 
+  register : function(req, res){
+    console.log('sign up to server ', req.body);
+    db.userRegister(req.body, function(results){
+      res.send(results);
+    });
+  },
+
+  signIn : function(req, res){
+    db.userSignIn(req.body , function(results){
+      res.send(results);
+    });
+  }
+
 };
 
 // module.exports.checkGameCallbacks = [

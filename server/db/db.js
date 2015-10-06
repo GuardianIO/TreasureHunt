@@ -1,4 +1,5 @@
 var mysql = require('mysql');
+var bcrypt = require('bcrypt');
 
 var connection = mysql.createConnection({
   user: "root",
@@ -52,14 +53,33 @@ module.exports = {
       }
     });
   },
-  getPlayerContact: function(params,cb) {
-    var insertStr = "INSERT INTO playerInfo(gameId, email) VALUES(?,?)";
-    connection.query(insertStr, [params.gameId, params.email], function(err, results){
+  userRegister: function(params,cb) {
+    var insertStr = "INSERT INTO userInfo(userName, password) VALUES(?,?)";
+
+    bcrypt.genSalt(params.userName.length , function(err, salt){
+      bcrypt.hash(params.password, salt, function(err, hash){
+        connection.query(insertStr, [params.userName, hash], function(err, results){
+          if(err){
+            console.error("[MYSQL]userRegister error ",err);
+          }else{
+            cb(results);
+          }
+        });
+      });
+    });    
+  },
+
+  userSignIn : function(params, cb){
+    var selectStr = "SELECT password FROM userInfo where userName = (?)";
+    connection.query(selectStr, [params.userName], function(err, results){
       if(err){
-        console.error('[MYSQL]getPlayerContact error: ',err);
-      }
-      else{
-        console.log('playerContact results', results);
+        console.error('[MYSQL]userSignIn error ',err);
+      }else{
+        bcrypt.compare(params.password, results[0].password, function(err,res){
+          console.log(res)
+        });
+        // console.log(results[0].password);
+        cb(results);
       }
     });
   },
