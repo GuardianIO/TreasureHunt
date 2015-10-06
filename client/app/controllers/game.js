@@ -50,6 +50,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
       if($scope.currentNode.nodeId === $scope.gameLength){
         // $location.path('/finishGame');
         $scope.isLastGame = true;
+
       }
     };  
 
@@ -85,6 +86,15 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
       js = d.createElement(s); js.id = id;
       js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4";
       fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'))
+    }(document, 'script', 'facebook-jssdk'));
+
+    $scope.restartGame = function(){
+      $cookies.remove(gameId);
+      $scope.isLastGame = false;
+      setTimeout(function(){
+        $location.path('/gameInfo/'+gameId);
+      },100);
+    }
+
 
 }]);
