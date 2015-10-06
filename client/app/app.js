@@ -2,6 +2,7 @@ angular.module('treasureHunt', [
   'ngFileUpload',
   'ui.router', 
   'treasureHunt.create',
+  'treasureHunt.userAuth',
   'treasureHunt.nodeEditor',
   'treasureHunt.initial',
   'treasureHunt.games',

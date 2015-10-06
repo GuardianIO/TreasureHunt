@@ -36,8 +36,9 @@ CREATE TABLE nodeInfo (
 
 /*****PLAYER CONTACT******/
 
-CREATE TABLE playerInfo (
-  gameId INT,
-  email VARCHAR(20),
-  FOREIGN KEY (gameId) REFERENCES gameInfo(gameId)
+CREATE TABLE userInfo (
+  userName VARCHAR(20),
+  password VARCHAR(100),
+  
+  PRIMARY KEY(userName)
 );
