@@ -1,6 +1,7 @@
 angular.module('treasureHunt', [
   'ngFileUpload',
-  'ui.router', 
+  'ui.router',
+  "treasureHunt.map", 
   'treasureHunt.create',
   'treasureHunt.userAuth',
   'treasureHunt.nodeEditor',
@@ -44,6 +45,11 @@ angular.module('treasureHunt', [
       url:'/addNode',
       templateUrl: mobileBrowser ? 'app/views/mobile/addNode.html' : 'app/views/desktop/addNode.html',
       controller:'AddNode'
+    })
+    .state('/map',{
+      url:'/map',
+      templateUrl: mobileBrowser ? 'app/views/mobile/map.html' : 'app/views/desktop/map.html',
+      controller: 'MapCtrl'
     })
     .state('/nodeList', {
       url:'/nodeList',
