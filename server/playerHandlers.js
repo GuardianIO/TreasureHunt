@@ -53,7 +53,10 @@ module.exports = {
 
   signIn : function(req, res){
     db.userSignIn(req.body , function(results){
-      res.send(results);
+      if(results){
+        console.log(req.session);
+        res.send(results);
+      }
     });
   }
 
