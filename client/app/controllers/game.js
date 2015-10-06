@@ -90,6 +90,10 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
 
     $scope.restartGame = function(){
       $cookies.remove(gameId);
+      $scope.isLastGame = false;
+      setTimeout(function(){
+        $location.path('/gameInfo/'+gameId);
+      },100);
     }
 
 
