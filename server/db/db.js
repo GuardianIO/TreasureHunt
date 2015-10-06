@@ -74,12 +74,14 @@ module.exports = {
     connection.query(selectStr, [params.userName], function(err, results){
       if(err){
         console.error('[MYSQL]userSignIn error ',err);
-      }else{
+      }else if(results.length){
         bcrypt.compare(params.password, results[0].password, function(err,res){
           console.log(res)
+          cb(res);
         });
         // console.log(results[0].password);
-        cb(results);
+      }else{
+        cb('user does not exist');
       }
     });
   },
