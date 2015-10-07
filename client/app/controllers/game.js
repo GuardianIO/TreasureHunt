@@ -8,10 +8,10 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
     $scope.distance = NaN;
     $scope.isLastGame = false;
 
+    // (Math.round(num * 2) / 2).toFixed(1)
     var gameId = $location.url().split('/').pop();
-    $scope.gameId = gameId;
+    var currentGame;
     var interval;
-
     function searching(notFound){
       if(notFound && $scope.currentNode){
         interval = $interval(function(){
@@ -57,9 +57,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
       });
       $scope.currentNode.found = true;
       if($scope.currentNode.nodeId === $scope.gameLength){
-        // $location.path('/finishGame');
         $scope.isLastGame = true;
-
       }
     };  
 
@@ -83,10 +81,11 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
           if(numNodes){
             $scope.currentNode = RequestFactory.getNode(currentNodeNum-1);
           }
+          currentGame = RequestFactory.currentGame();
+          var gameNode = new Array(currentGame.nodes.length);
+          console.log('$scope.numNodes', $scope.currentNode);
           searching(true);
         });
       }
     })();
-
-
 }]);

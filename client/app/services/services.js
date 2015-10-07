@@ -50,6 +50,7 @@ angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
             description: results.data[0].description,
             nodes:results.data
           };
+          console.log('factory current', currentGame);
           gameSetup(currentNodeNum);
         }
         cb(currentGame.nodes.length);
