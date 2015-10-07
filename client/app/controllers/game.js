@@ -7,6 +7,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
     $scope.currentNode = null;
     $scope.distance = NaN;
     $scope.isLastGame = false;
+    $scope.nextButtonGone = false;
     $scope.progress;
     // (Math.round(num * 2) / 2).toFixed(1)
     var gameId = $location.url().split('/').pop();
@@ -37,8 +38,8 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
        searching(false);
        $scope.currentNode = RequestFactory.getNode($scope.currentNode.nodeId);
        searching(true); 
-       var gameArrIndex = gameNodeArr.indexOf($scope.currentNode.nodeId);
-       $scope.progress = ((gameArrIndex/(gameNodeArr.length-1))*100).toString() + "%";
+       // var gameArrIndex = gameNodeArr.indexOf($scope.currentNode.nodeId);
+       // $scope.progress = ((gameArrIndex/(gameNodeArr.length-1))*100).toString() + "%";
        console.log('next',$scope.progress);
      }
     };
@@ -47,9 +48,8 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
       searching(false);
       if($scope.currentNode.nodeId - 1){
         $scope.currentNode = RequestFactory.getNode($scope.currentNode.nodeId-2);
-        var gameArrIndex = gameNodeArr.indexOf($scope.currentNode.nodeId);
-       $scope.progress = ((gameArrIndex/(gameNodeArr.length-1))*100).toString() + "%";
       }
+      $scope.nextButtonGone = false;
     }
 
     $scope.restartGame = function(){
@@ -67,6 +67,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
       $scope.currentNode.found = true;
       if($scope.currentNode.nodeId === $scope.gameLength){
         $scope.isLastGame = true;
+        $scope.nextButtonGone = true;
       }
     };  
 
@@ -76,9 +77,8 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
         var distance = geo.distance(coords.latitude, coords.longitude, $scope.currentNode.lat, $scope.currentNode.lon);
         $scope.distance = distance;
         if(distance < 25){
-          if(gameNodeArr.length === 1){
-            $scope.progress = "100%";
-          }
+          var gameArrIndex = gameNodeArr.indexOf($scope.currentNode.nodeId) + 1;
+          $scope.progress = ((gameArrIndex/(gameNodeArr.length))*100).toString() + "%";
           nodeFound();
         }
       });
