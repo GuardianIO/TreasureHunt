@@ -9,6 +9,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
     $scope.isLastGame = false;
 
     var gameId = $location.url().split('/').pop();
+    $scope.gameId = gameId;
     var interval;
 
     function searching(notFound){
@@ -40,6 +41,14 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
       if($scope.currentNode.nodeId - 1){
         $scope.currentNode = RequestFactory.getNode($scope.currentNode.nodeId-2);
       }
+    }
+
+    $scope.restartGame = function(){
+      $cookies.remove(gameId);
+      $scope.isLastGame = false;
+      setTimeout(function(){
+        $location.path('/gameInfo/'+gameId);
+      },100);
     }
     
     nodeFound = function(){
@@ -78,23 +87,6 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
         });
       }
     })();
-
-    // facebook share button
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;  
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-    $scope.restartGame = function(){
-      $cookies.remove(gameId);
-      $scope.isLastGame = false;
-      setTimeout(function(){
-        $location.path('/gameInfo/'+gameId);
-      },100);
-    }
 
 
 }]);
