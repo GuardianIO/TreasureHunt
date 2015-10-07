@@ -8,6 +8,26 @@
     margin: 10px;
 }
 
+.cropArea {
+  background: #E4E4E4;
+  overflow: hidden;
+  width:200px;
+  height:200px;
+}
+
+
+#canvas {
+  width:200px;
+  height:200px;
+}
+
+.icon-flipped {
+  transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+}
+
 .dragover {
     border: 5px dashed blue;
 }

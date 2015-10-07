@@ -17,6 +17,7 @@ app.use(session({
 app.use(cookieParser());
 
 app.use(express.static(__dirname + '/../client'));
+app.use(express.static(__dirname + '/../bower_components'));
 app.use(bodyParser.json());
 // cookie-parser middleware will parse cookie data from headers of request object and will 
 // assign assign them to a variable on the request object on req.cookie

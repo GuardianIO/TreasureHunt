@@ -11,27 +11,48 @@ angular.module('treasureHunt.pictureStorage', [])
     },
     popEdit:function(){
       return files.pop();
+    },
+    b64toBlob:function(b64Data, contentType, sliceSize) {
+        contentType = contentType || '';
+        sliceSize = sliceSize || 512;
+
+        var byteCharacters = atob(b64Data);
+        var byteArrays = [];
+
+        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+            var byteNumbers = new Array(slice.length);
+            for (var i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+
+            var byteArray = new Uint8Array(byteNumbers);
+
+            byteArrays.push(byteArray);
+        }
+
+        var blob = new Blob(byteArrays, {type: contentType});
+        return blob;
     }
   }
 }])
 
-.directive('imgLoaded', function(){
-  return {
-    link: function(scope, element, attrs){
-      element.bind('load', function(e){
-        scope.$apply(function(){
-          scope.$broadcast('imgLoaded', e);
-        })
-      })
+.directive("fileread", [function () {
+    return {
+        scope: {
+            fileread: "="
+        },
+        link: function (scope, element, attributes) {
+            element.bind("change", function (changeEvent) {
+                var reader = new FileReader();
+                reader.onload = function (loadEvent) {
+                    scope.$apply(function () {
+                        scope.fileread = loadEvent.target.result;
+                    });
+                }
+                reader.readAsDataURL(changeEvent.target.files[0]);
+            });
+        }
     }
-  }
-})
-
-.directive('ngCanvas', function(){
-  return {
-    restrict:'E',
-    link:function(scope, element, attrs){
-      scope.canvas = element;
-    }
-  }
-})
+}]);
