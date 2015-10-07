@@ -7,11 +7,12 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
     $scope.currentNode = null;
     $scope.distance = NaN;
     $scope.isLastGame = false;
-
+    $scope.progress;
+    // (Math.round(num * 2) / 2).toFixed(1)
     var gameId = $location.url().split('/').pop();
-    $scope.gameId = gameId;
+    var currentGame;
+    var gameNodeArr = [];
     var interval;
-
     function searching(notFound){
       if(notFound && $scope.currentNode){
         interval = $interval(function(){
@@ -24,6 +25,9 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
           );
         }, 1000);
       }else{
+        if(gameNodeArr.length === 1){
+            $scope.progress = "100%";
+          }
         $interval.cancel(interval);
       }
     };
@@ -33,6 +37,9 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
        searching(false);
        $scope.currentNode = RequestFactory.getNode($scope.currentNode.nodeId);
        searching(true); 
+       var gameArrIndex = gameNodeArr.indexOf($scope.currentNode.nodeId);
+       $scope.progress = ((gameArrIndex/(gameNodeArr.length-1))*100).toString() + "%";
+       console.log('next',$scope.progress);
      }
     };
 
@@ -40,6 +47,8 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
       searching(false);
       if($scope.currentNode.nodeId - 1){
         $scope.currentNode = RequestFactory.getNode($scope.currentNode.nodeId-2);
+        var gameArrIndex = gameNodeArr.indexOf($scope.currentNode.nodeId);
+       $scope.progress = ((gameArrIndex/(gameNodeArr.length-1))*100).toString() + "%";
       }
     }
 
@@ -57,9 +66,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
       });
       $scope.currentNode.found = true;
       if($scope.currentNode.nodeId === $scope.gameLength){
-        // $location.path('/finishGame');
         $scope.isLastGame = true;
-
       }
     };  
 
@@ -69,6 +76,9 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
         var distance = geo.distance(coords.latitude, coords.longitude, $scope.currentNode.lat, $scope.currentNode.lon);
         $scope.distance = distance;
         if(distance < 25){
+          if(gameNodeArr.length === 1){
+            $scope.progress = "100%";
+          }
           nodeFound();
         }
       });
@@ -83,10 +93,12 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
           if(numNodes){
             $scope.currentNode = RequestFactory.getNode(currentNodeNum-1);
           }
+          currentGame = RequestFactory.currentGame();
+          for(var i = 0; i < currentGame.nodes.length; i++){
+            gameNodeArr.push(currentGame.nodes[i].nodeId);
+          }
           searching(true);
         });
       }
     })();
-
-
 }]);

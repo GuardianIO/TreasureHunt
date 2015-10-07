@@ -1,5 +1,10 @@
 <div id="game">
   <div class="game-info-view">
+    <div class="progress">
+    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}">
+      <span class="sr-only">40% Complete (success)</span>
+    </div>
+  </div>
   <img id="game-info-img" data-toggle="modal" data-target="#currentImageModal" ng-src={{currentNode.image}}></div><br>
   <div class="gameInfo">
     <div>Clue: {{currentNode.clue}}</div><br>
@@ -23,7 +28,6 @@
           </div>
           <div class="modal-body">
             <h3>Congratulation! You are done</h3>
-            <div class="fb-share-button" data-href='http://goose-dev.elasticbeanstalk.com/gameInfo/{{gameId}}'></div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="restartGame()">Restart Game</button>
@@ -33,6 +37,4 @@
 </div>
 
 </div>
-    <!-- Load Facebook SDK for JavaScript -->
-<div id="fb-root"></div>
 
