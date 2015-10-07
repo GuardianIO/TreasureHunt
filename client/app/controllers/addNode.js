@@ -72,7 +72,6 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     $scope.done = function(){
       if($scope.file){
         SendPicAndLoc.clue = $scope.clue;
-        console.log($scope.file, $scope.file.slice($scope.file.indexOf(',')+1));
         var blob = PicStore.b64toBlob($scope.file.slice($scope.file.indexOf(',')+1), 'image/jpg');
         SendPicAndLoc.sendPic(blob, function(){
           $scope.file=null;
@@ -118,7 +117,6 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     }
 
     $scope.crop = function(){
-      // console.log('crop');
       var canvas = document.getElementById('canvas');
       var ctx = canvas.getContext('2d');
 
