@@ -60,7 +60,7 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     $scope.send = function(){
       if($scope.file){
         SendPicAndLoc.clue = $scope.clue;
-        var blob = PicStore.b64toBlob($scope.file.slice(23), 'image/jpeg');
+        var blob = PicStore.b64toBlob($scope.file.slice($scope.file.indexOf(',')+1), 'image/jpeg');
         SendPicAndLoc.sendPic(blob, function(){
           $scope.file=null;
           $scope.clue='';
@@ -72,7 +72,8 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     $scope.done = function(){
       if($scope.file){
         SendPicAndLoc.clue = $scope.clue;
-        var blob = PicStore.b64toBlob($scope.file.slice(23), 'image/jpeg');
+        console.log($scope.file, $scope.file.slice($scope.file.indexOf(',')+1));
+        var blob = PicStore.b64toBlob($scope.file.slice($scope.file.indexOf(',')+1), 'image/jpg');
         SendPicAndLoc.sendPic(blob, function(){
           $scope.file=null;
           $scope.clue='';
@@ -120,7 +121,7 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
       // console.log('crop');
       var canvas = document.getElementById('canvas');
       var ctx = canvas.getContext('2d');
-      
+
       $scope.file = $scope.myCroppedImage;
       var img = new Image();
       img.addEventListener('load', function(){
