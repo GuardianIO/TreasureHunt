@@ -47,13 +47,19 @@ module.exports = {
   register : function(req, res){
     console.log('sign up to server ', req.body);
     db.userRegister(req.body, function(results){
-      res.send(results);
+      if(results.error){
+        res.send(results);
+      }else{
+        res.send(results);
+      }
     });
   },
 
   signIn : function(req, res){
     db.userSignIn(req.body , function(results){
-      if(results){
+      if(results.error){
+        res.send(results);
+      }else{
         console.log(req.session);
         res.send(results);
       }

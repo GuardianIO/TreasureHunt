@@ -61,6 +61,7 @@ module.exports = {
         connection.query(insertStr, [params.userName, hash], function(err, results){
           if(err){
             console.error("[MYSQL]userRegister error ",err);
+            cb({error : "username already exist"});
           }else{
             cb(results);
           }
@@ -77,7 +78,11 @@ module.exports = {
       }else if(results.length){
         bcrypt.compare(params.password, results[0].password, function(err,res){
           console.log(res)
-          cb(res);
+          if(res){
+            cb(res);
+          }else{
+            cb({error : 'wrong password'});
+          }
         });
         // console.log(results[0].password);
       }else{
