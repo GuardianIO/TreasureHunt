@@ -64,7 +64,6 @@ module.exports = {
         res.send(results);
       }else{
         req.session.regenerate(function(){
-          console.log('got in regen');
           req.session.userId = {name:req.body.userName, pass: req.body.password};
         });
         console.log(req.session);
