@@ -3,6 +3,23 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
 .controller('AddNode', ['$scope', '$location', 'SendPicAndLoc', '$interval', 'PicStore',
   function($scope, $location, SendPicAndLoc, $interval, PicStore){
     //start requesting the user's location
+    function drawCanvas(canvas, ctx, img){
+       var hRatio = canvas.width  / img.width    ;
+       var vRatio =  canvas.height / img.height  ;
+       var ratio  = Math.min ( hRatio, vRatio );
+       var centerShift_x = ( canvas.width - img.width*ratio ) / 2;
+       var centerShift_y = ( canvas.height - img.height*ratio ) / 2;  
+       ctx.clearRect(0,0,canvas.width, canvas.height);
+       ctx.drawImage(img, 0,0, img.width, img.height,
+                          centerShift_x,centerShift_y,img.width*ratio, img.height*ratio);
+    };
+
+    function clearCanvas(){
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+      ctx.clearRect(0,0,canvas.width, canvas.height);
+    };
+    
     SendPicAndLoc.getLoc();
     $scope.file = null;
     
@@ -28,16 +45,9 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
 
         var img = new Image();
         img.addEventListener('load', function(){
-         var hRatio = canvas.width  / img.width    ;
-         var vRatio =  canvas.height / img.height  ;
-         var ratio  = Math.min ( hRatio, vRatio );
-         var centerShift_x = ( canvas.width - img.width*ratio ) / 2;
-         var centerShift_y = ( canvas.height - img.height*ratio ) / 2;  
-         ctx.clearRect(0,0,canvas.width, canvas.height);
-         ctx.drawImage(img, 0,0, img.width, img.height,
-                            centerShift_x,centerShift_y,img.width*ratio, img.height*ratio);
-        })
-          img.src = $scope.file;
+          drawCanvas(canvas, ctx, img);
+        });
+        img.src = $scope.file;
       }
     });
 
@@ -49,12 +59,11 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     $scope.send = function(){
       if($scope.file){
         SendPicAndLoc.clue = $scope.clue;
-        console.log($scope.file);
         var blob = PicStore.b64toBlob($scope.file.slice(23), 'image/jpeg');
-        console.log(blob);
         SendPicAndLoc.sendPic(blob, function(){
           $scope.file=null;
           $scope.clue='';
+          clearCanvas();
         });
       }
     };
@@ -62,12 +71,11 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     $scope.done = function(){
       if($scope.file){
         SendPicAndLoc.clue = $scope.clue;
-        console.log($scope.file);
         var blob = PicStore.b64toBlob($scope.file.slice(23), 'image/jpeg');
-        console.log(blob);
         SendPicAndLoc.sendPic(blob, function(){
           $scope.file=null;
           $scope.clue='';
+          clearCanvas();
           $location.path('/invite');
         });
       }else{
@@ -87,14 +95,7 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
         img.addEventListener('load', function(){
           ctx.translate(Math.sin(radians/2 + Math.PI/4)*500, Math.cos(radians/2 + Math.PI/4)*500);
           ctx.rotate(radians);
-          var hRatio = canvas.width  / img.width    ;
-          var vRatio =  canvas.height / img.height  ;
-          var ratio  = Math.min ( hRatio, vRatio );
-          var centerShift_x = ( canvas.width - img.width*ratio ) / 2;
-          var centerShift_y = ( canvas.height - img.height*ratio ) / 2;  
-          ctx.clearRect(0,0,canvas.width, canvas.height);
-          ctx.drawImage(img, 0,0, img.width, img.height,
-                             centerShift_x,centerShift_y,img.width*ratio, img.height*ratio);
+          drawCanvas(canvas, ctx, img);
           var url = canvas.toDataURL('image/jpeg');
           $scope.file = url;
         })
