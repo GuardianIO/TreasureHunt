@@ -1,16 +1,46 @@
-angular.module('treasureHunt.addNode', ['treasureHunt.services'])
+angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.pictureStorage'])
 
-.controller('AddNode', ['$scope', '$location', 'SendPicAndLoc', '$interval', 
-  function($scope, $location, SendPicAndLoc, $interval){
+.controller('AddNode', ['$scope', '$location', 'SendPicAndLoc', '$interval', 'PicStore',
+  function($scope, $location, SendPicAndLoc, $interval, PicStore){
     //start requesting the user's location
     SendPicAndLoc.getLoc();
     $scope.file = null;
-    var canvas = document.getElementById('editCanvas');
-    var ctx = canvas.getContext('2d');
     
     $scope.status = {
       canUpload:false
     };
+
+    $scope.getFile = function(){
+      $('#fileInput').click();
+    };
+
+    $scope.$watch('file', function(){
+      $scope.$broadcast('fileReady');
+    })
+
+    $scope.$on('fileReady', function(){
+      if($scope.file && document.getElementById('canvas')){
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+
+        canvas.width = 500;
+        canvas.height = 500;
+
+        var img = new Image();
+        var reader = new FileReader();
+        img.addEventListener('load', function(){
+         var hRatio = canvas.width  / img.width    ;
+         var vRatio =  canvas.height / img.height  ;
+         var ratio  = Math.min ( hRatio, vRatio );
+         var centerShift_x = ( canvas.width - img.width*ratio ) / 2;
+         var centerShift_y = ( canvas.height - img.height*ratio ) / 2;  
+         ctx.clearRect(0,0,canvas.width, canvas.height);
+         ctx.drawImage(img, 0,0, img.width, img.height,
+                            centerShift_x,centerShift_y,img.width*ratio, img.height*ratio);
+        })
+          img.src = $scope.file;
+      }
+    });
 
     $scope.$on('locReady', function(){
       // swap dummy button for Add Waypoint button with functionality
@@ -44,65 +74,40 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services'])
       $location.path('/invite');
     }
 
-    var draw = function(url, radians){
-      var img = new Image;
-      img.addEventListener('load', function(){
-        console.log('image loaded:', img);
-        ctx.drawImage(img, 0, 0);
-      });
-      img.src = url;
-    }
-
-    function b64toBlob(b64Data, contentType, sliceSize) {
-        contentType = contentType || '';
-        sliceSize = sliceSize || 512;
-
-        var byteCharacters = atob(b64Data);
-        var byteArrays = [];
-
-        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-            var slice = byteCharacters.slice(offset, offset + sliceSize);
-
-            var byteNumbers = new Array(slice.length);
-            for (var i = 0; i < slice.length; i++) {
-                byteNumbers[i] = slice.charCodeAt(i);
-            }
-
-            var byteArray = new Uint8Array(byteNumbers);
-
-            byteArrays.push(byteArray);
-        }
-
-        var blob = new Blob(byteArrays, {type: contentType});
-        return blob;
-    }
-
     var drawRotated = function(url, radians){
-      console.log('before rotate:', $scope.file.dataUrl);
-      var img = new Image;
-      img.addEventListener('load', function(){
-        ctx.translate(500, 0);
-        ctx.rotate(radians);
-        
-        ctx.drawImage(img, 0, 0);
-        var url = canvas.toDataURL('image/jpeg');
-        $scope.file = b64toBlob(url.slice(23), 'image/jpeg');
-      })
-      img.src = url;
-      // console.log(url);
-      
-    };
-
-    // $scope.$watch('file.dataUrl', function(url){
-    //   if(url){
-    //     draw(url);
-    //   }
-    // });
-    $scope.rotateCW = function(){
-      if($scope.file && $scope.file.dataUrl){
-        drawRotated($scope.file.dataUrl, Math.PI/2);
+      if($scope.file && document.getElementById('canvas')){
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var img = new Image;
+        img.addEventListener('load', function(){
+          ctx.translate(Math.sin(radians/2 + Math.PI/4)*500, Math.cos(radians/2 + Math.PI/4)*500);
+          ctx.rotate(radians);
+          var hRatio = canvas.width  / img.width    ;
+          var vRatio =  canvas.height / img.height  ;
+          var ratio  = Math.min ( hRatio, vRatio );
+          var centerShift_x = ( canvas.width - img.width*ratio ) / 2;
+          var centerShift_y = ( canvas.height - img.height*ratio ) / 2;  
+          ctx.clearRect(0,0,canvas.width, canvas.height);
+          ctx.drawImage(img, 0,0, img.width, img.height,
+                             centerShift_x,centerShift_y,img.width*ratio, img.height*ratio);
+          var url = canvas.toDataURL('image/jpeg');
+          $scope.file = url;
+        })
+        img.src = url;
       }
     };
+
+    $scope.rotateCW = function(){
+      if($scope.file){
+        drawRotated($scope.file, Math.PI/2);
+      }
+    };
+
+    $scope.rotateCCW = function(){
+      if($scope.file){
+        drawRotated($scope.file, -Math.PI/2);
+      }
+    }
 
 }]);
 

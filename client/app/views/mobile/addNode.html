@@ -1,17 +1,21 @@
 <div id="singleNode" >
   <div class="container" style="text-align: center">
-    <img id="image-upload-thumbnail" ng-show="file" ngf-src="file" ng-model="file" ngf-resize="{width: 500, height: 500, quality: .8}" name="file" accept="image/*">
-    <div id="image-upload-placeholder" ng-show="!file">
+<!--     <img id="image-upload-thumbnail" ng-show="file" ngf-src="file" ng-model="file" ngf-resize="{width: 500, height: 500, quality: .8}" name="file" accept="image/*"> -->
+<!--     <div id="image-upload-placeholder" ng-show="!file">
       <button class="btn btn-large btn-primary" id="btn-upload-photo"
         type="file" ngf-select ngf-resize="{width: 500, height: 500, quality: .8}"
         ng-model="file" name="file" accept="image/*">Take Photo <span class="glyphicon glyphicon-camera"></span></button>
-    </div>
-
+    </div> -->
+    <canvas id="canvas" ng-click="getFile()">
+    </canvas>
+    <input type="file" id="fileInput" fileread="file" style="display: none;" />
     <div id="photo-options">
       <button class="btn btn-info clearfix" ng-click="getManualLocation()"><span class=" glyphicon glyphicon-camera"></span></button>      
       <button class="btn btn-info clearfix" ng-click=""><span class="glyphicon glyphicon-scissors"></span></button>
       <button class="btn btn-info clearfix" ng-click="rotateCW()"><span class=" glyphicon glyphicon-repeat"></span></button>
+      <button class="btn btn-info clearfix" ng-click="rotateCCW()"><span class=" glyphicon glyphicon-repeat icon-flipped"></span></button>
       <button class="btn btn-info clearfix" ng-click="getManualLocation()"><span class="glyphicon glyphicon-map-marker"></span></button>
+
     </div>
     <!-- Button for rotating image -->
 <!--     <button class="btn btn-md btn-default" ng-if="file"><span ng-if="file" class="glyphicon glyphicon-repeat"></span></button>
