@@ -50,6 +50,9 @@ module.exports = {
       if(results.error){
         res.send(results);
       }else{
+        req.session.regenerate(function(){
+          req.session.userId = {name:req.body.userName, pass: req.body.password};
+        });
         res.send(results);
       }
     });
@@ -60,6 +63,9 @@ module.exports = {
       if(results.error){
         res.send(results);
       }else{
+        req.session.regenerate(function(){
+          req.session.userId = {name:req.body.userName, pass: req.body.password};
+        });
         console.log(req.session);
         res.send(results);
       }

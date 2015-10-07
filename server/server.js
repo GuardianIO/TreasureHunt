@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var playerHandlers = require('./playerHandlers');
 var app = express();
 
-app.set('trust proxy', 1); // trust first proxy
 app.use(session({
   secret: 'squirrel looking for nuts',
   resave: false,
