@@ -27,7 +27,6 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
         canvas.height = 500;
 
         var img = new Image();
-        var reader = new FileReader();
         img.addEventListener('load', function(){
          var hRatio = canvas.width  / img.width    ;
          var vRatio =  canvas.height / img.height  ;
@@ -50,7 +49,10 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     $scope.send = function(){
       if($scope.file){
         SendPicAndLoc.clue = $scope.clue;
-        SendPicAndLoc.sendPic($scope.file, function(){
+        console.log($scope.file);
+        var blob = PicStore.b64toBlob($scope.file.slice(23), 'image/jpeg');
+        console.log(blob);
+        SendPicAndLoc.sendPic(blob, function(){
           $scope.file=null;
           $scope.clue='';
         });
@@ -60,7 +62,10 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     $scope.done = function(){
       if($scope.file){
         SendPicAndLoc.clue = $scope.clue;
-        SendPicAndLoc.sendPic($scope.file, function(){
+        console.log($scope.file);
+        var blob = PicStore.b64toBlob($scope.file.slice(23), 'image/jpeg');
+        console.log(blob);
+        SendPicAndLoc.sendPic(blob, function(){
           $scope.file=null;
           $scope.clue='';
           $location.path('/invite');
