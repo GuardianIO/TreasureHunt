@@ -1,0 +1,19 @@
+{
+  "name": "treasureHunter",
+  "version": "0.0.0",
+  "homepage": "https://github.com/codeCommode/fileDealer",
+  "authors": [
+    "codeCommode <james.harlan@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ng-img-crop": "ngImgCrop#~0.3.2"
+  }
+}
