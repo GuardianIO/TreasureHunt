@@ -1,8 +1,9 @@
-angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.pictureStorage'])
+angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.pictureStorage', 'ngImgCrop'])
 
 .controller('AddNode', ['$scope', '$location', 'SendPicAndLoc', '$interval', 'PicStore',
   function($scope, $location, SendPicAndLoc, $interval, PicStore){
     //start requesting the user's location
+    $scope.myCroppedImage = '';
     function drawCanvas(canvas, ctx, img){
        var hRatio = canvas.width  / img.width    ;
        var vRatio =  canvas.height / img.height  ;
@@ -113,6 +114,19 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
       if($scope.file){
         drawRotated($scope.file, -Math.PI/2);
       }
+    }
+
+    $scope.crop = function(){
+      // console.log('crop');
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+      
+      $scope.file = $scope.myCroppedImage;
+      var img = new Image();
+      img.addEventListener('load', function(){
+        drawCanvas(canvas, ctx, img);
+      });
+      img.src = $scope.file;
     }
 
 }]);
