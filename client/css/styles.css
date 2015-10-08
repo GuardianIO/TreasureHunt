@@ -297,6 +297,21 @@
   transform: translateY(-50%);
 }
 
+#games-search-input {
+  padding: 10px;
+  border: solid 1px #dcdcdc;
+  border-radius: 3px;
+  transition: box-shadow 0.3s, border 0.3s;
+  margin-bottom: 5px;
+}
+
+#games-search-input:focus,
+#games-search-input.focus {
+  border: solid 1px #707070;
+  box-shadow: 0 0 5px 1px #969696;
+}
+
+
 .clearfix:after {
   visibility: hidden;
   display: block;
