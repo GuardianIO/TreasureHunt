@@ -1,13 +1,17 @@
 angular.module('treasureHunt.create', ['treasureHunt.services'])
 
-.controller('CreateCtrl', ['$scope', '$http', '$state','RequestFactory',
-  function($scope, $http, $state, RequestFactory){
+.controller('CreateCtrl', ['$scope', '$http', '$state', '$window', 'RequestFactory',
+  function($scope, $http, $state, $window, RequestFactory){
 
   this.createGame = function(gameName, gameDescription){
     if ($scope.createGameForm.$valid) {
       console.log("sending to server to create game");
-      RequestFactory.postNewGame(gameName, gameDescription);
-      $state.go('/addNode');
+      var token = $window.localStorage.getItem('acorn');
+      console.log('create token ', token);
+      if(token){
+        RequestFactory.postNewGame(gameName, gameDescription, token);
+        $state.go('/addNode');
+      }
     };
   }
 }]);

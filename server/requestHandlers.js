@@ -1,9 +1,12 @@
 var express = require('express');
+var jwt =  require('jwt-simple');
 var db = require('./db/db.js');
 var imgDB = require('./db/imgDB.js');
 var multiparty = require('multiparty');
 var bucket = 'biggerbucket';
 var s3url = "https://s3-us-west-1.amazonaws.com/biggerbucket/";
+
+var _secret = 'BiGaCoRn';
 
 module.exports.downloadHandler = function(req, res){
   res.download('./server/testDownload.txt', function(err){
@@ -49,10 +52,12 @@ module.exports.createGame = function(req, res){
   console.log('creating game on server for game: ' + req.body.gameName);
   var gameName = req.body.gameName;
   var gameDescription = req.body.gameDescription;
-
-  db.createGame({gameName: gameName, description: gameDescription}, function(gameId){
-    res.send({gameId: gameId});
-  });
+  var userName = jwt.decode(req.body.token, _secret);
+  if(userName){
+    db.createGame({gameName: gameName, description: gameDescription, userName: userName}, function(gameId){
+      res.send({gameId: gameId});
+    });
+  }
 };
 
 module.exports.getAllGames = function(req, res){

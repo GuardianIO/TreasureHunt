@@ -23,8 +23,8 @@ angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
     currentGame: function(){
       return currentGame;
     },
-    postNewGame: function(gameName, gameDescription){
-      $http.post('/createGame', { gameName: gameName, gameDescription: gameDescription })
+    postNewGame: function(gameName, gameDescription, token){
+      $http.post('/createGame', { gameName: gameName, gameDescription: gameDescription, token: token})
         .then( function(resp){
           gameId = resp.data.gameId;
           console.log("Game created with ID: " + gameId);
