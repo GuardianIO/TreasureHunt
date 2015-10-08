@@ -1,3 +1,16 @@
+::-webkit-input-placeholder {
+   font-style: italic;
+}
+:-moz-placeholder {
+   font-style: italic;  
+}
+::-moz-placeholder {
+   font-style: italic;  
+}
+:-ms-input-placeholder {  
+   font-style: italic; 
+}
+
 .drop-box {
     background: #F8F8F8;
     border: 5px dashed #DDD;
@@ -310,7 +323,6 @@
   border: solid 1px #707070;
   box-shadow: 0 0 5px 1px #969696;
 }
-
 
 .clearfix:after {
   visibility: hidden;

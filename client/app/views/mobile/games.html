@@ -1,9 +1,9 @@
-<div class="container game-list" ng-init='getAllGames()'>
-  <input id="games-search-input" class="search-bar" style="width: 100%" ng-model="searchGame" placeholder="Search games">
+<div class="container game-list" ng-init='getAllGames()' style="padding-bottom: 60px">
+  <input id="games-search-input" class="search-bar" style="width: 100%" ng-model="searchGame" placeholder="Search games" autofocus>
 
   <div class="game-list-item clearfix" ng-repeat="game in games | filter:searchGame">
     <div class="game-list-item-body clearfix">
-    <div class="game-list-item-title"><h2>{{game.gameName}}</h2></div>
+    <div class="game-list-item-title" style="word-wrap: break-word"><h2>{{game.gameName | uppercase}}</h2></div>
       <img class="game-list-item-image"  ng-if="game.image" ng-src="{{game.image}}">
       <div class="game-list-item-details">
         <p class="game-list-item-field-description"># of Checkpoints: </p><p class="game-list-item-field-value">{{game.nodeCount}}</p>
@@ -17,7 +17,7 @@
       <p>{{game.description}}</p>        
     </div>
   <div class="btn-join-game-container">      
-    <button class="btn-join-game btn btn-md btn-success" ng-click="gameInfo(game.gameId)">Join this Game</button>      
+    <button class="btn-join-game btn btn-md btn-info" ng-click="gameInfo(game.gameId)">Game Details</button>      
   </div>
   </div>
 </div>
