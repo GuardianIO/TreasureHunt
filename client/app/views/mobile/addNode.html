@@ -10,8 +10,8 @@
     </canvas>
     <input type="file" id="fileInput" fileread="file" style="display: none;" />
     <div id="photo-options">
-      <button class="btn btn-info clearfix" ng-click="getManualLocation()"><span class=" glyphicon glyphicon-camera"></span></button>      
-      <button class="btn btn-info clearfix" data-toggle="modal"><span class="glyphicon glyphicon-scissors"></span></button>
+      <button class="btn btn-info clearfix" ng-click="getFile()"><span class=" glyphicon glyphicon-camera"></span></button>      
+      <button class="btn btn-info clearfix" data-toggle="modal" data-target="#cropModal"><span class="glyphicon glyphicon-scissors"></span></button>
       <button class="btn btn-info clearfix" ng-click="rotateCW()"><span class=" glyphicon glyphicon-repeat"></span></button>
       <button class="btn btn-info clearfix" ng-click="rotateCCW()"><span class=" glyphicon glyphicon-repeat icon-flipped"></span></button>
       <button class="btn btn-info clearfix" ng-click="getManualLocation()"><span class="glyphicon glyphicon-map-marker"></span></button>
@@ -24,13 +24,12 @@
     <button class="btn btn-md btn-info" ng-show="status.canUpload" ng-disabled="!file" ng-click="send()">Add Checkpoint</button>
     <button ng-show="!status.canUpload">Waiting for location...</button>
     <button class="btn btn-md btn-success" ng-disabled="!file" ng-click="done()">I'm Done!</button>
-<!--     <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"> -->
+    <center>
+    <div class="modal fade" id="cropModal" tabindex="-1" role="dialog" aria-labelledby="cropModal" aria-hidden="true">
       <div class="cropArea">
-        <img-crop image="file" result-image="myCroppedImage"></img-crop>
+        <img-crop image="file" result-image="myCroppedImage" area-type="square" result-image-size="500" on-load-done="simClick()"></img-crop>
       </div>
-      <div>Cropped Image:</div>
-      <div><img ng-src="{{myCroppedImage}}" /></div>
-      <button ng-click="crop()">Crop</button>
-    <!-- </div> -->
+      <button ng-click="crop()" class="glyphicon glyphicon-ok btn btn-default">Crop</button>
+    </div>
   </div>
 </div>

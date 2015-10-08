@@ -5,7 +5,7 @@
       <span class="sr-only">40% Complete (success)</span>
     </div>
   </div>
-  <img id="game-info-img" data-toggle="modal" data-target="#currentImageModal" ng-src={{currentNode.image}}></div><br>
+  <img id="game-info-img" data-toggle="modal" data-target="#imageClueModal" ng-src={{currentNode.image}}></div><br>
   <div class="gameInfo">
     <div>Clue: {{currentNode.clue}}</div><br>
     <div>Checkpoint {{currentNode.nodeId}} of {{gameLength}} is only <b>{{distance | number : 0}}</b> m away!</div><br>
@@ -15,8 +15,8 @@
     <!-- modal button -->
     <button ng-show="isLastGame" href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal">Done</button>
   </div>
-  <div class="modal fade" id="currentImageModal">
-    <img data-toggle="modal" data-target="#currentImageModal" ng-src={{currentNode.image}}>
+  <div class="modal fade" id="imageClueModal">
+    <img data-toggle="modal" data-target="#imageClueModal" class="modalImg" ng-src={{currentNode.image}}>
   </div>
 <!-- modal view -->
   <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
