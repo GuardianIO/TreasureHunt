@@ -8,10 +8,10 @@ angular.module('treasureHunt.create', ['treasureHunt.services'])
       console.log("sending to server to create game");
       var token = $window.localStorage.getItem('acorn');
       console.log('create token ', token);
-      if(token){
-        RequestFactory.postNewGame(gameName, gameDescription, token);
-        $state.go('/addNode');
-      }
+      console.log(token);
+      token = token || undefined;
+      RequestFactory.postNewGame(gameName, gameDescription, token);
+      $state.go('/addNode');
     };
   }
 }]);

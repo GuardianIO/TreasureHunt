@@ -84,6 +84,8 @@ angular.module('treasureHunt.userAuth', ['treasureHunt.authService'])
       }
     };
 
-
+    $scope.anon = function(){
+      $location.path(url);
+    }
 
   }]);
