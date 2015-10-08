@@ -4,11 +4,12 @@ CREATE DATABASE gooseEggs;
 
 USE gooseEggs;
 
-DROP TABLE IF EXISTS gameTable;
+DROP TABLE IF EXISTS gameInfo;
 DROP TABLE IF EXISTS nodeInfo;
-DROP TABLE IF EXISTS playerContact;
+DROP TABLE IF EXISTS userInfo;
+DROP TABLE IF EXISTS SESSIONS;
 
-/*****GAME ID******/
+/*****GAME INFO******/
 CREATE TABLE gameInfo (
   gameId INT NOT NULL AUTO_INCREMENT,
   gameName VARCHAR(20) NOT NULL,
@@ -20,7 +21,7 @@ CREATE TABLE gameInfo (
   PRIMARY KEY(gameId)
 );
 
-/*****TABLE TREASURE INFO******/
+/*****NODE INFO******/
 
 CREATE TABLE nodeInfo (
   gameId INT,
@@ -34,11 +35,16 @@ CREATE TABLE nodeInfo (
   FOREIGN KEY (gameId) REFERENCES gameInfo(gameId)
 );
 
-/*****PLAYER CONTACT******/
+/*****USER INFO******/
 
 CREATE TABLE userInfo (
   userName VARCHAR(20),
   password VARCHAR(100),
   
   PRIMARY KEY(userName)
+);
+
+/*****SESSIONS******/
+CREATE TABLE SESSIONS (
+  sessionId VARCHAR(100)
 );

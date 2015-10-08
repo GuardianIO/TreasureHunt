@@ -79,7 +79,7 @@ module.exports = {
         bcrypt.compare(params.password, results[0].password, function(err,res){
           console.log(res)
           if(res){
-            cb(res);
+            cb({res: res});
           }else{
             cb({error : 'wrong password'});
           }

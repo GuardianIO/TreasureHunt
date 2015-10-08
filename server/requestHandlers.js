@@ -62,7 +62,6 @@ module.exports.getAllGames = function(req, res){
 };
 
 module.exports.getGame = function(req, res, next){
-
   db.getGameInfo(req.body.gameId, function(err, results){
     if(err){
       res.sendStatus(500);
