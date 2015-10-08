@@ -4,6 +4,7 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
   function($scope, $location, SendPicAndLoc, $interval, PicStore){
     //start requesting the user's location
     $scope.myCroppedImage = '';
+    $scope.canSend = false;
     function drawCanvas(canvas, ctx, img){
        var hRatio = canvas.width  / img.width    ;
        var vRatio =  canvas.height / img.height  ;
@@ -46,6 +47,7 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     };
 
     $scope.$watch('file', function(){
+      $scope.canSend = true;
       $scope.$broadcast('fileReady');
     })
 
@@ -75,6 +77,7 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
         SendPicAndLoc.clue = $scope.clue;
         var blob = PicStore.b64toBlob($scope.file.slice($scope.file.indexOf(',')+1), 'image/jpeg');
         SendPicAndLoc.sendPic(blob, function(){
+          $scope.canSend = false;
           $scope.file=null;
           $scope.clue='';
           clearCanvas();
