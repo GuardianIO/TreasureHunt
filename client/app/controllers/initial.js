@@ -1,6 +1,10 @@
-angular.module('treasureHunt.initial', [])
+angular.module('treasureHunt.initial', ['treasureHunt.authService'])
 
-.controller('InitialCtrl', ['$scope', '$location',  function($scope, $location){
+.controller('InitialCtrl', ['$scope', '$location', 'AuthFactory',
+  function($scope, $location, AuthFactory){
+  $scope.state = {
+    signedIn : AuthFactory.getAuthState()
+  }
   $scope.join = function(){
     $location.path('/games');
   };
