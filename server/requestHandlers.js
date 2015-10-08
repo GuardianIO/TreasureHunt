@@ -52,12 +52,13 @@ module.exports.createGame = function(req, res){
   console.log('creating game on server for game: ' + req.body.gameName);
   var gameName = req.body.gameName;
   var gameDescription = req.body.gameDescription;
-  var userName = jwt.decode(req.body.token, _secret);
-  if(userName){
-    db.createGame({gameName: gameName, description: gameDescription, userName: userName}, function(gameId){
-      res.send({gameId: gameId});
-    });
+  if(req.body.token){
+    var userName = jwt.decode(req.body.token, _secret);
   }
+  userName = userName || 'anon'
+  db.createGame({gameName: gameName, description: gameDescription, userName: userName}, function(gameId){
+    res.send({gameId: gameId});
+  });
 };
 
 module.exports.getAllGames = function(req, res){
