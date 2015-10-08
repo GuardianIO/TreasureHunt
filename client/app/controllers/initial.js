@@ -9,7 +9,11 @@ angular.module('treasureHunt.initial', ['treasureHunt.authService'])
     $location.path('/games');
   };
   $scope.create = function(){
-    $location.path('/create');
+    if(AuthFactory.getAuthState()){
+      $location.path('/create');
+    }else{
+      $scope.$emit('notSignedIn', '/create');
+    }
   };
   $scope.$watch(AuthFactory.getAuthState, function(newState, oldState){
     console.log('new state', newState);
