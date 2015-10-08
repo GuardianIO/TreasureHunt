@@ -12,10 +12,10 @@ connection.connect();
 module.exports = {
 
   createGame: function(params, cb) {
-      var gameTable = "INSERT INTO gameInfo(gameName, description, createdDate, avgRating, numOfRatings) VALUES(?,?,?,0,0)";
+      var gameTable = "INSERT INTO gameInfo(gameName, description, createdDate, createdBy, avgRating, numOfRatings) VALUES(?,?,?,?,0,0)";
       var today = new Date();
       var createdDate = today.getMonth()  +1 + "/"+ today.getDate() + "/"+ today.getFullYear();
-      connection.query(gameTable, [params.gameName, params.description, createdDate], function(err, results){        
+      connection.query(gameTable, [params.gameName, params.description, createdDate, params.userName], function(err, results){        
         if(err){
           console.error('[MYSQL]createGame error: ',err);
         }

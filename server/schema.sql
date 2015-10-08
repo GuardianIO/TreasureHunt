@@ -15,6 +15,7 @@ CREATE TABLE gameInfo (
   gameName VARCHAR(20) NOT NULL,
   description VARCHAR(50),
   createdDate VARCHAR(10),
+  createdBy VARCHAR(20),
   avgRating DECIMAL(2,1),
   numOfRatings int(5),
 
