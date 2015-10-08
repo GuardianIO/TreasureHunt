@@ -1,6 +1,6 @@
 angular.module('treasureHunt.userAuth', ['treasureHunt.authService'])
-.controller('LogInCtrl', ['$scope', 'AuthFactory', '$window', '$location',
-  function($scope, AuthFactory, $window, $location){
+.controller('LogInCtrl', ['$scope', 'AuthFactory', '$window', '$location', '$rootScope',
+  function($scope, AuthFactory, $window, $location, $rootScope){
     $scope.signIn={
       userName : '',
       password : ''
@@ -20,6 +20,18 @@ angular.module('treasureHunt.userAuth', ['treasureHunt.authService'])
     $scope.$on('notSignedIn', function(event, data){
       url = data;
       $('#loginModal').modal('toggle');
+    });
+
+    $rootScope.$on('$locationChangeSuccess', function(event, newLocation, oldLocation) {
+      $rootScope.oldLocation = oldLocation;
+    });
+
+    $rootScope.$on('$locationChangeStart', function(event, next, current){
+      var modalOn = ($("#loginModal").data('bs.modal') || {}).isShown;
+      if($rootScope.oldLocation==next && modalOn){
+        event.preventDefault();
+        $('#loginModal').modal('toggle');
+      }
     });
 
     $scope.checkState = function(){
