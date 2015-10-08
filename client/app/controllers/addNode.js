@@ -130,6 +130,7 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     }
 
     $scope.crop = function(){
+
       var canvas = document.getElementById('canvas');
       var ctx = canvas.getContext('2d');
 
@@ -137,9 +138,14 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
       var img = new Image();
       img.addEventListener('load', function(){
         drawCanvas(canvas, ctx, img);
+        $('#cropModal').modal('toggle');
       });
       img.src = $scope.file;
-    }
+    };
+
+    $scope.simClick = function(){
+      $('crop-image').click();
+    };
 
 }]);
 
