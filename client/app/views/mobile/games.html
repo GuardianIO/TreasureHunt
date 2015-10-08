@@ -3,7 +3,7 @@
 
   <div class="game-list-item clearfix" ng-repeat="game in games | filter:searchGame">
     <div class="game-list-item-body clearfix">
-    <div class="game-list-item-title"><h2>{{game.gameName}}</h2></div>
+    <div class="game-list-item-title" style="word-wrap: break-word"><h2>{{game.gameName | uppercase}}</h2></div>
       <img class="game-list-item-image"  ng-if="game.image" ng-src="{{game.image}}">
       <div class="game-list-item-details">
         <p class="game-list-item-field-description"># of Checkpoints: </p><p class="game-list-item-field-value">{{game.nodeCount}}</p>
