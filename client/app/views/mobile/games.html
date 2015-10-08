@@ -1,5 +1,7 @@
 <div class="container game-list" ng-init='getAllGames()'>
-  <label>Search Game: <input ng-model="searchGame"></label>
+  <div >
+    <input  class="search-bar" style="width: 100%" ng-model="searchGame" placeholder="Search games">
+  </div>  
     <div class="game-list-item clearfix" ng-repeat="game in games | filter:searchGame">
       <div class="game-list-item-body clearfix">
       <div class="game-list-item-title"><h2>{{game.gameName}}</h2></div>

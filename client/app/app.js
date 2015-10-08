@@ -10,7 +10,8 @@ angular.module('treasureHunt', [
   'treasureHunt.game',
   'treasureHunt.addNode',
   'treasureHunt.invite',
-  'treasureHunt.gameInfo'
+  'treasureHunt.gameInfo',
+  'treasureHunt.map'
 ])
 
 .config(['$stateProvider', '$urlRouterProvider', 
