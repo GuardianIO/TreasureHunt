@@ -26,9 +26,9 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
           );
         }, 1000);
       }else{
-        if(gameNodeArr.length === 1){
-            $scope.progress = "100%";
-          }
+        // if(gameNodeArr.length === 1){
+        //     $scope.progress = "100%";
+        //   }
         $interval.cancel(interval);
       }
     };
@@ -58,9 +58,9 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
     }
 
     $scope.rate = function (e) {
-      console.log(angular.element(e)[0]);
+      var score = $(angular.element(e.target)[0]).data('id');
     };  
-    
+
     nodeFound = function(){
       $cookies.putObject(gameId, {
         progress: $scope.currentNode.nodeId
@@ -85,6 +85,15 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
       });
     };
 
+    // function progressUpdate(){
+    //   var currentProgress = cookies.getObject(gameId).progress;
+    //   if(currentProgress !== undefined){
+    //      // var gameArrIndex = gameNodeArr.indexOf($scope.currentNode.nodeId) + 1;
+    //       $scope.progress = ((gameArrIndex/(gameNodeArr.length))*100).toString() + "%";
+    //     $scope.progress
+    //   }
+    // }
+
     (function(){
       if(gameId){
         var currentNodeNum = $cookies.getObject(gameId) && $cookies.getObject(gameId).progress ? $cookies.getObject(gameId).progress : 1;
@@ -98,6 +107,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
           for(var i = 0; i < currentGame.nodes.length; i++){
             gameNodeArr.push(currentGame.nodes[i].nodeId);
           }
+          // progressUpdate();
           searching(true);
         });
       }
