@@ -6,7 +6,7 @@
         type="file" ngf-select ngf-resize="{width: 500, height: 500, quality: .8}"
         ng-model="file" name="file" accept="image/*">Take Photo <span class="glyphicon glyphicon-camera"></span></button>
     </div> -->
-    <canvas id="canvas" ng-click="getFile()">
+    <canvas id="canvas" ng-click="getFile()" ng-init="drawInitial()">
     </canvas>
     <input type="file" id="fileInput" fileread="file" style="display: none;" />
     <div id="photo-options">

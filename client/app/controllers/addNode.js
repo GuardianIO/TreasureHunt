@@ -20,6 +20,19 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
       var ctx = canvas.getContext('2d');
       ctx.clearRect(0,0,canvas.width, canvas.height);
     };
+
+    $scope.drawInitial = function(){
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+      canvas.width = 500;
+      canvas.height = 500;
+      var img = new Image();
+      img.onload = function(){
+        console.log('image load', img.height, img.width);
+        drawCanvas(canvas, ctx, img);
+      }
+      img.src = '/img/photo-placeholder.jpg';
+    };
     
     SendPicAndLoc.getLoc();
     $scope.file = null;
