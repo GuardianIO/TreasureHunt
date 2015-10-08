@@ -10,7 +10,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
     $scope.nextButtonGone = false;
     $scope.progress;
     $scope.currentProgress;
-    // (Math.round(num * 2) / 2).toFixed(1)
+      // (Math.round(num * 2) / 2).toFixed(1)
 
     $rootScope.$on('$locationChangeSuccess', function(event, newLocation, oldLocation) {
       $rootScope.oldLocation = oldLocation;
@@ -70,11 +70,13 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
       $scope.isLastGame = false;
       setTimeout(function(){
         $location.path('/gameInfo/'+gameId);
-      },100);
+      },1000);
     }
 
-    $scope.rate = function (e) {
-      var score = $(angular.element(e.target)[0]).data('id');
+    $scope.rate = function (event) {
+          // (Math.round(num * 2) / 2).toFixed(1)
+      var score = $(angular.element(event.target)[0]).data('id');
+      RequestFactory.sendScoreRating(score, gameId);
     };  
 
     nodeFound = function(){

@@ -211,6 +211,32 @@ module.exports = {
         cb(results);
       }
     });
+  },
+  sendScore: function(params, cb){
+    var updateStr = "UPDATE gameInfo SET avgRating=(?), \
+                    numOfRatings=(?) WHERE gameId=(?)";
+    var selectStr = "SELECT avgRating, numOfRatings \
+                    FROM gameInfo WHERE gameId=(?)";
+
+    connection.query(selectStr, params.gameId, function(err, results){
+      if(err){
+        console.error('[MYSQL]sendScore',err);
+      }
+      else{
+        var avgRating = results[0].avgRating;
+        var numOfRatings = results[0].numOfRatings;
+        var avg = ((avgRating * numOfRatings) + params.score) / (numOfRatings + 1);
+        console.log('avg', avg);
+        connection.query(updateStr, [avg, (numOfRatings+1), params.gameId], function(err, results){
+          if(err){
+            console.error('[MySQL]updateAvg',err);
+          }
+          else{
+            cb({avg: avg});
+          }
+        });
+      }
+    })
   }
 };
 
