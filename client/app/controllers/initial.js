@@ -10,5 +10,11 @@ angular.module('treasureHunt.initial', ['treasureHunt.authService'])
   };
   $scope.create = function(){
     $location.path('/create');
-  }
+  };
+  $scope.$watch(AuthFactory.getAuthState, function(newState, oldState){
+    console.log('new state', newState);
+    if(newState!==oldState){
+      $scope.state.signedIn = newState;
+    }
+  });
 }]);

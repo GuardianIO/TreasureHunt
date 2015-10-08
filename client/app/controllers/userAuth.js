@@ -21,7 +21,8 @@ angular.module('treasureHunt.userAuth', ['treasureHunt.authService'])
         AuthFactory.checkState(token).then(
           function(res){
             $scope.state.signedIn = res;
-            AuthFactory.setAuthState(res);
+            console.log('checkState data ',res.data);
+            AuthFactory.setAuthState(res.data);
         });
       }
     };
