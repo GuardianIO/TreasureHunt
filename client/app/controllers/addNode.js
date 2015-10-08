@@ -34,6 +34,10 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
       }
       img.src = '/img/photo-placeholder.jpg';
     };
+
+    $scope.getManualLocation = function(){
+      $location.path('/map');
+    };
     
     SendPicAndLoc.getLoc();
     $scope.file = null;

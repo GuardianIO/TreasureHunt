@@ -1,5 +1,7 @@
 angular.module('treasureHunt.map', ['ngMap'])
-.controller('MapCtrl', ['$scope', function($scope){
+.controller('MapCtrl', ['$scope', '$location', function($scope, $location){
+  $scope.geoCoords;
+
   $scope.initializeMap = function(){
     if(navigator&&navigator.geolocation){
       navigator.geolocation.getCurrentPosition(function(pos){
@@ -41,10 +43,14 @@ angular.module('treasureHunt.map', ['ngMap'])
         //         // document.getElementById('current').innerHTML = '<p>Currently dragging marker...</p>';
         //     });
         map.setCenter(myMarker.position);
-        myMarker.setMap(map);
-  
+        myMarker.setMap(map);  
       });//getCurrentPosition
       
     }//if
   };//initializeMap()
+
+  $scope.setCoordinates = function(){
+    console.log('go back')
+    $location.path('/addNode');
+  }
 }]);
