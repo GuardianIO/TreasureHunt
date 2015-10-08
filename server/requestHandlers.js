@@ -84,3 +84,11 @@ module.exports.getGameInfo = function(req, res, next){
   })
 }
 
+module.exports.sendScore = function(req, res, next){
+    db.sendScore(req.body, function(results){
+      console.log('sendScore',results);
+      res.send(results);
+    });
+  }
+
+

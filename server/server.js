@@ -29,6 +29,7 @@ app.post('/addWaypoint', requestHandlers.uploadHandler);
 app.post('/gameInfo', requestHandlers.getGameInfo);
 app.post('/game', playerHandlers.checkPlayerStatus, requestHandlers.getGame);
 app.post('/createGame', requestHandlers.createGame);
+app.post('/score', requestHandlers.sendScore);
 
 app.post('/gameNode', function(req, res){
   console.log('new gameNode: ', req.body);
