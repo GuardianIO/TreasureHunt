@@ -20,6 +20,19 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
       var ctx = canvas.getContext('2d');
       ctx.clearRect(0,0,canvas.width, canvas.height);
     };
+
+    $scope.drawInitial = function(){
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+      canvas.width = 500;
+      canvas.height = 500;
+      var img = new Image();
+      img.onload = function(){
+        console.log('image load', img.height, img.width);
+        drawCanvas(canvas, ctx, img);
+      }
+      img.src = '/img/photo-placeholder.jpg';
+    };
     
     SendPicAndLoc.getLoc();
     $scope.file = null;
@@ -72,7 +85,6 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     $scope.done = function(){
       if($scope.file){
         SendPicAndLoc.clue = $scope.clue;
-        console.log($scope.file, $scope.file.slice($scope.file.indexOf(',')+1));
         var blob = PicStore.b64toBlob($scope.file.slice($scope.file.indexOf(',')+1), 'image/jpg');
         SendPicAndLoc.sendPic(blob, function(){
           $scope.file=null;
@@ -118,7 +130,6 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     }
 
     $scope.crop = function(){
-      // console.log('crop');
       var canvas = document.getElementById('canvas');
       var ctx = canvas.getContext('2d');
 
