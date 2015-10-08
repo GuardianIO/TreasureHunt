@@ -1,6 +1,6 @@
 angular.module('treasureHunt.userAuth', ['treasureHunt.authService'])
-.controller('LogInCtrl', ['$scope', 'AuthFactory', '$window', 
-  function($scope, AuthFactory, $window){
+.controller('LogInCtrl', ['$scope', 'AuthFactory', '$window', '$location',
+  function($scope, AuthFactory, $window, $location){
     $scope.signIn={
       userName : '',
       password : ''
@@ -15,6 +15,13 @@ angular.module('treasureHunt.userAuth', ['treasureHunt.authService'])
     };
     $scope.match = false;
 
+    var url = $location.url().split('/').pop();
+
+    $scope.$on('notSignedIn', function(event, data){
+      url = data;
+      $('#loginModal').modal('toggle');
+    });
+
     $scope.checkState = function(){
       var token = $window.localStorage.getItem('acorn');
       if(token){
@@ -26,6 +33,16 @@ angular.module('treasureHunt.userAuth', ['treasureHunt.authService'])
         });
       }
     };
+
+    $scope.create = function(){
+      if(AuthFactory.getAuthState()){
+        $location.path('/create');
+      }else{
+        console.log('user not signed in');
+        url = '/create';
+        $('#loginModal').modal('toggle');
+      }
+    }
 
     $scope.signOut = function(){
       $window.localStorage.removeItem('acorn');
@@ -41,6 +58,8 @@ angular.module('treasureHunt.userAuth', ['treasureHunt.authService'])
             $window.localStorage.setItem('acorn', res.data.token);
             $scope.state.signedIn = res.data.auth;
             AuthFactory.setAuthState(res.data.auth);
+            $('#loginModal').modal('toggle');
+            $location.path(url);
           }
       });
     };
@@ -58,11 +77,15 @@ angular.module('treasureHunt.userAuth', ['treasureHunt.authService'])
               $window.localStorage.setItem('acorn', res.data.token);
               $scope.state.signedIn = res.data.auth;
               AuthFactory.setAuthState(res.data.auth);
+              $('#loginModal').modal('toggle');
+              $location.path(url);
             }
         });
       }
+    };
 
+    $scope.anon = function(){
+      $location.path(url);
     }
-
 
   }]);

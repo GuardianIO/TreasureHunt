@@ -1,10 +1,12 @@
-angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.pictureStorage', 'ngImgCrop'])
+angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.pictureStorage', 'ngImgCrop', 'ui.router'])
 
-.controller('AddNode', ['$scope', '$location', 'SendPicAndLoc', '$interval', 'PicStore',
-  function($scope, $location, SendPicAndLoc, $interval, PicStore){
+.controller('AddNode', ['$scope', '$location', 'SendPicAndLoc', '$interval', 'PicStore', '$state',
+  function($scope, $location, SendPicAndLoc, $interval, PicStore, $state){
     //start requesting the user's location
     $scope.myCroppedImage = '';
     $scope.canSend = false;
+    $scope.mapShow = false;
+    
     function drawCanvas(canvas, ctx, img){
        var hRatio = canvas.width  / img.width    ;
        var vRatio =  canvas.height / img.height  ;
@@ -33,6 +35,11 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
         drawCanvas(canvas, ctx, img);
       }
       img.src = '/img/photo-placeholder.jpg';
+    };
+
+    $scope.getManualLocation = function(){
+      $scope.mapShow = !$scope.mapShow;
+      google.maps.event.trigger(document.getElementById('map'), 'resize');
     };
     
     SendPicAndLoc.getLoc();

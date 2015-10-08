@@ -56,7 +56,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#/">Home <span class="sr-only">(current)</span></a></li>
-            <li><a href="#/create" ng-show='state.signedIn'>Create</a></li>
+            <li ng-click="create();"><a>Create</a></li>
             <li><a href="#/games">Games</a></li>
             <li ng-show="!state.signedIn"><a data-toggle="modal" data-target="#loginModal">Sign In/Register</a></li>
             <li ng-show="state.signedIn" ng-click="signOut();"><a>Sign out</a></li>
@@ -151,15 +151,14 @@
            <!-- MODAL FOOTER -->
       <div class="modal-footer">
         <center>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Continue as guest</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click='anon();'>Continue as guest</button>
         </center>
       </div> <!-- end modal-footer -->
     </div> <!-- end modal-content -->
   </div> <!-- end modal-dialog -->
 </div> <!-- end modal -->
-</div>
+    <div class="container" ui-view></div>
 </div>
     <!-- modal -->
-    <div class="container" ui-view></div>
   </body>  
 </html>

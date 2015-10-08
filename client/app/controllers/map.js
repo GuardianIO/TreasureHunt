@@ -1,10 +1,12 @@
-angular.module('treasureHunt.map', ['ngMap'])
-.controller('MapCtrl', ['$scope', function($scope){
+angular.module('treasureHunt.map', ['ngMap', 'ui.router'])
+.controller('MapCtrl', ['$scope', '$location','$state', function($scope, $location, $state){
+  $scope.geoCoords;
+
   $scope.initializeMap = function(){
     if(navigator&&navigator.geolocation){
       navigator.geolocation.getCurrentPosition(function(pos){
         var coords = pos.coords;
-        var map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: coords.latitude, lng: coords.longitude},
             scrollwheel: true,
             zoom: 15
@@ -42,9 +44,21 @@ angular.module('treasureHunt.map', ['ngMap'])
         //     });
         map.setCenter(myMarker.position);
         myMarker.setMap(map);
-  
+        $scope.map = map;
+        $scope.watchPosition = navigator.geolocation.watchPosition(function(loc){
+          console.log('new position');
+          if($scope.map && !$scope.$parent.mapShow){
+            console.log('set position');
+            $scope.map.setCenter(new google.maps.LatLng(loc.coords.latitude, loc.coords.longitude));
+          }
+        });
       });//getCurrentPosition
       
     }//if
   };//initializeMap()
+
+  $scope.setCoordinates = function(){
+    $scope.$parent.mapShow = !$scope.$parent.mapShow;
+  }
+
 }]);

@@ -42,16 +42,24 @@ angular.module('treasureHunt', [
       templateUrl: mobileBrowser ? 'app/views/mobile/nodeEditor.html' : 'app/views/desktop/nodeEditor.html',
       controller:'NodeEditorCtrl'
     })
-    .state('/addNode', {
+    .state('addNode', {
       url:'/addNode',
-      templateUrl: mobileBrowser ? 'app/views/mobile/addNode.html' : 'app/views/desktop/addNode.html',
-      controller:'AddNode'
+      views:{
+        '':{
+          templateUrl: mobileBrowser ? 'app/views/mobile/addNode.html' : 'app/views/desktop/addNode.html',
+          controller:'AddNode'
+        },
+        'map@addNode':{
+          templateUrl: 'app/views/mobile/map.html',
+          controller: 'MapCtrl'
+        }
+      }
     })
-    .state('/map',{
-      url:'/map',
-      templateUrl: mobileBrowser ? 'app/views/mobile/map.html' : 'app/views/desktop/map.html',
-      controller: 'MapCtrl'
-    })
+    // .state('/map',{
+    //   url:'/map',
+    //   templateUrl: mobileBrowser ? 'app/views/mobile/map.html' : 'app/views/desktop/map.html',
+    //   controller: 'MapCtrl'
+    // })
     .state('/nodeList', {
       url:'/nodeList',
       templateUrl: mobileBrowser ? 'app/views/mobile/nodeList.html' : 'app/views/desktop/nodeList.html',
