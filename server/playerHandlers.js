@@ -1,5 +1,8 @@
 var utils = require("./utils.js");
+var jwt = require('jwt-simple');
 var db = require('./db/db.js');
+
+var _secret = 'BiGaCoRn';
 
 module.exports = {
   checkGame:function(req, res, next){
@@ -45,14 +48,13 @@ module.exports = {
   },
 
   register : function(req, res){
-    console.log('sign up to server ', req.body);
     db.userRegister(req.body, function(results){
       if(results.error){
         res.send(results);
       }else{
-        req.session.regenerate(function(){
-          req.session.userId = {name:req.body.userName, pass: req.body.password};
-        });
+        var token = jwt.encode(req.body.userName, _secret);
+        results.token = token;
+        results.auth = true;
         res.send(results);
       }
     });
@@ -63,14 +65,20 @@ module.exports = {
       if(results.error){
         res.send(results);
       }else{
-        req.session.regenerate(function(){
-          req.session.userId = {name:req.body.userName, pass: req.body.password};
-        });
-        console.log(req.session);
+        var token = jwt.encode(req.body.userName, _secret);
+        results.token = token;
+        results.auth = true;
         res.send(results);
       }
     });
-  }
+  },
+
+
+  checkToken : function(req, res){
+    console.log('trying to find token ', req.body.token);
+    console.log('token length ', req.body.token.length);
+    res.send(true);
+  },
 
 };
 

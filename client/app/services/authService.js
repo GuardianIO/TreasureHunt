@@ -1,6 +1,22 @@
 angular.module('treasureHunt.authService', [])
 .factory('AuthFactory', ['$http', function($http){
+  var signedIn = false;
   return {
+    getAuthState : function(){
+      return signedIn;
+    },
+
+    setAuthState : function(state){
+      signedIn = state;
+    },
+
+    checkState : function(token){
+      return $http.post('/check', {
+        token : token
+      }).then(function(res){
+        return res;
+      });
+    },
 
     signIn : function(userName, password){
       return $http.post('/signIn', {

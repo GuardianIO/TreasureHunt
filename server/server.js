@@ -1,17 +1,11 @@
 var express = require('express');
-var session = require('express-session');
 var requestHandlers = require('./requestHandlers');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var playerHandlers = require('./playerHandlers');
 var app = express();
 
-app.use(session({
-  secret: 'squirrel looking for nuts',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
-}));
+
 
 
 app.use(cookieParser());
@@ -46,6 +40,7 @@ app.post('/invite', playerHandlers.invitePlayers);
 //user authentication
 app.post('/register', playerHandlers.register);
 app.post('/signIn', playerHandlers.signIn);
+app.post('/check', playerHandlers.checkToken);
 
 // start server
 var server = app.listen( (process.env.PORT || 3000), function () {
