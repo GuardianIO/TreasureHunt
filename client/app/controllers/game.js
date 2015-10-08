@@ -38,9 +38,6 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
        searching(false);
        $scope.currentNode = RequestFactory.getNode($scope.currentNode.nodeId);
        searching(true); 
-       // var gameArrIndex = gameNodeArr.indexOf($scope.currentNode.nodeId);
-       // $scope.progress = ((gameArrIndex/(gameNodeArr.length-1))*100).toString() + "%";
-       console.log('next',$scope.progress);
      }
     };
 
@@ -59,6 +56,10 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
         $location.path('/gameInfo/'+gameId);
       },100);
     }
+
+    $scope.rate = function (e) {
+      console.log(angular.element(e)[0]);
+    };  
     
     nodeFound = function(){
       $cookies.putObject(gameId, {
