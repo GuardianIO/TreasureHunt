@@ -10,7 +10,7 @@ angular.module('treasureHunt.create', ['treasureHunt.services'])
 
       token = token || undefined;
       RequestFactory.postNewGame(gameName, gameDescription, token);
-      $state.go('/addNode');
+      $state.go('addNode');
     };
   }
 }]);
