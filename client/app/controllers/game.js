@@ -56,6 +56,20 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
       }
     };
 
+    $scope.getRoute = function(){
+    var lat = $scope.currentNode.lat;
+    var lon = $scope.currentNode.lon;
+    // If it's an iPhone..
+      if( (navigator.platform.indexOf("iPhone") != -1) 
+        || (navigator.platform.indexOf("iPod") != -1)
+        || (navigator.platform.indexOf("iPad") != -1)) {
+          window.open("maps://maps.google.com/maps?daddr="+lat+","+lon+"&amp;ll=");
+      }
+      else{
+        window.open("http://maps.google.com/maps?daddr="+lat+","+lon+"&amp;ll=");
+      }
+    };
+
     $scope.next = function(){
       if($scope.currentNode.nodeId < $scope.numNodes){
        searching(false);
