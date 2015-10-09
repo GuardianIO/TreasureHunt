@@ -6,7 +6,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
     $scope.gameLength;
     $scope.currentNode = null;
     $scope.distance = NaN;
-    $scope.isLastGame = false;
+    $scope.isLastNode = false;
     $scope.nextButtonGone = false;
     $scope.progress;
     $scope.currentProgress;
@@ -110,7 +110,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
     $scope.restartGame = function(){
       console.log('$cookies', $cookies);
       $cookies.remove(gameId);
-      $scope.isLastGame = false;
+      $scope.isLastNode = false;
       setTimeout(function(){
         $state.go('gameInfo', {id: gameId});
       },1000);
@@ -138,7 +138,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
       });
       $scope.currentNode.found = true;
       if($scope.currentNode.nodeId === $scope.gameLength){
-        $scope.isLastGame = true;
+        $scope.isLastNode = true;
         $scope.nextButtonGone = true;
       }
     };  

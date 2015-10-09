@@ -44,7 +44,7 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
       google.maps.event.trigger(document.getElementById('map'), 'resize');
     };
     
-    SendPicAndLoc.getLoc();
+    SendPicAndLoc.watchLoc();
     
     $scope.status = {
       canUpload:false
