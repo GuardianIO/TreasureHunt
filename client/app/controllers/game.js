@@ -10,7 +10,12 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
     $scope.nextButtonGone = false;
     $scope.progress;
     $scope.currentProgress;
-      // (Math.round(num * 2) / 2).toFixed(1)
+    $scope.image = "../../../img/nut-gray.png"
+    $scope.showImage = true;
+    $scope.avg;
+
+    // var fullNut = "../../../img/nut-full.png";
+
 
     $rootScope.$on('$locationChangeSuccess', function(event, newLocation, oldLocation) {
       $rootScope.oldLocation = oldLocation;
@@ -33,7 +38,6 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
 
 
     var gameId = $location.url().split('/').pop();
-    var currentGame;
     var gameNodeArr = [];
     var interval;
     function searching(notFound){
@@ -48,9 +52,6 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
           );
         }, 1000);
       }else{
-        // if(gameNodeArr.length === 1){
-        //     $scope.progress = "100%";
-        //   }
         $interval.cancel(interval);
       }
     };
@@ -73,6 +74,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
     }
 
     $scope.restartGame = function(){
+      console.log('$cookies', $cookies);
       $cookies.remove(gameId);
       $scope.isLastGame = false;
       setTimeout(function(){
@@ -81,10 +83,25 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
     }
 
     $scope.rate = function (event) {
-          // (Math.round(num * 2) / 2).toFixed(1)
       var score = $(angular.element(event.target)[0]).data('id');
-      RequestFactory.sendScoreRating(score, gameId);
-    };  
+      $scope.showImage = false;
+      RequestFactory.sendScoreRating(score, gameId, function(avg){
+        console.log('avg', avg );
+        var decimal = avg % 1;
+
+        if(decimal === 0){
+          $scope.avg = avg;
+        }
+        else if(decimal >= 0.3 || decimal <= 0.7){
+
+          $scope.avg = Math.floor(avg) + 0.5;
+        }
+        else{
+          $scope.avg = Math.floor(avg);
+        }
+        $scope.showImage = false;
+      });
+    };
 
     nodeFound = function(){
       $cookies.putObject(gameId, {

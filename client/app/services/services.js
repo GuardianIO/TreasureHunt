@@ -17,11 +17,11 @@ angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
   };
 
   return {
-    sendScoreRating: function(score, gameId){
-      console.log(score);
+    sendScoreRating: function(score, gameId, cb){
       $http.post('/score', {score: score, gameId: gameId})
       .then(function(results, err){
-        console.log('score posted!');
+        cb(results.data.avg);
+        console.log('score posted!', results.data.avg);
       },function(err){
           console.error(err);
         });
