@@ -6,7 +6,9 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     $scope.myCroppedImage = '';
     $scope.canSend = false;
     $scope.mapShow = false;
-    
+    $scope.userCoords = {};
+    $scope.canvasURI = null;
+
     function drawCanvas(canvas, ctx, img){
        var hRatio = canvas.width  / img.width    ;
        var vRatio =  canvas.height / img.height  ;
@@ -16,6 +18,7 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
        ctx.clearRect(0,0,canvas.width, canvas.height);
        ctx.drawImage(img, 0,0, img.width, img.height,
                           centerShift_x,centerShift_y,img.width*ratio, img.height*ratio);
+       $scope.canvasURI = canvas.toDataURL('image/jpeg');
     };
 
     function clearCanvas(){
@@ -43,7 +46,6 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     };
     
     SendPicAndLoc.getLoc();
-    $scope.file = null;
     
     $scope.status = {
       canUpload:false
@@ -53,13 +55,13 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
       $('#fileInput').click();
     };
 
-    $scope.$watch('file', function(){
+    $scope.$watch('userFile', function(){
       $scope.canSend = true;
       $scope.$broadcast('fileReady');
     })
 
     $scope.$on('fileReady', function(){
-      if($scope.file && document.getElementById('canvas')){
+      if($scope.userFile && document.getElementById('canvas')){
         var canvas = document.getElementById('canvas');
         var ctx = canvas.getContext('2d');
 
@@ -69,8 +71,10 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
         var img = new Image();
         img.addEventListener('load', function(){
           drawCanvas(canvas, ctx, img);
+          // $scope.canvasURI = canvas.toDataURL('image/jpeg');
+          console.log($scope.canvasURI);
         });
-        img.src = $scope.file;
+        img.src = $scope.userFile;
       }
     });
 
@@ -80,12 +84,12 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     });
 
     $scope.send = function(){
-      if($scope.file){
+      if($scope.canvasURI){
         SendPicAndLoc.clue = $scope.clue;
-        var blob = PicStore.b64toBlob($scope.file.slice($scope.file.indexOf(',')+1), 'image/jpeg');
+        var blob = PicStore.b64toBlob($scope.canvasURI.slice($scope.canvasURI.indexOf(',')+1), 'image/jpeg');
         SendPicAndLoc.sendPic(blob, function(){
           $scope.canSend = false;
-          $scope.file=null;
+          $scope.canvasURI=null;
           $scope.clue='';
           clearCanvas();
         });
@@ -93,11 +97,11 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     };
     
     $scope.done = function(){
-      if($scope.file){
+      if($scope.canvasURI){
         SendPicAndLoc.clue = $scope.clue;
-        var blob = PicStore.b64toBlob($scope.file.slice($scope.file.indexOf(',')+1), 'image/jpg');
+        var blob = PicStore.b64toBlob($scope.canvasURI.slice($scope.canvasURI.indexOf(',')+1), 'image/jpg');
         SendPicAndLoc.sendPic(blob, function(){
-          $scope.file=null;
+          $scope.canvasURI=null;
           $scope.clue='';
           clearCanvas();
           $location.path('/invite');
@@ -112,7 +116,7 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     }
 
     var drawRotated = function(url, radians){
-      if($scope.file && document.getElementById('canvas')){
+      if($scope.canvasURI && document.getElementById('canvas')){
         var canvas = document.getElementById('canvas');
         var ctx = canvas.getContext('2d');
         var img = new Image;
@@ -120,22 +124,21 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
           ctx.translate(Math.sin(radians/2 + Math.PI/4)*500, Math.cos(radians/2 + Math.PI/4)*500);
           ctx.rotate(radians);
           drawCanvas(canvas, ctx, img);
-          var url = canvas.toDataURL('image/jpeg');
-          $scope.file = url;
+          
         })
         img.src = url;
       }
     };
 
     $scope.rotateCW = function(){
-      if($scope.file){
-        drawRotated($scope.file, Math.PI/2);
+      if($scope.canvasURI){
+        drawRotated($scope.canvasURI, Math.PI/2);
       }
     };
 
     $scope.rotateCCW = function(){
-      if($scope.file){
-        drawRotated($scope.file, -Math.PI/2);
+      if($scope.canvasURI){
+        drawRotated($scope.canvasURI, -Math.PI/2);
       }
     }
 
@@ -144,17 +147,13 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
       var canvas = document.getElementById('canvas');
       var ctx = canvas.getContext('2d');
 
-      $scope.file = $scope.myCroppedImage;
+      $scope.canvasURI = $scope.myCroppedImage;
       var img = new Image();
       img.addEventListener('load', function(){
         drawCanvas(canvas, ctx, img);
         $('#cropModal').modal('toggle');
       });
-      img.src = $scope.file;
-    };
-
-    $scope.simClick = function(){
-      $('crop-image').click();
+      img.src = $scope.canvasURI;
     };
 
 }]);

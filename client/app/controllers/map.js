@@ -1,6 +1,5 @@
 angular.module('treasureHunt.map', ['ngMap', 'ui.router'])
 .controller('MapCtrl', ['$scope', '$location','$state', function($scope, $location, $state){
-  $scope.geoCoords;
 
   $scope.initializeMap = function(){
     if(navigator&&navigator.geolocation){
@@ -13,6 +12,10 @@ angular.module('treasureHunt.map', ['ngMap', 'ui.router'])
           });
         var myMarker;
         function placeMarker(location) {
+          if(location){
+            $scope.$parent.userCoords.latitude = location.J;
+            $scope.$parent.userCoords.longitude = location.M;
+          }
           if ( myMarker ) {
             myMarker.setPosition(location);
           } else {
@@ -44,11 +47,11 @@ angular.module('treasureHunt.map', ['ngMap', 'ui.router'])
         //     });
         map.setCenter(myMarker.position);
         myMarker.setMap(map);
+
         $scope.map = map;
+
         $scope.watchPosition = navigator.geolocation.watchPosition(function(loc){
-          console.log('new position');
           if($scope.map && !$scope.$parent.mapShow){
-            console.log('set position');
             $scope.map.setCenter(new google.maps.LatLng(loc.coords.latitude, loc.coords.longitude));
           }
         });
