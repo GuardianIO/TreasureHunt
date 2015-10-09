@@ -5,7 +5,9 @@ angular.module('treasureHunt.games',['treasureHunt.services'])
     $scope.getAllGames = function(){
       RequestFactory.getGames().then(function(resp){
         $scope.games = resp;
+      console.log('games', $scope.games);
       });
+      // $scope.nutsArr = RequestFactory
     };
 
     $scope.gameInfo = function(gameId){

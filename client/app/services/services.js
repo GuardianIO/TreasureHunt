@@ -3,6 +3,12 @@ angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
   var gameId = "";
   var games = [];
   var currentGame = {};
+  var nutsArr = [];
+  var nuts = {
+    grayNut: "../../../img/nut-gray.png",
+    fullNut: "../../../img/nut-full.png",
+    halfNut: "../../../img/nut-half.png"
+  }
 
   gameSetup = function(currentNodeNum){
     if(Array.isArray(currentGame.nodes)){
@@ -17,6 +23,30 @@ angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
   };
 
   return {
+    averageRateInNuts: function(avgRating){
+      var fraction = avgRating % 1;
+      var j;
+      if(nutsArr.length > 0){
+        nutsArr = [];
+      }
+      if(fraction >= 0.3 && fraction <= 0.7){
+        nutsArr[Math.floor(avgRating)] = nuts.halfNut;
+      }
+      if(nutsArr[Math.floor(avgRating)] === undefined){
+        j = Math.floor(avgRating);
+      }
+      else{
+        j = Math.floor(avgRating) + 1;
+      }
+      for(var i = Math.floor(avgRating) - 1; i >= 0; i--){
+        nutsArr[i] = (nuts.fullNut);
+      }
+      while(j < 5){
+        nutsArr.push(nuts.grayNut);
+        j++;
+      }
+      return nutsArr;
+    },
     sendScoreRating: function(score, gameId, cb){
       $http.post('/score', {score: score, gameId: gameId})
       .then(function(results, err){
