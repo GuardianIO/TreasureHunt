@@ -29,13 +29,18 @@
           <div class="modal-body">
             <h3>Congratulation! You are done</h3>
             <div>
-              <div class="rating">
+              <div ng-show="!showImage">
+                Average Score:
+                {{avg}}
+              </div>
+              <div class="rating" ng-show="showImage">
                 <h6>Rating:</h6>
-                <img data-id="1" ng-src="../../../img/nut-gray.png" width="30" height="30" ng-click="rate($event)" data-dismiss="modal"></img>
-                <img data-id="2" src="../../../img/nut-gray.png" width="30" height="30" ng-click="rate($event)" data-dismiss="modal"></img>
-                <img data-id="3" src="../../../img/nut-gray.png" width="30" height="30" ng-click="rate($event)" data-dismiss="modal"></img>
-                <img data-id="4" src="../../../img/nut-gray.png" width="30" height="30" ng-click="rate($event)" data-dismiss="modal"></img>
-                <img data-id="5" src="../../../img/nut-gray.png" width="30" height="30" ng-click="rate($event)" data-dismiss="modal"></img>
+                <div ng-show="!showImage"></div>
+                <img data-id="1" ng-src="{{image}}" width="30" height="30" ng-click="rate($event)"></img>
+                <img data-id="2" src="{{image}}" width="30" height="30" ng-click="rate($event)"></img>
+                <img data-id="3" ng-src="{{image}}" width="30" height="30" ng-click="rate($event)"></img>
+                <img data-id="4" ng-src="{{image}}" width="30" height="30" ng-click="rate($event)"></img>
+                <img data-id="5" ng-src="{{image}}" width="30" height="30" ng-click="rate($event)"></img>
               </div>
             </div>
           </div>

@@ -67,7 +67,7 @@ module.exports.getAllGames = function(req, res){
   });
 };
 
-module.exports.getGame = function(req, res, next){
+module.exports.getGame = function(req, res){
   db.getGameInfo(req.body.gameId, function(err, results){
     if(err){
       res.sendStatus(500);
@@ -76,7 +76,7 @@ module.exports.getGame = function(req, res, next){
   })
 };
 
-module.exports.getGameInfo = function(req, res, next){
+module.exports.getGameInfo = function(req, res){
   // console.log('getGameInfo', req);
   db.getGameIntro(req.body.gameId, function(results){
     // console.log('results',results);
@@ -84,7 +84,7 @@ module.exports.getGameInfo = function(req, res, next){
   })
 }
 
-module.exports.sendScore = function(req, res, next){
+module.exports.sendScore = function(req, res){
     db.sendScore(req.body, function(results){
       console.log('sendScore',results);
       res.send(results);

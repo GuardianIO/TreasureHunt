@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 // player will access game using a link with the gameId
 // a route can be handled using an array of callbacks
 
-app.get('/download/:url', requestHandlers.downloadHandler);
+// app.get('/download/:url', requestHandlers.downloadwnloadHandler);
 app.post('/games', requestHandlers.getAllGames);
 
 app.post('/addWaypoint', requestHandlers.uploadHandler);
