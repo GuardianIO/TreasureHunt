@@ -102,12 +102,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
       RequestFactory.sendScoreRating(score, gameId, function(avg){
         console.log('avg', avg );
         var decimal = avg % 1;
-
-        if(decimal === 0){
-          $scope.avg = avg;
-        }
-        else if(decimal >= 0.3 || decimal <= 0.7){
-
+        if(decimal >= 0.3 && decimal <= 0.7){
           $scope.avg = Math.floor(avg) + 0.5;
         }
         else{
