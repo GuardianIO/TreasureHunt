@@ -55,11 +55,6 @@ angular.module('treasureHunt', [
         }
       }
     })
-    // .state('/map',{
-    //   url:'/map',
-    //   templateUrl: mobileBrowser ? 'app/views/mobile/map.html' : 'app/views/desktop/map.html',
-    //   controller: 'MapCtrl'
-    // })
     .state('/nodeList', {
       url:'/nodeList',
       templateUrl: mobileBrowser ? 'app/views/mobile/nodeList.html' : 'app/views/desktop/nodeList.html',

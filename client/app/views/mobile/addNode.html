@@ -1,6 +1,6 @@
 <div id="singleNode" >
   <div class="container" style="text-align: center">
-
+    <div ng-show="!mapShow">
     <canvas id="canvas" ng-click="getFile()" ng-init="drawInitial()">
     </canvas>
     <input type="file" id="fileInput" fileread="userFile" style="display: none;" />
@@ -25,6 +25,8 @@
       </div>
       <button ng-click="crop()" class="glyphicon glyphicon-ok btn btn-default">Crop</button>
     </div>
+    </div>
     <div ui-view="map" ng-show="mapShow"></div>
+    </center>
   </div>
 </div>

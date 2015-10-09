@@ -121,10 +121,11 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
         var ctx = canvas.getContext('2d');
         var img = new Image;
         img.addEventListener('load', function(){
+          ctx.save();
           ctx.translate(Math.sin(radians/2 + Math.PI/4)*500, Math.cos(radians/2 + Math.PI/4)*500);
           ctx.rotate(radians);
           drawCanvas(canvas, ctx, img);
-          
+          ctx.restore();
         })
         img.src = url;
       }
