@@ -12,6 +12,7 @@
     <div ng-if="currentNode.found">Awesome! You found it! Press NEXT to keep playing.</div><br>
     <button ng-click="prev()">Prev</button>
     <button ng-if="currentNode.found" ng-click="next()" ng-disabled="nextButtonGone">Next</button><br>
+    <button ng-click='getRoute()'>TAKE ME THERE</button>
     <!-- modal button -->
     <button ng-show="isLastGame" href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal">Done</button>
   </div>
