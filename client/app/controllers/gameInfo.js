@@ -1,6 +1,7 @@
 angular.module('treasureHunt.gameInfo',['treasureHunt.services'])
 
-.controller('GameInfoCtrl', ['$scope','RequestFactory', '$location', function($scope, RequestFactory, $location){
+.controller('GameInfoCtrl', ['$scope','RequestFactory', '$location', '$state', '$stateParams',
+ function($scope, RequestFactory, $location, $state, $stateParams){
   var vm = this;
   vm.gameId = $location.url().split('/').pop();
   $scope.startGame = function(){
@@ -10,6 +11,7 @@ angular.module('treasureHunt.gameInfo',['treasureHunt.services'])
     });
   }
   $scope.playGame = function(){
-    $location.path('/game/'+vm.gameId);
+    $state.go('game', {id: vm.gameId});
+
   }
 }]);

@@ -1,6 +1,6 @@
 angular.module('treasureHunt.games',['treasureHunt.services'])
-.controller('GamesCtrl', ['$scope', '$location', 'RequestFactory',
-  function($scope, $location, RequestFactory){
+.controller('GamesCtrl', ['$scope', '$location', '$state', 'RequestFactory',
+  function($scope, $location, $state, RequestFactory){
     $scope.games=[];
     $scope.getAllGames = function(){
       RequestFactory.getGames().then(function(resp){
@@ -9,7 +9,6 @@ angular.module('treasureHunt.games',['treasureHunt.services'])
     };
 
     $scope.gameInfo = function(gameId){
-      console.log(gameId);
-      $location.path('/gameInfo/'+gameId);
+      $state.go('gameInfo', {id: gameId});
     };
 }]);
