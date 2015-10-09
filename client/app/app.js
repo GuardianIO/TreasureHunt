@@ -32,12 +32,12 @@ angular.module('treasureHunt', [
       templateUrl: mobileBrowser ? 'app/views/mobile/initial.html' : 'app/views/desktop/initial.html',
       controller:'InitialCtrl'
     })
-    .state('/create', {
+    .state('create', {
       url:'/create',
       templateUrl: mobileBrowser ? 'app/views/mobile/create.html' : 'app/views/desktop/create.html',
       controller:'CreateCtrl'
     })
-    .state('/nodeEditor', {
+    .state('nodeEditor', {
       url:'/nodeEditor',
       templateUrl: mobileBrowser ? 'app/views/mobile/nodeEditor.html' : 'app/views/desktop/nodeEditor.html',
       controller:'NodeEditorCtrl'
@@ -55,28 +55,28 @@ angular.module('treasureHunt', [
         }
       }
     })
-    .state('/nodeList', {
+    .state('nodeList', {
       url:'/nodeList',
       templateUrl: mobileBrowser ? 'app/views/mobile/nodeList.html' : 'app/views/desktop/nodeList.html',
       controller: 'NodeListCtrl'
     })
-    .state('/invite', {
+    .state('invite', {
       url:'/invite',
       templateUrl: 'app/views/desktop/invite.html',
       controller: 'InviteCtrl'
     })
-    .state('/games', {
+    .state('games', {
       url:'/games',
       templateUrl: mobileBrowser ? 'app/views/mobile/games.html' : 'app/views/desktop/games.html',
       controller: 'GamesCtrl'
     })
-    .state('/game/:id', {
-      url:'/game/:id',
+    .state('game', {
+      url:'/game/{id}',
       templateUrl: 'app/views/mobile/game.html',
       controller: 'GameCtrl'
     })
-    .state('/gameInfo/:id',{
-      url:'/gameInfo/:id',
+    .state('gameInfo',{
+      url:'/gameInfo/{id}',
       templateUrl: mobileBrowser ? 'app/views/mobile/gameInfo.html' : 'app/views/desktop/gameInfo.html',
       controller: 'GameInfoCtrl'
     })

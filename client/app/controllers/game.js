@@ -1,6 +1,6 @@
 angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
-.controller('GameCtrl', ['$scope', '$location', '$interval', 'RequestFactory', '$q', 'geo', '$cookies', '$rootScope', 
-  function($scope, $location, $interval, RequestFactory, $q, geo, $cookies, $rootScope){
+.controller('GameCtrl', ['$scope', '$location', '$state', '$interval', 'RequestFactory', '$q', 'geo', '$cookies', '$rootScope', 
+  function($scope, $location, $state, $interval, RequestFactory, $q, geo, $cookies, $rootScope){
     $scope.clue = '';
     $scope.numNodes = 0;
     $scope.gameLength;
@@ -76,7 +76,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
       $cookies.remove(gameId);
       $scope.isLastGame = false;
       setTimeout(function(){
-        $location.path('/gameInfo/'+gameId);
+        $state.go('gameInfo', {id: gameId});
       },1000);
     }
 

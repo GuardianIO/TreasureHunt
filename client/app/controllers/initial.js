@@ -1,16 +1,18 @@
 angular.module('treasureHunt.initial', ['treasureHunt.authService'])
 
-.controller('InitialCtrl', ['$scope', '$location', 'AuthFactory',
-  function($scope, $location, AuthFactory){
+.controller('InitialCtrl', ['$scope', '$location', '$state', 'AuthFactory',
+  function($scope, $location, $state, AuthFactory){
   $scope.state = {
     signedIn : AuthFactory.getAuthState()
   }
   $scope.join = function(){
-    $location.path('/games');
+    $state.go('games');
+    // $location.path('/games');
   };
   $scope.create = function(){
     if(AuthFactory.getAuthState()){
-      $location.path('/create');
+      $state.go('create');
+      // $location.path('/create');
     }else{
       $scope.$emit('notSignedIn', '/create');
     }

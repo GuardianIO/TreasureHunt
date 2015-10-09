@@ -104,15 +104,15 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
           $scope.canvasURI=null;
           $scope.clue='';
           clearCanvas();
-          $location.path('/invite');
+          $state.go('invite');
         });
       }else{
-       $location.path('/invite'); 
+       $state.go('invite'); 
       }
     }
 
     $scope.createGame = function(){
-      $location.path('/invite');
+      $state.go('invite');
     }
 
     var drawRotated = function(url, radians){

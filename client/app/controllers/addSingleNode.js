@@ -1,7 +1,7 @@
 angular.module('treasureHunt.singleNode', ['treasureHunt.services'])
 
-.controller('AddSingleNodeCtrl', ['$scope', '$location', 'SendPicAndLoc', 
-  function($scope, $location, SendPicAndLoc){
+.controller('AddSingleNodeCtrl', ['$scope', '$location', '$state', 'SendPicAndLoc', 
+  function($scope, $location, $state, SendPicAndLoc){
 
     SendPicAndLoc.getLoc();
     
@@ -20,6 +20,6 @@ angular.module('treasureHunt.singleNode', ['treasureHunt.services'])
     };
 
     $scope.createGame = function(){
-      $location.path('/invite');
+      $state.go('invite');
     }
 }]);

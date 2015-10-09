@@ -1,6 +1,6 @@
 angular.module('treasureHunt.userAuth', ['treasureHunt.authService'])
-.controller('LogInCtrl', ['$scope', 'AuthFactory', '$window', '$location', '$rootScope',
-  function($scope, AuthFactory, $window, $location, $rootScope){
+.controller('LogInCtrl', ['$scope', '$state', 'AuthFactory', '$window', '$location', '$rootScope',
+  function($scope, $state, AuthFactory, $window, $location, $rootScope){
     $scope.signIn={
       userName : '',
       password : ''
@@ -48,7 +48,7 @@ angular.module('treasureHunt.userAuth', ['treasureHunt.authService'])
 
     $scope.create = function(){
       if(AuthFactory.getAuthState()){
-        $location.path('/create');
+        $state.go('create');
       }else{
         console.log('user not signed in');
         url = '/create';
