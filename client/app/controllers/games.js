@@ -5,9 +5,13 @@ angular.module('treasureHunt.games',['treasureHunt.services'])
     $scope.getAllGames = function(){
       RequestFactory.getGames().then(function(resp){
         $scope.games = resp;
-      console.log('games', $scope.games);
+        $scope.nutsArr = [];
+        for(var i = 0; i < $scope.games.length; i++){
+          var score = RequestFactory.averageRateInNuts($scope.games[i].avgRating);
+          $scope.nutsArr.push(score);
+        }
+      console.log('games', $scope.nutsArr);
       });
-      // $scope.nutsArr = RequestFactory
     };
 
     $scope.gameInfo = function(gameId){
