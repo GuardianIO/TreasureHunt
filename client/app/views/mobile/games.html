@@ -1,5 +1,5 @@
 <div class="container game-list" ng-init='getAllGames()' style="padding-bottom: 60px">
-  <input id="games-search-input" class="search-bar" style="width: 100%" ng-model="searchGame" placeholder="Search games" autofocus>
+  <input id="games-search-input" class="search-bar" style="width: 100%" ng-model="searchGame" placeholder="Search games">
 
   <div class="game-list-item clearfix" ng-repeat="game in games | filter:searchGame">
     <div class="game-list-item-body clearfix">

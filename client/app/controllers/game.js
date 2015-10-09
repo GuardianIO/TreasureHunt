@@ -55,18 +55,39 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
         $interval.cancel(interval);
       }
     };
+    var showNodeTimer = function(){
+      var pistachio = $cookies.getObject('pistachio');
+      var now = new Date().getTime();
+      if(pistachio){
+        console.log('last time router clicked, ',pistachio.timer);
+        console.log('now: ',now);
+        console.log('time between: ', now - pistachio.timer)
+        if((now - pistachio.timer) < 1800000 ){
+          return 1800000 - (now - pistachio.timer);
+        }
+      }
+      $cookies.putObject('pistachio', { timer : now });
+      return true;
+    };
 
     $scope.getRoute = function(){
-    var lat = $scope.currentNode.lat;
-    var lon = $scope.currentNode.lon;
-    // If it's an iPhone..
-      if( (navigator.platform.indexOf("iPhone") != -1) 
-        || (navigator.platform.indexOf("iPod") != -1)
-        || (navigator.platform.indexOf("iPad") != -1)) {
-          window.open("maps://maps.google.com/maps?daddr="+lat+","+lon+"&amp;ll=");
-      }
-      else{
-        window.open("http://maps.google.com/maps?daddr="+lat+","+lon+"&amp;ll=");
+      var pistachio = showNodeTimer();
+      if(typeof pistachio === 'boolean' ){
+        console.log('timer is true');
+        var lat = $scope.currentNode.lat;
+        var lon = $scope.currentNode.lon;
+      // If it's an iPhone..
+        if( (navigator.platform.indexOf("iPhone") != -1) 
+          || (navigator.platform.indexOf("iPod") != -1)
+          || (navigator.platform.indexOf("iPad") != -1)) {
+            window.open("maps://maps.google.com/maps?daddr="+lat+","+lon+"&amp;ll=");
+        }
+        else{
+          window.open("http://maps.google.com/maps?daddr="+lat+","+lon+"&amp;ll=");
+        }
+      }else{
+        console.log('timer is false');
+        alert('You have to wait '+pistachio+' more milliseconds.');
       }
     };
 
