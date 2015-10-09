@@ -17,10 +17,17 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
     });
 
     $rootScope.$on('$locationChangeStart', function(event, next, current){
-      var modalOn = ($("#imageClueModal").data('bs.modal') || {}).isShown;
-      if($rootScope.oldLocation==next && modalOn){
-        event.preventDefault();
-        $('#imageClueModal').modal('toggle');
+      var imgClue = ($("#imageClueModal").data('bs.modal') || {}).isShown;
+      var finish = ($("#basicModal").data('bs.modal') || {}).isShown;
+      if($rootScope.oldLocation==next){
+        if(imgClue){
+          event.preventDefault();
+          $('#imageClueModal').modal('toggle');
+        }
+        if(finish){
+          event.preventDefault();
+          $('#basicModal').modal('toggle');
+        }
       }
     });
 
