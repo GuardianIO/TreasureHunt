@@ -129,12 +129,13 @@ module.exports = {
   //list all games
 
   //retrieve the only the first image 
-  showGames: function(cb){
+  showGames: function(cb, creator){
     var queryStr = "SELECT DISTINCT \
         g.gameName, \
-        n.gameId, \
+        g.gameId, \
         g.description, \
         g.createdDate, \
+        g.createdBy, \
         c.nodeCount, \
         i.image, \
         g.avgRating, \
@@ -152,6 +153,12 @@ module.exports = {
           image, MIN(nodeId) AS nodeId \
           FROM nodeInfo GROUP BY gameId ) AS i \
         ON i.gameId = n.gameId";
+
+    if(creator){
+      queryStr = queryStr + ' WHERE g.createdBy="' + creator +'"';
+      console.log(queryStr);
+    }
+
     connection.query(queryStr, function(err, results){
       if(err){
         console.error('[MYSQL]showGames error: ',err);

@@ -1,5 +1,6 @@
 angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
-.factory('RequestFactory', ['$http', '$location', function($http, $location){
+.factory('RequestFactory', ['$http', '$location', 
+function($http, $location){
   var gameId = "";
   var games = [];
   var currentGame = {};
@@ -73,8 +74,8 @@ angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
         });        
     },
 
-    getGames: function(){
-      return $http.post('/games').then(function(resp){
+    getGames: function(token){
+      return $http.post('/games', {token : token}).then(function(resp){
         return resp.data;
       });
     },

@@ -58,6 +58,7 @@
             <li class="active"><a href="#/">Home <span class="sr-only">(current)</span></a></li>
             <li ng-click="create();"><a>Create</a></li>
             <li><a href="#/games">Games</a></li>
+            <li ng-show="state.signedIn" ng-click="myGames();"><a>My Games</a></li>
             <li><a href="#/about">About</a></li>
             <li ng-show="!state.signedIn"><a data-toggle="modal" data-target="#loginModal">Sign In/Register</a></li>
             <li ng-show="state.signedIn" ng-click="signOut();"><a>Sign out</a></li>

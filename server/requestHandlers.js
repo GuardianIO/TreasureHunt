@@ -70,9 +70,12 @@ module.exports.createGame = function(req, res){
 };
 
 module.exports.getAllGames = function(req, res){
+  if(req.body.token){
+    var creator = jwt.decode(req.body.token, _secret);
+  }
   db.showGames(function(results){
     res.send(results);
-  });
+  }, creator);
 };
 
 module.exports.getGame = function(req, res){
