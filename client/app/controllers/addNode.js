@@ -34,7 +34,6 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
       canvas.height = 500;
       var img = new Image();
       img.onload = function(){
-        console.log('image load', img.height, img.width);
         drawCanvas(canvas, ctx, img);
       }
       img.src = '/img/photo-placeholder.jpg';
@@ -45,7 +44,7 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
       google.maps.event.trigger(document.getElementById('map'), 'resize');
     };
     
-    SendPicAndLoc.getLoc();
+    SendPicAndLoc.watchLoc();
     
     $scope.status = {
       canUpload:false
@@ -71,8 +70,6 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
         var img = new Image();
         img.addEventListener('load', function(){
           drawCanvas(canvas, ctx, img);
-          // $scope.canvasURI = canvas.toDataURL('image/jpeg');
-          console.log($scope.canvasURI);
         });
         img.src = $scope.userFile;
       }

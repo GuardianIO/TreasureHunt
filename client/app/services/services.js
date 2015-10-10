@@ -13,7 +13,8 @@ angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
   gameSetup = function(currentNodeNum){
     if(Array.isArray(currentGame.nodes)){
       currentGame.nodes.forEach(function(node, index){
-        if(index <= currentNodeNum - 1){
+        console.log('currentNodeNum', currentNodeNum, 'index', index);
+        if(index + 1 < currentNodeNum){
           node.found = true;
         }else{
           node.found=false;
@@ -141,14 +142,17 @@ angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
     return {
       loc:null,
       clue:'',
-      getLoc:function(){
+      watchId:null,
+      watchLoc:function(){
         if(navigator && navigator.geolocation){
-          navigator.geolocation.getCurrentPosition(function(data){
+          navigator.geolocation.watchPosition(function(data){
             this.loc = data;
             $rootScope.$broadcast('locReady');
           }.bind(this), 
           function(err){
-            console.error(err);
+            if(err.code === 1){
+              alert('Please allow geolocation');
+            }
           }, {
             enableHighAccuracy:true
           }
@@ -157,6 +161,9 @@ angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
       },
       sendPic:function(file, cb){
         postPic(file, this.loc, this.clue,cb);
+      },
+      cancelWatch:function(){
+        navigator.geolocation.clearWatch(this.watchId);
       }
     };
 }])
