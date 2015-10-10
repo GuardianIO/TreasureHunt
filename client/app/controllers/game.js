@@ -108,7 +108,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
 
     $scope.restartGame = function(){
       console.log('$cookies', $cookies);
-      $cookies.remove(gameId);
+      $cookies.putObject(gameId, {progress: 0 });
       $scope.isLastNode = false;
       setTimeout(function(){
         $state.go('gameInfo', {id: gameId});
