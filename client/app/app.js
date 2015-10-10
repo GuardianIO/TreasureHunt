@@ -12,11 +12,8 @@ angular.module('treasureHunt', [
   'treasureHunt.invite',
   'treasureHunt.gameInfo',
   'treasureHunt.map',
-<<<<<<< HEAD
   'treasureHunt.about',
-=======
   'treasureHunt.editGame'
->>>>>>> [feat] added edit game page
 ])
 
 .config(['$stateProvider', '$urlRouterProvider', 
