@@ -9,7 +9,7 @@ var db_config = {
 
 var connection;
 
-handleDisconnect = function(){
+var handleDisconnect = function(){
   connection = mysql.createConnection(db_config); // Recreate the connection, since
                                                   // the old one cannot be reused.
 
@@ -92,7 +92,7 @@ module.exports = {
     });    
   },
 
-  userSignIn : function(params, cb){
+  userSignIn: function(params, cb){
     var selectStr = "SELECT password FROM userInfo where userName = (?)";
     connection.query(selectStr, [params.userName], function(err, results){
       if(err){
@@ -130,7 +130,6 @@ module.exports = {
 
   //retrieve the only the first image 
   showGames: function(cb){
-
     var queryStr = "SELECT DISTINCT \
         g.gameName, \
         n.gameId, \
@@ -163,6 +162,7 @@ module.exports = {
       }
     }); 
   },
+
   getGameInfo : function(id, cb){
     console.log(id);
     var selectStr = "SELECT DISTINCT \
@@ -179,6 +179,7 @@ module.exports = {
       cb(err, results);
     });
   },
+
   getGameIntro: function(id, cb){
     var selectStr = "SELECT DISTINCT \
         g.gameName, \
@@ -237,6 +238,35 @@ module.exports = {
         });
       }
     })
+  },
+
+  updateGame: function(params, cb){
+    var deleteStr = "DELETE FROM nodeInfo Where gameId = (?)";
+    var insertStr = "INSERT INTO nodeInfo (lon, lat, image, clue, nodeId, gameId) VALUES";
+    var gameId = 42;
+    connection.query(deleteStr, gameId, function(err, results){
+      if(err){
+        console.error('[MYSQL]updateGame delete error: ', err);
+      }
+      else{
+        var insertArray = [];
+        for(var i = 0;i<params.length;i++){
+          insertStr = insertStr + ' (?,?,?,?,?,?),'
+          insertArray.push([params[i]['lon'], params[i]['lat'], params[i]['image'], params[i]['clue'], i+1, gameId]);
+        }
+        insertStr.slice(0, -1);
+        insertArray = [].concat.apply([], insertArray);
+        console.log(insertArray);
+        connection.query(insertStr, insertArray, function(err, results){
+          if(err){
+            console.error('[MYSQL]updateGame insert error: ', err);
+          }else{
+            console.log(results);
+            cb('update done!');
+          }
+        });
+      }
+    });
   }
 };
 
