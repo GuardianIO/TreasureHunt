@@ -5,9 +5,9 @@ angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
   var currentGame = {};
   var nutsArr = [];
   var nuts = {
-    grayNut: "../../../img/nut-gray.png",
-    fullNut: "../../../img/nut-full.png",
-    halfNut: "../../../img/nut-half.png"
+    grayNut: "img/nut-gray.png",
+    fullNut: "img/nut-full.png",
+    halfNut: "img/nut-half.png"
   }
 
   gameSetup = function(currentNodeNum){

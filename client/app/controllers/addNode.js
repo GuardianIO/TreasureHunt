@@ -41,7 +41,7 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
 
     $scope.getManualLocation = function(){
       $scope.mapShow = !$scope.mapShow;
-      google.maps.event.trigger(document.getElementById('map'), 'resize');
+      SendPicAndLoc.cancelWatch();
     };
     
     SendPicAndLoc.watchLoc();
