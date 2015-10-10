@@ -62,7 +62,7 @@ angular.module('treasureHunt.map', ['ngMap', 'ui.router', 'treasureHunt.services
 
   $scope.$on('$destroy', function(){
     $interval.cancel(interval);
-    navigator.geolocation.cancelWatch($scope.watchPosition);
+    navigator.geolocation.clearWatch($scope.watchPosition);
   })
 
   $scope.setCoordinates = function(){
