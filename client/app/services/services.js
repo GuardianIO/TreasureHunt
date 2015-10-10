@@ -9,7 +9,7 @@ angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
     fullNut: "img/nut-full.png",
     halfNut: "img/nut-half.png"
   }
-
+  var gameToEdit;
   gameSetup = function(currentNodeNum){
     if(Array.isArray(currentGame.nodes)){
       currentGame.nodes.forEach(function(node, index){

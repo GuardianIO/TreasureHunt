@@ -90,13 +90,21 @@ module.exports.getGameInfo = function(req, res){
     // console.log('results',results);
     res.send(results);
   })
-}
+};
 
 module.exports.sendScore = function(req, res){
-    db.sendScore(req.body, function(results){
-      console.log('sendScore',results);
-      res.send(results);
-    });
-  }
+  db.sendScore(req.body, function(results){
+    console.log('sendScore',results);
+    res.send(results);
+  });
+};
+
+module.exports.updateGame = function(req, res){
+  console.log('update game gameID: ',req.body.gameId);
+  console.log('game nodes: ',req.body.nodes);
+  db.updateGame(req.body, function(results){
+    console.log(results);
+  });
+};
 
 

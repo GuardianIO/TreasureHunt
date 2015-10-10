@@ -75,6 +75,7 @@ angular.module('treasureHunt.map', ['ngMap', 'ui.router', 'treasureHunt.services
         timestamp:Date.now()
       }
     };
+
   }
 
 }]);
