@@ -14,8 +14,6 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
     $scope.showImage = true;
     $scope.avg;
 
-    // var fullNut = "../../../img/nut-full.png";
-
     $rootScope.$on('$locationChangeSuccess', function(event, newLocation, oldLocation) {
       $rootScope.oldLocation = oldLocation;
     });
