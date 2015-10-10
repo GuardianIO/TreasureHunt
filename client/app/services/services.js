@@ -11,6 +11,7 @@ function($http, $location){
     halfNut: "img/nut-half.png"
   }
   var gameToEdit;
+
   gameSetup = function(currentNodeNum){
     if(Array.isArray(currentGame.nodes)){
       currentGame.nodes.forEach(function(node, index){
@@ -60,6 +61,10 @@ function($http, $location){
     },
     getGameId : function(){
       return gameId;
+    },
+    setGameId: function(gameID){
+      console.log('in services set game id')
+      gameId = gameID;
     },
     currentGame: function(){
       return currentGame;
@@ -140,6 +145,7 @@ function($http, $location){
         console.log(error);
       }
     },
+
     getGameInfo: function(gameId, cb){
       $http.post('/gameInfo', {
         gameId:gameId

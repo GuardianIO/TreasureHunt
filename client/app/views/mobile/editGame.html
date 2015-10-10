@@ -1,6 +1,9 @@
-<div class="container edit-game-nodes" ng-init="getGame()">
+<div class="container edit-game-nodes" ng-init="getGame()" style="padding-bottom: 70px;">
 <h1 class="view-header" style="word-wrap: break-word">{{ gameToEdit.name | uppercase}}</h1>
+
+<!-- EDIT GAME ROW ENTRY -->
 <div class="edit-game-row">
+  <div class="edit-game-row"></div>
   <div class="well" ng-repeat="node in gameToEdit.nodes">
     <img class="edit-game-img" ng-src="{{node.image}}" alt="">
     <div>{{ node.clue }}</div>
@@ -18,6 +21,7 @@
   </div>
 </div>
 
+
 </div>
 
   <nav class="navbar navbar-default navbar-fixed-bottom">
@@ -26,6 +30,7 @@
         <ul class="nav navbar-nav">
           <button ng-click="cancel()" class="btn btn-lg btn-success">Cancel</button>
           <button ng-click="updateGame()" class="btn btn-lg btn-success">Submit</button>
+          <button ng-click="addNode()">Add Node</button>
         </ul>
 
     </div><!-- /.container-fluid -->

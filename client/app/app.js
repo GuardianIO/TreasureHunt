@@ -46,7 +46,7 @@ angular.module('treasureHunt', [
       controller:'NodeEditorCtrl'
     })
     .state('addNode', {
-      url:'/addNode',
+      url:'/addNode?{state}&{gameId}',
       views:{
         '':{
           templateUrl: mobileBrowser ? 'app/views/mobile/addNode.html' : 'app/views/desktop/addNode.html',

@@ -346,6 +346,13 @@
   height: 50px;
 }
 
+.test-border {
+  border: 1px solid black;
+}
+.edit-game-row-item {
+  display: inline-block;
+}
+
 .clearfix:after {
   visibility: hidden;
   display: block;
