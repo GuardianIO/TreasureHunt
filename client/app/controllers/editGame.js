@@ -1,4 +1,4 @@
-angular.module('treasureHunt.editGame', [])
+angular.module('treasureHunt.editGame', ['treasureHunt.services'])
   .controller('EditGameCtrl', [ '$scope', '$location', '$state', 'RequestFactory', function( $scope, $location, $state, RequestFactory ){
     var gameId = $location.url().split('/').pop();
 
@@ -61,5 +61,11 @@ angular.module('treasureHunt.editGame', [])
       }, function(err){
         console.log(err);
       });
+   };
+
+   $scope.addNode = function(){
+    RequestFactory.setGameId(gameId);
+    console.log('gameid:',gameId)
+    $state.go('addNode', { state: 'editGame', gameId: gameId });
    };
 }]);

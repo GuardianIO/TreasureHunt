@@ -1,7 +1,7 @@
 angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.pictureStorage', 'ngImgCrop', 'ui.router'])
 
-.controller('AddNode', ['$scope', '$location', 'SendPicAndLoc', '$interval', 'PicStore', '$state',
-  function($scope, $location, SendPicAndLoc, $interval, PicStore, $state){
+.controller('AddNode', ['$scope', '$location', 'SendPicAndLoc', '$interval', 'PicStore', '$state', '$stateParams',
+  function($scope, $location, SendPicAndLoc, $interval, PicStore, $state, $stateParams){
     //start requesting the user's location
     $scope.myCroppedImage = '';
     $scope.canSend = false;
@@ -94,6 +94,12 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     };
     
     $scope.done = function(){
+      console.log("stateParams", $state.params)
+      var url = "invite";
+
+      if( $stateParams.state === 'editGame'){
+        url = "editGame";
+      }
       if($scope.canvasURI){
         SendPicAndLoc.clue = $scope.clue;
         var blob = PicStore.b64toBlob($scope.canvasURI.slice($scope.canvasURI.indexOf(',')+1), 'image/jpg');
@@ -101,12 +107,12 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
           $scope.canvasURI=null;
           $scope.clue='';
           clearCanvas();
-          $state.go('invite');
+          $state.go(url, {id: $stateParams.gameId});
         });
       }else{
-       $state.go('invite'); 
+       $state.go(url, {id: $stateParams.gameId}); 
       }
-    }
+    };
 
     $scope.createGame = function(){
       $state.go('invite');
