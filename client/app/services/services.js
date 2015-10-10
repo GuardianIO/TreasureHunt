@@ -98,6 +98,47 @@ angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
         console.error(err);
       })
     }, 
+    getEditGame:function(gameId, cb){
+      $http.post('/game', {
+        gameId:gameId
+      })
+      .then(function(results){
+        if(results.data.length){
+          gameToEdit = {
+            gameId: gameId,
+            name:results.data[0].gameName,
+            description: results.data[0].description,
+            nodes:results.data
+          };
+        }
+        cb(gameToEdit);
+      }, function(err){
+        console.error(err);
+      })
+    }, 
+    updateGame:function(game){
+      return $http.post('/update', {
+        gameId: game.gameId,
+        nodes: game.nodes
+      })
+      .then(function(results){
+        return results;
+      }, function(err){
+        return err;
+      })
+    },
+    deleteGame: function(cb){
+      $http.delete('update', {
+        gameId: gameToEdit.gameId
+      })
+      .then(function(results){
+        if(cb){
+          cb(results);
+        }
+      }), function(err){
+        console.log(error);
+      }
+    },
     getGameInfo: function(gameId, cb){
       $http.post('/gameInfo', {
         gameId:gameId

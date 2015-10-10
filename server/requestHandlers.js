@@ -20,6 +20,14 @@ module.exports.downloadHandler = function(req, res){
   // res.end("Download requested for url " + req.params.url);
 };
 
+module.exports.deleteGame = function(){
+
+};
+
+module.exports.updateGame = function(req, res){
+  res.send("done")
+};
+
 module.exports.uploadHandler = function(req, res){
   var form = new multiparty.Form();
   var params = {};
