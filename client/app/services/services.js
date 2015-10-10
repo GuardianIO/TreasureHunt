@@ -13,7 +13,8 @@ angular.module('treasureHunt.services', ['ngFileUpload', 'ngCookies'])
   gameSetup = function(currentNodeNum){
     if(Array.isArray(currentGame.nodes)){
       currentGame.nodes.forEach(function(node, index){
-        if(index <= currentNodeNum - 1){
+        console.log('currentNodeNum', currentNodeNum, 'index', index);
+        if(index + 1 < currentNodeNum){
           node.found = true;
         }else{
           node.found=false;

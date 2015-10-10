@@ -14,7 +14,7 @@
     <button ng-if="currentNode.found" ng-click="next()" ng-disabled="nextButtonGone">Next</button><br>
     <button ng-click='getRoute()'>TAKE ME THERE</button>
     <!-- modal button -->
-    <button ng-show="isLastGame" href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal">Done</button>
+    <button ng-show="isLastNode" href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal">Done</button>
   </div>
   <div class="modal fade" id="imageClueModal">
     <img data-toggle="modal" data-target="#imageClueModal" class="modalImg" ng-src={{currentNode.image}}>

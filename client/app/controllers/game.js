@@ -153,8 +153,8 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
             var gameArrIndex = gameNodeArr.indexOf($scope.currentNode.nodeId) + 1;
             $scope.progress = ((gameArrIndex/(gameNodeArr.length))*100).toString() + "%";
           }
+          nodeFound();
         }
-        nodeFound();
       });
     };
 
