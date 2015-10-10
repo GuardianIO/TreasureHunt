@@ -24,9 +24,11 @@ angular.module('treasureHunt.userAuth', ['treasureHunt.authService'])
 
     $rootScope.$on('$locationChangeSuccess', function(event, newLocation, oldLocation) {
       $rootScope.oldLocation = oldLocation;
+      console.log('route changed from ', oldLocation, 'to ', newLocation);
     });
 
     $rootScope.$on('$locationChangeStart', function(event, next, current){
+      console.log('route change start from ', current, 'to ', next);
       var modalOn = ($("#loginModal").data('bs.modal') || {}).isShown;
       if($rootScope.oldLocation==next && modalOn){
         event.preventDefault();
