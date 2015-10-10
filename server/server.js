@@ -5,9 +5,6 @@ var cookieParser = require('cookie-parser');
 var playerHandlers = require('./playerHandlers');
 var app = express();
 
-
-
-
 app.use(cookieParser());
 
 app.use(express.static(__dirname + '/../client'));
@@ -21,7 +18,6 @@ app.use(bodyParser.json());
 // player will access game using a link with the gameId
 // a route can be handled using an array of callbacks
 
-// app.get('/download/:url', requestHandlers.downloadwnloadHandler);
 app.post('/games', requestHandlers.getAllGames);
 
 app.post('/addWaypoint', requestHandlers.uploadHandler);
@@ -30,6 +26,8 @@ app.post('/gameInfo', requestHandlers.getGameInfo);
 app.post('/game', playerHandlers.checkPlayerStatus, requestHandlers.getGame);
 app.post('/createGame', requestHandlers.createGame);
 app.post('/score', requestHandlers.sendScore);
+app.post('/update', requestHandlers.updateGame);
+app.delete('/update', requestHandlers.deleteGame);
 
 app.post('/gameNode', function(req, res){
   console.log('new gameNode: ', req.body);

@@ -12,7 +12,11 @@ angular.module('treasureHunt', [
   'treasureHunt.invite',
   'treasureHunt.gameInfo',
   'treasureHunt.map',
+<<<<<<< HEAD
   'treasureHunt.about',
+=======
+  'treasureHunt.editGame'
+>>>>>>> [feat] added edit game page
 ])
 
 .config(['$stateProvider', '$urlRouterProvider', 
@@ -43,7 +47,7 @@ angular.module('treasureHunt', [
       templateUrl: mobileBrowser ? 'app/views/mobile/nodeEditor.html' : 'app/views/desktop/nodeEditor.html',
       controller:'NodeEditorCtrl'
     })
-    .state('addNode', {
+    .state('/addNode', {
       url:'/addNode',
       views:{
         '':{
@@ -85,5 +89,9 @@ angular.module('treasureHunt', [
       url: '/about',
       templateUrl: mobileBrowser ? 'app/views/mobile/about.html' : 'app/views/desktop/about.html',
       controller: 'AboutCtrl'
+    .state('editGame', {
+      url:'/editGame/{id}',
+      templateUrl: 'app/views/mobile/editGame.html',
+      controller: 'EditGameCtrl'
     })
 }]);
