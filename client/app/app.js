@@ -11,7 +11,8 @@ angular.module('treasureHunt', [
   'treasureHunt.addNode',
   'treasureHunt.invite',
   'treasureHunt.gameInfo',
-  'treasureHunt.map'
+  'treasureHunt.map',
+  'treasureHunt.about',
 ])
 
 .config(['$stateProvider', '$urlRouterProvider', 
@@ -79,5 +80,10 @@ angular.module('treasureHunt', [
       url:'/gameInfo/{id}',
       templateUrl: mobileBrowser ? 'app/views/mobile/gameInfo.html' : 'app/views/desktop/gameInfo.html',
       controller: 'GameInfoCtrl'
+    })
+    .state('about', {
+      url: '/about',
+      templateUrl: mobileBrowser ? 'app/views/mobile/about.html' : 'app/views/desktop/about.html',
+      controller: 'AboutCtrl'
     })
 }]);
