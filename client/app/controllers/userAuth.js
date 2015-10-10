@@ -56,13 +56,17 @@ angular.module('treasureHunt.userAuth', ['treasureHunt.authService'])
         url = '/create';
         $('#loginModal').modal('toggle');
       }
-    }
+    };
 
     $scope.signOut = function(){
       $window.localStorage.removeItem('acorn');
       $scope.state.signedIn = false;
       AuthFactory.setAuthState(false);
-    }
+    };
+
+    $scope.myGames = function(){
+      $state.go('myGames');
+    };
     
     $scope.logIn = function(){
       AuthFactory.signIn($scope.signIn.userName, $scope.signIn.password).then(

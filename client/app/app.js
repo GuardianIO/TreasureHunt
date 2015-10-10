@@ -13,7 +13,8 @@ angular.module('treasureHunt', [
   'treasureHunt.gameInfo',
   'treasureHunt.map',
   'treasureHunt.about',
-  'treasureHunt.editGame'
+  'treasureHunt.editGame',
+  'treasureHunt.myGames'
 ])
 
 .config(['$stateProvider', '$urlRouterProvider', 
@@ -91,5 +92,10 @@ angular.module('treasureHunt', [
       url:'/editGame/{id}',
       templateUrl: 'app/views/mobile/editGame.html',
       controller: 'EditGameCtrl'
+    })
+    .state('myGames', {
+      url:'/myGames',
+      templateUrl: mobileBrowser ? 'app/views/mobile/myGames.html' : 'app/views/desktop/myGames.html',
+      controller: 'myGamesCtrl'
     })
 }]);
