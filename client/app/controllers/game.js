@@ -86,7 +86,11 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
         }
       }else{
         console.log('timer is false');
-        alert('You have to wait '+pistachio+' more milliseconds.');
+        pistachio = Math.floor(pistachio / 1000);
+        seconds = pistachio % 60;
+        pistachio = Math.floor(pistachio / 60);
+        minutes = pistachio % 60
+        alert('Not available yet!\nYou have to wait '+Math.round(minutes)+' minutes, '+Math.round(seconds)+' seconds.');
       }
     };
 
