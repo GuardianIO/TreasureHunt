@@ -243,20 +243,23 @@ module.exports = {
   updateGame: function(params, cb){
     var deleteStr = "DELETE FROM nodeInfo Where gameId = (?)";
     var insertStr = "INSERT INTO nodeInfo (lon, lat, image, clue, nodeId, gameId) VALUES";
-    var gameId = 42;
+    var gameId = params.gameId;
+    var nodes = params.nodes;
     connection.query(deleteStr, gameId, function(err, results){
       if(err){
         console.error('[MYSQL]updateGame delete error: ', err);
       }
       else{
         var insertArray = [];
-        for(var i = 0;i<params.length;i++){
+        for(var i = 0;i<nodes.length;i++){
           insertStr = insertStr + ' (?,?,?,?,?,?),'
-          insertArray.push([params[i]['lon'], params[i]['lat'], params[i]['image'], params[i]['clue'], i+1, gameId]);
+          insertArray.push([nodes[i]['lon'], nodes[i]['lat'], nodes[i]['image'], nodes[i]['clue'], i+1, gameId]);
         }
-        insertStr.slice(0, -1);
+        insertStr = insertStr.slice(0, -1);
         insertArray = [].concat.apply([], insertArray);
-        console.log(insertArray);
+        console.log('array',insertArray);
+        console.log('string', insertStr);
+
         connection.query(insertStr, insertArray, function(err, results){
           if(err){
             console.error('[MYSQL]updateGame insert error: ', err);

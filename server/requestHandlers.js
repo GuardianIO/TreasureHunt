@@ -100,8 +100,10 @@ module.exports.sendScore = function(req, res){
 };
 
 module.exports.updateGame = function(req, res){
+  console.log('update game gameID: ',req.body.gameId);
+  console.log('game nodes: ',req.body.nodes);
   db.updateGame(req.body, function(results){
-    
+    console.log(results);
   });
 };
 
