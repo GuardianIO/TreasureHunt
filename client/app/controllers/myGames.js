@@ -19,4 +19,9 @@ angular.module('treasureHunt.myGames',['treasureHunt.services'])
       $state.go('gameInfo', {id: gameId});
     };
 
+    $scope.editGame = function(gameId){
+      console.log('editGame/'+gameId);
+      $state.go('editGame', {id: gameId});
+    };
+
 }]);

@@ -57,7 +57,7 @@ angular.module('treasureHunt.editGame', ['treasureHunt.services'])
     $scope.updateGame = function(){
       RequestFactory.updateGame($scope.gameToEdit)
       .then( function(results){
-        console.log(results);
+        $state.go('myGames');
       }, function(err){
         console.log(err);
       });
