@@ -108,8 +108,9 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
       console.log('$cookies', $cookies);
       $cookies.remove(gameId);
       $scope.isLastNode = false;
-      $(".modal-backdrop").remove();
-      $state.go('gameInfo', {id: gameId});
+      setTimeout(function(){
+        $state.go('gameInfo', {id: gameId});
+      },1000);
     }
 
     $scope.rate = function (event) {
