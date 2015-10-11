@@ -20,14 +20,6 @@ module.exports.downloadHandler = function(req, res){
   // res.end("Download requested for url " + req.params.url);
 };
 
-module.exports.deleteGame = function(){
-
-};
-
-module.exports.updateGame = function(req, res){
-  res.send("done")
-};
-
 module.exports.uploadHandler = function(req, res){
   var form = new multiparty.Form();
   var params = {};
@@ -50,10 +42,10 @@ module.exports.uploadHandler = function(req, res){
     imgDB.saveImagePart(part, imgKey);
   });
 
-  form.parse(req);
- 
-  // console.log('got to uploadHandler')
-  res.send("Uploading file ");
+  form.on('close', function(){
+    res.send("Uploading file ");
+  })
+  form.parse(req);  
 };
 
 module.exports.createGame = function(req, res){
@@ -106,7 +98,7 @@ module.exports.updateGame = function(req, res){
   console.log('update game gameID: ',req.body.gameId);
   console.log('game nodes: ',req.body.nodes);
   db.updateGame(req.body, function(results){
-    console.log(results);
+    res.send(results)
   });
 };
 
