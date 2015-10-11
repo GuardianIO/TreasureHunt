@@ -111,7 +111,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
       $(".modal-backdrop").remove();
       $state.go('gameInfo', {id: gameId});
     }
-
+    
     $scope.rate = function (event) {
       var score = $(angular.element(event.target)[0]).data('id');
       $scope.showImage = false;
