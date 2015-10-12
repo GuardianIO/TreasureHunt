@@ -2,7 +2,7 @@
   <div class="container">
   <h2 class="view-header">Create a new hunt</h2>
 
-  <form name="createGameForm" ng-submit="c.createGame(gameName, gameDescription)" novalidate>
+  <form name="createGameForm" ng-submit="c.createGame(gameName, gameDescription, makeGamePrivate)" novalidate>
     <!-- Game Name -->
     <div class="form-group" ng-class=" { 'has-error' : createGameForm.gameName.$invalid && !createGameForm.gameName.$pristine }">
       <label>Game Name</label>
@@ -15,6 +15,12 @@
       <label>Describe your hunt</label>
       <textarea type="text" rows="5" class="form-control" ng-model="gameDescription" required></textarea>
      <p ng-show="createGameForm.gameDescription.$invalid && !createGameForm.gameDescription.$pristine" class="help-block">Game description is required.</p>
+    </div>
+
+<!-- Public -->
+    <div class="form-group">
+      <label>Make Game Private? </label><input type="checkbox" ng-model="makeGamePrivate"><br>
+      {{makeGamePrivate}}
     </div>
 
     <div style="text-align: center">
