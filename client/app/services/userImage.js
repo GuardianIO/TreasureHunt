@@ -8,13 +8,14 @@ angular.module('userImage', ['ngFileUpload'])
         cb(data);
       })
       .error(function(){
-        console.log('error status: ' status);
+        console.log('error status: ', status);
       })
     },
     getNodeImages:function(gameData, cb){
+
       $http.post('/userImages',
         gameData
-      })
+      )
       .then(
         function(res){
           //success callback
@@ -22,8 +23,8 @@ angular.module('userImage', ['ngFileUpload'])
         }, 
         function(res){
           //error callback
-          console.error('error:'res.data);
-      })
+          console.error('error:', res.data);
+      });
     }
   }
 }]);
