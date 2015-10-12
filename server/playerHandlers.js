@@ -80,6 +80,12 @@ module.exports = {
     res.send(true);
   },
 
+  sendScore: function(req, res, next){
+    db.getScore(req.body, function(results){
+
+    });
+  }
+
 };
 
 // module.exports.checkGameCallbacks = [

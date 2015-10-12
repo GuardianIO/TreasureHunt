@@ -14,7 +14,8 @@ angular.module('treasureHunt', [
   'treasureHunt.map',
   'treasureHunt.about',
   'treasureHunt.editGame',
-  'treasureHunt.myGames'
+  'treasureHunt.myGames',
+  'treasureHunt.tutorial'
 ])
 
 .config(['$stateProvider', '$urlRouterProvider', 
@@ -97,5 +98,10 @@ angular.module('treasureHunt', [
       url:'/myGames',
       templateUrl: mobileBrowser ? 'app/views/mobile/myGames.html' : 'app/views/desktop/myGames.html',
       controller: 'myGamesCtrl'
+    })
+    .state('tutorial', {
+      url:'/tutorial',
+      templateUrl: mobileBrowser ? 'app/views/mobile/tutorial.html' : 'app/views/desktop/tutorial.html',
+      controller: 'tutorialCtrl'
     })
 }]);
