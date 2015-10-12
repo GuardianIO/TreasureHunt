@@ -35,9 +35,12 @@ module.exports = {
 
   createGame: function(params, cb) {
       var gameTable = "INSERT INTO gameInfo(gameName, description, createdDate, createdBy, avgRating, numOfRatings) VALUES(?,?,?,?,0,0)";
-      var today = new Date();
-      var createdDate = today.getMonth()  +1 + "/"+ today.getDate() + "/"+ today.getFullYear();
-      connection.query(gameTable, [params.gameName, params.description, createdDate, params.userName], function(err, results){        
+      var today = Date.now();
+      console.log('today type');
+      console.log(typeof today);
+      console.log('today: ', today)
+      // var createdDate = today.getMonth()  +1 + "/"+ today.getDate() + "/"+ today.getFullYear();
+      connection.query(gameTable, [params.gameName, params.description, today, params.userName], function(err, results){        
         if(err){
           console.error('[MYSQL]createGame error: ',err);
         }

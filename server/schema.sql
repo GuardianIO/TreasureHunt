@@ -7,17 +7,18 @@ USE gooseEggs;
 DROP TABLE IF EXISTS gameInfo;
 DROP TABLE IF EXISTS nodeInfo;
 DROP TABLE IF EXISTS userInfo;
-DROP TABLE IF EXISTS SESSIONS;
+DROP TABLE IF EXISTS nodePics;
 
 /*****GAME INFO******/
 CREATE TABLE gameInfo (
   gameId INT NOT NULL AUTO_INCREMENT,
   gameName VARCHAR(20) NOT NULL,
-  description VARCHAR(50),
-  createdDate VARCHAR(10),
+  description VARCHAR(500),
+  createdDate BIGINT,
   createdBy VARCHAR(20),
   avgRating DECIMAL(2,1),
-  numOfRatings int(5),
+  numOfRatings INT(5),
+  private BOOLEAN,
 
   PRIMARY KEY(gameId)
 );
@@ -45,7 +46,13 @@ CREATE TABLE userInfo (
   PRIMARY KEY(userName)
 );
 
-/*****SESSIONS******/
-CREATE TABLE SESSIONS (
-  sessionId VARCHAR(100)
+/*****NODE PICS******/
+CREATE TABLE nodePics (
+  gameId INT,
+  nodeId INT(3),
+  image VARCHAR(80),
+  uploadedDate BIGINT,
+  userName VARCHAR(20),
+  FOREIGN KEY (gameId) REFERENCES gameInfo(gameId),
+  FOREIGN KEY (userName) REFERENCES userInfo(userName)
 );
