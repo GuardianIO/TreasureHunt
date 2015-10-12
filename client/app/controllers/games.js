@@ -6,11 +6,11 @@ angular.module('treasureHunt.games',['treasureHunt.services'])
       RequestFactory.getGames().then(function(resp){
         $scope.games = resp;
         console.log('gamessss', $scope.games)
-        $scope.nutsArr = [];
         for(var i = 0; i < $scope.games.length; i++){
           var score = RequestFactory.averageRateInNuts($scope.games[i].avgRating);
-          $scope.nutsArr.push(score);
+          $scope.games[i].average = score;
         }
+      console.log('average', $scope.games);
       });
     };
 
