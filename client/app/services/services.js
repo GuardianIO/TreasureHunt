@@ -70,6 +70,7 @@ function($http, $location){
       return currentGame;
     },
     postNewGame: function(gameName, gameDescription, makeGamePrivate, token){
+      console.log('private: ', makeGamePrivate);
       $http.post('/createGame', { gameName: gameName, gameDescription: gameDescription, private: makeGamePrivate, token: token})
         .then( function(resp){
           gameId = resp.data.gameId;
