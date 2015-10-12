@@ -3,6 +3,7 @@ angular.module('treasureHunt.authService', [])
   var signedIn = false;
   return {
     getAuthState : function(){
+      console.log("logged in status: " + signedIn)
       return signedIn;
     },
 

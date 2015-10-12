@@ -1,4 +1,4 @@
-<div id='create' ng-controller="CreateCtrl as c">
+<div id='create' ng-controller="CreateCtrl as c" ng-init="c.getAuthState()">
   <div class="container">
   <h2 class="view-header">Create a new hunt</h2>
 
@@ -18,7 +18,7 @@
     </div>
 
     <!-- Option to make game private (game will not display on public games listing) -->
-    <div class="form-group">
+    <div class="form-group" ng-if="c.getAuthState()">
       <label>Make Game Private? </label><input type="checkbox" ng-model="makeGamePrivate"><br>
     </div>
     <div style="text-align: center">
