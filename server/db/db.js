@@ -79,7 +79,7 @@ module.exports = {
     });
   },
   userRegister: function(params,cb) {
-    var insertStr = "INSERT INTO userInfo(userName, password) VALUES(?,?)";
+    var insertStr = "INSERT INTO userInfo(userName, password, macadamia) VALUES(?,?,0)";
 
     bcrypt.genSalt(params.userName.length , function(err, salt){
       bcrypt.hash(params.password, salt, function(err, hash){
