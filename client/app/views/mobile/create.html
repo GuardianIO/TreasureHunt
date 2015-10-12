@@ -17,12 +17,10 @@
      <p ng-show="createGameForm.gameDescription.$invalid && !createGameForm.gameDescription.$pristine" class="help-block">Game description is required.</p>
     </div>
 
-<!-- Public -->
+    <!-- Option to make game private (game will not display on public games listing) -->
     <div class="form-group">
       <label>Make Game Private? </label><input type="checkbox" ng-model="makeGamePrivate"><br>
-      {{makeGamePrivate}}
     </div>
-
     <div style="text-align: center">
       <button type="submit" class="btn btn-lg btn-success" ng-disabled="createGameForm.$invalid">Submit</button>  
     </div>
