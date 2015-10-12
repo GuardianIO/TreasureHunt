@@ -1,0 +1,32 @@
+<div id="singleNode" >
+  <div class="container" style="text-align: center">
+    <div ng-show="!mapShow">
+    <canvas id="canvas" ng-click="getFile()" ng-init="drawInitial()">
+    </canvas>
+    <input type="file" id="fileInput" fileread="userFile" style="display: none;" />
+    <div id="photo-options">
+      <button class="btn btn-info clearfix" ng-click="getFile()"><span class=" glyphicon glyphicon-camera"></span></button>      
+      <button class="btn btn-info clearfix" data-toggle="modal" data-target="#cropModal"><span class="glyphicon glyphicon-scissors"></span></button>
+      <button class="btn btn-info clearfix" ng-click="rotateCW()"><span class=" glyphicon glyphicon-repeat"></span></button>
+      <button class="btn btn-info clearfix" ng-click="rotateCCW()"><span class=" glyphicon glyphicon-repeat icon-flipped"></span></button>
+      <button class="btn btn-info clearfix" ng-click="getManualLocation()"><span class="glyphicon glyphicon-map-marker"></span></button>
+
+    </div>
+
+    <textarea id="clue-textarea" ng-model="clue" placeholder="Clue or description..."></textarea>
+    <button class="btn btn-md btn-info" ng-show="status.canUpload" ng-disabled="!(canSend && canvasURI)" ng-click="send()">Save</button>
+    <button class="btn btn-md btn-info" ng-show="status.canUpload" ng-disabled="!canvasURI" ng-click="send()">Add</button>
+    <button ng-show="!status.canUpload">Waiting for location...</button>
+    <button class="btn btn-md btn-success" ng-disabled="!canvasURI" ng-click="done()">I'm Done!</button>
+    <center>
+    <div class="modal fade" id="cropModal" tabindex="-1" role="dialog" aria-labelledby="cropModal" aria-hidden="true">
+      <div class="cropArea">
+        <img-crop image="canvasURI" result-image="myCroppedImage" area-type="square" result-image-size="500" ></img-crop>
+      </div>
+      <button ng-click="crop()" class="glyphicon glyphicon-ok btn btn-default">Crop</button>
+    </div>
+    </div>
+    <div ui-view="map" ng-show="mapShow"></div>
+    </center>
+  </div>
+</div>

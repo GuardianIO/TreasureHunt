@@ -1,0 +1,12 @@
+<div id="gameInfo" ng-init="startGame()">
+<ul id="game-info-list" class="showGameInfo">
+    <center>
+    <li><img ng-src="{{game.image}}"/></li>
+    <li>Game Name: {{game.gameName}}</li>
+    <li>About This Game: {{game.description}}</li>
+    <li>Numbers of Tasks: {{game.nodeCount}}</li>
+    <li>Created Date: {{game.createdDate}}</li>
+    </center>
+</ul>
+<center><button ng-click="playGame()" class="startGameButton">Start</button></center>
+</div>

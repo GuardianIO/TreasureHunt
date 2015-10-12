@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Update favicon with nut -->
+    <link rel="shortcut icon" href="./favicon.ico" />
+
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    
+    <!-- jQuery required for Bootstrap functionality -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="ng-img-crop/compile/minified/ng-img-crop.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular-cookies.js"></script>
+    <!-- shim is needed to support non-HTML5 FormData browsers (IE8-9)-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/7.3.8/ng-file-upload-shim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/7.3.8/ng-file-upload.min.js"></script>
+    <script src="ng-img-crop/compile/minified/ng-img-crop.js"></script>
+    <script src="./main.js"></script>
+    <script src="https://maps.google.com/maps/api/js"></script>
+<!--     // <script src="//rawgit.com/allenhwkim/angularjs-google-maps/master/build/scripts/ng-map.min.js" async defer></script> -->
+    <script src="ngmap/build/scripts/ng-map.js"></script>
+    <script src="./app/scripts/scripts.js"></script>
+
+  </head>
+<body ng-app="treasureHunt">
+  <div ng-controller='LogInCtrl' ng-init='checkState();'>
+  <!-- Bootstrap navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#/"><img id="squirrel-logo" src="./img/squirrel.jpeg" alt=""> <p class="brandname">SquirrelSearch</p></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#/">Home <span class="sr-only">(current)</span></a></li>
+            <li ng-click="create();"><a>Create</a></li>
+            <li><a href="#/games">Games</a></li>
+            <li ng-show="state.signedIn" ng-click="myGames();"><a>My Games</a></li>
+            <li><a href="#/about">About</a></li>
+            <li ng-show="!state.signedIn"><a data-toggle="modal" data-target="#loginModal">Sign In/Register</a></li>
+            <li ng-show="state.signedIn" ng-click="signOut();"><a>Sign out</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <!-- MODAL -->
+    <div id="loginModal" class="modal fade bs-modal-sm" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <br>
+            <div class="bs-example bs-example-tabs">
+                <ul id="myTab" class="nav nav-tabs">
+                  <li class="active"><a id="signintab" ng-click="user.username =''; user.password=''" href="#signin" data-toggle="tab">Sign In</a></li>
+                  <li class=""><a id="signuptab" ng-click="user.username =''; user.password=''" href="#signup" data-toggle="tab">Register</a></li>
+                </ul>
+            </div>
+
+          <!-- MODAL BODY -->
+          <div class="modal-body">
+            <div id="modalTabContent" class="tab-content">
+              
+              <!-- Signin tab -->
+              <div class="tab-pane fade active in" id="signin">
+                <form class="form-horizontal">
+                <fieldset>
+                <div class="control-group">
+                  <label class="control-label" for="userid">Username:</label>
+                  <div class="controls">
+                    <input id="username" name="username" type="text" class="form-control input-medium" placeholder="Enter username" required="" ng-model="signIn.userName">
+                  </div>
+                </div>
+            
+                <div class="control-group">
+                  <label class="control-label" for="passwordinput">Password:</label>
+                  <div class="controls">
+                    <input required="" id="passwordinput" name="passwordinput" class="form-control" type="password" placeholder="********" class="input-medium" ng-model="signIn.password">
+                  </div>
+                </div>
+            
+                <div class="control-group">
+                  <label class="control-label" for="signin"></label>
+                  <div class="controls"> 
+                    <button id="signin" name="signin" class="btn btn-success" ng-click="logIn();">Sign In</button>
+                  </div>
+                </div>
+                </fieldset>
+                </form>
+            </div> <!-- end sign in form -->
+              
+          <!-- Registration form -->
+            <div class="tab-pane fade" id="signup">
+                <form class="form-horizontal">
+                <fieldset>
+                
+                <div class="control-group">
+                  <label class="control-label" for="userid">Username:</label>
+                  <div class="controls">
+                    <input id="userid" name="username" class="form-control" type="text" placeholder="Enter desired username" class="input-large" required="" ng-model="register.userName">
+                  </div>
+                </div>
+                
+                <div class="control-group">
+                  <label class="control-label" for="password">Password:</label>
+                  <div class="controls">
+                    <input id="password" name="password" class="form-control input-large" type="password" placeholder="********" required="" ng-model="register.password">
+                  </div>
+                </div>
+                
+                <div class="control-group">
+                  <label class="control-label" for="reenterpassword">Re-Enter Password:</label>
+                  <div class="controls">
+                    <input id="reenterpassword" class="form-control" name="reenterpassword" type="password" placeholder="********" class="input-large" required="" ng-model="register.passwordRepeat">
+                  </div>
+                </div>
+
+                <div ng-show="match">Passwords do not match! Try Again</div>
+                
+                <div class="control-group">
+                  <label class="control-label" for="confirmsignup"></label>
+                  <div>
+                    <button id="confirmsignup" name="confirmsignup" class="btn btn-success" ng-click="register();">Register</button>
+                  </div>
+                </div>
+                </fieldset>
+                </form>
+                  </div>
+                </div>
+          </div>
+               <!-- MODAL FOOTER -->
+          <div class="modal-footer">
+            <center>
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click='anon();'>Continue as guest</button>
+            </center>
+          </div> <!-- end modal-footer -->
+        </div> <!-- end modal-content -->
+      </div> <!-- end modal-dialog -->
+    </div> <!-- end modal -->
+
+    <div class="container" style="padding-top: 70px" ui-view></div>
+  </div>
+  </body>  
+</html>

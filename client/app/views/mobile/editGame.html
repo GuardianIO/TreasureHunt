@@ -1,0 +1,38 @@
+<div class="container edit-game-nodes" ng-init="getGame()" style="padding-bottom: 70px;">
+<h1 class="view-header" style="word-wrap: break-word">{{ gameToEdit.name | uppercase}}</h1>
+
+<!-- EDIT GAME ROW ENTRY -->
+<div class="edit-game-row">
+  <div class="edit-game-row"></div>
+  <div class="well" ng-repeat="node in gameToEdit.nodes">
+    <img class="edit-game-img" ng-src="{{node.image}}" alt="">
+    <div>{{ node.clue }}</div>
+
+    <a class="edit-game-close" ng-click="removeNode(node)"><span class="glyphicon glyphicon-remove"></span></a>    
+
+
+<!--     div*5gameId: gameId,
+    name:results.data[0].gameName,
+    description: results.data[0].description,
+    nodes:results.data -->
+  <div class="change-node-position">
+    <span class="glyphicon glyphicon-arrow-up" ng-click="moveNodeUp(node)" ng-disable="nodeCantBeMoved(node, 'up')"></span>
+    <span class="glyphicon glyphicon-arrow-down" ng-click="moveNodeDown(node)" ng-disable="nodeCantBeMoved(node, 'down')"></span>
+  </div>
+</div>
+
+
+</div>
+
+  <nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid" style="text-align: center">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+        <ul class="nav navbar-nav">
+          <button ng-click="cancel()" class="btn btn-lg btn-success">Cancel</button>
+          <button ng-click="updateGame()" class="btn btn-lg btn-success">Submit</button>
+          <button ng-click="addNode()" class="btn btn-lg btn-warning">Add Node</button>
+        </ul>
+
+    </div><!-- /.container-fluid -->
+  </nav>
+</div>

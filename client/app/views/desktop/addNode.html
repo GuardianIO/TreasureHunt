@@ -1,0 +1,13 @@
+
+<div id="singleNode">
+  <div >
+    <img ng-show="file" ngf-src="file">
+    <button 
+      type="file" ngf-select ngf-resize="{width: 500, height: 500, quality: .8}"  
+      ng-model="file" name="file" accept="image/*">Take Picture</button>
+    
+    <button ng-show="status.canUpload" ng-click="send()">Add Point</button>
+    <button ng-show="!status.canUpload">Waiting for location...</button>
+    <button ng-click="createGame()">Create Game</button>
+  </div>
+</div>

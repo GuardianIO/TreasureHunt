@@ -1,2 +1,2 @@
-# fileDealer
-File sharing, evolved
+# treasureHunt
+mobile web app for treasure hunting
