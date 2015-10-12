@@ -102,6 +102,6 @@ angular.module('treasureHunt', [
     .state('tutorial', {
       url:'/tutorial',
       templateUrl: mobileBrowser ? 'app/views/mobile/tutorial.html' : 'app/views/desktop/tutorial.html',
-      controller: 'tutorialCtrl'
+      controller: 'TutorialCtrl'
     })
 }]);

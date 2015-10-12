@@ -157,6 +157,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
     function progressUpdate(){
       if($cookies.getObject(gameId) !== undefined){
         $scope.currentProgress = $cookies.getObject(gameId).progress;
+        console.log('currentNode', $scope.currentNode);
         var gameArrIndex = gameNodeArr.indexOf($scope.currentNode.nodeId) + 1;
         $scope.progress = ((gameArrIndex/(gameNodeArr.length))*100).toString() + "%";
       }
