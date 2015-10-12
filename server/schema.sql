@@ -42,6 +42,7 @@ CREATE TABLE nodeInfo (
 CREATE TABLE userInfo (
   userName VARCHAR(20),
   password VARCHAR(100),
+  macadamia INT,
   
   PRIMARY KEY(userName)
 );
@@ -51,7 +52,8 @@ CREATE TABLE nodePics (
   gameId INT,
   nodeId INT(3),
   image VARCHAR(80),
-  uploadedDate BIGINT,
+  comment VARCHAR(140),
+  uploadedTime BIGINT,
   userName VARCHAR(20),
   FOREIGN KEY (gameId) REFERENCES gameInfo(gameId),
   FOREIGN KEY (userName) REFERENCES userInfo(userName)
