@@ -78,12 +78,6 @@ module.exports = {
     console.log('trying to find token ', req.body.token);
     console.log('token length ', req.body.token.length);
     res.send(true);
-  },
-
-  sendScore: function(req, res, next){
-    db.getScore(req.body, function(results){
-
-    });
   }
 
 };
