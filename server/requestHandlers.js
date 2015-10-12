@@ -49,14 +49,15 @@ module.exports.uploadHandler = function(req, res){
 };
 
 module.exports.createGame = function(req, res){
-  console.log('creating game on server for game: ' + req.body.gameName);
+  console.log('creating game on server, private: ', req.body.private);
+  var private = req.body.private || false;
   var gameName = req.body.gameName;
   var gameDescription = req.body.gameDescription;
   if(req.body.token){
     var userName = jwt.decode(req.body.token, _secret);
   }
   userName = userName || 'anon'
-  db.createGame({gameName: gameName, description: gameDescription, userName: userName}, function(gameId){
+  db.createGame({gameName: gameName, description: gameDescription, userName: userName, private: private}, function(gameId){
     res.send({gameId: gameId});
   });
 };

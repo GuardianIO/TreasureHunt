@@ -34,13 +34,13 @@ handleDisconnect();
 module.exports = {
 
   createGame: function(params, cb) {
-      var gameTable = "INSERT INTO gameInfo(gameName, description, createdDate, createdBy, avgRating, numOfRatings) VALUES(?,?,?,?,0,0)";
+      var gameTable = "INSERT INTO gameInfo(gameName, description, createdDate, createdBy, private, avgRating, numOfRatings) VALUES(?,?,?,?,?,0,0)";
       var today = Date.now();
       console.log('today type');
       console.log(typeof today);
       console.log('today: ', today)
       // var createdDate = today.getMonth()  +1 + "/"+ today.getDate() + "/"+ today.getFullYear();
-      connection.query(gameTable, [params.gameName, params.description, today, params.userName], function(err, results){        
+      connection.query(gameTable, [params.gameName, params.description, today, params.userName, params.private], function(err, results){        
         if(err){
           console.error('[MYSQL]createGame error: ',err);
         }
@@ -159,7 +159,9 @@ module.exports = {
 
     if(creator){
       queryStr = queryStr + ' WHERE g.createdBy="' + creator +'"';
-      console.log(queryStr);
+      // console.log(queryStr);
+    }else{
+      queryStr = queryStr + ' WHERE g.private = 0';
     }
 
     connection.query(queryStr, function(err, results){
