@@ -211,11 +211,11 @@
   font-family: 'Oswald', sans-serif;
   text-align: center;
   margin-top: 0px;
-  margin-bottom: 20px;
 }
 
 .game-list-item-title > h2 {
   margin-top: 0px;
+  margin-bottom: 0px;
   font-weight: bold;
 }
 

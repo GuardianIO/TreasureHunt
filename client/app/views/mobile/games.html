@@ -1,28 +1,40 @@
 <div class="container game-list" ng-init='getAllGames()' style="padding-bottom: 60px">
   <input id="games-search-input" class="search-bar" style="width: 100%" ng-model="searchGame" placeholder="Search games">
+  <select ng-model="orderByProp">
+    <option value="createdDate">Date</option>
+    <option value="avgRating">Rating</option>
+    <option value="nodeCount"># of Checkpoints</option>
+  </select>
 
-  <div class="game-list-item clearfix" ng-repeat="game in games | filter:searchGame">
+  <div class="game-list-item clearfix" ng-repeat="game in games | filter:searchGame | orderBy: orderByProp">
     <div class="game-list-item-body clearfix">
+
     <div class="game-list-item-title" style="word-wrap: break-word"><h2>{{game.gameName | uppercase}}</h2></div>
-      <img class="game-list-item-image"  ng-if="game.image" ng-src="{{game.image}}">
-      <div class="game-list-item-details">
 
-        <p class="game-list-item-field-description"># of Checkpoints: </p><p class="game-list-item-field-value">{{game.nodeCount}}</p>
+    <div style="word-wrap: break-word" ng-if="game.createdBy !== 'anon'" style="text-align: center"><p style="text-align: center; margin-bottom: 0px">Created by: {{game.createdBy}}</p></div>
 
-        <p class="game-list-item-field-description" ng-if="game.numOfRatings">Rating: {{game.avgRating}} stars out of {{game.numOfRatings}} reviews</p>
+    <div class="game-list-item-body" style="margin-top: 20px">
+        <img class="game-list-item-image"  ng-if="game.image" ng-src="{{game.image}}">
+        <div class="game-list-item-details">
 
-        <p class="game-list-item-field-description" ng-if="game.numOfRatings===0">Rating: </p>
-        <p class="game-list-item-field-value">
-        <img ng-repeat="image in nutsArr[$index] track by $index" src="{{image}}" width="20" height="20"/></p>
-        <p class="game-list-item-field-description">Created on: </p><p class="game-list-item-field-value">{{game.createdDate}}</p>
-      </div>         
+          <p class="game-list-item-field-description"># of Checkpoints: </p><p class="game-list-item-field-value">{{game.nodeCount}}</p>
+
+          <p class="game-list-item-field-description">Rating: {{game.avgRating}} nuts out of {{game.numOfRatings}} reviews</p>
+
+          <p class="game-list-item-field-description" ng-if="game.numOfRatings===0">Rating: </p>
+          <p class="game-list-item-field-value">
+          <img ng-repeat="image in nutsArr[$index] track by $index" ng-src="{{image}}" width="20" height="20"/></p>
+          <p class="game-list-item-field-description">Created on: </p><p class="game-list-item-field-value">{{game.createdDate | date : 'MM/dd/yyyy' }}</p>
+        </div>         
+      </div>
+      <div class="game-list-item-description">
+        <p>Game Description:</p>
+        <p>{{game.description}}</p>        
+      </div>
+    <div class="btn-join-game-container">      
+      <button class="btn-join-game btn btn-md btn-info" ng-click="gameInfo(game.gameId)">Game Details</button>      
     </div>
-    <div class="game-list-item-description">
-      <p>Game Description:</p>
-      <p>{{game.description}}</p>        
+      
     </div>
-  <div class="btn-join-game-container">      
-    <button class="btn-join-game btn btn-md btn-info" ng-click="gameInfo(game.gameId)">Game Details</button>      
-  </div>
   </div>
 </div>
