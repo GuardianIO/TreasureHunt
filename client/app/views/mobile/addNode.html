@@ -14,10 +14,9 @@
     </div>
 
     <textarea id="clue-textarea" ng-model="clue" placeholder="Clue or description..."></textarea>
-    <button class="btn btn-md btn-info" ng-show="status.canUpload" ng-disabled="!(canSend && canvasURI)" ng-click="send()">Save</button>
-    <button class="btn btn-md btn-info" ng-show="status.canUpload" ng-disabled="!canvasURI" ng-click="send()">Add</button>
+    <button class="btn btn-md btn-info" ng-show="status.canUpload" ng-disabled="!canvasURI" ng-click="send()">Add Another</button>
     <button ng-show="!status.canUpload">Waiting for location...</button>
-    <button class="btn btn-md btn-success" ng-disabled="!canvasURI" ng-click="done()">I'm Done!</button>
+    <button class="btn btn-md btn-success" ng-disabled="!canvasURI" ng-click="done()">I'm Done</button>
     <center>
     <div class="modal fade" id="cropModal" tabindex="-1" role="dialog" aria-labelledby="cropModal" aria-hidden="true">
       <div class="cropArea">
