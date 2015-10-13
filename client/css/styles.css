@@ -314,6 +314,7 @@ body{
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
+  border-radius: 5px;
 }
 
 .game-info-field-description {
