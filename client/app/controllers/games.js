@@ -22,4 +22,9 @@ angular.module('treasureHunt.games',['treasureHunt.services'])
       console.log(gameId);
       $location.path('/editGame/'+gameId);
     };
+
+    $scope.filterBySelectedCreator = function(creatorName){
+      console.log(arguments);
+      alert("filtering by " + creatorName);
+    };
 }]);
