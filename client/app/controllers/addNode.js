@@ -30,7 +30,6 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     };
 
     $scope.drawInitial = function(){
-      console.log('drawInitial');
       var canvas = document.getElementById('canvas');
       var ctx = canvas.getContext('2d');
       canvas.width = 500;
@@ -97,7 +96,6 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     };
     
     $scope.done = function(){
-      console.log("stateParams", $state.params)
       var url = "invite";
 
       if( $stateParams.state === 'editGame'){
@@ -106,7 +104,7 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
       if($scope.canvasURI){
         SendPicAndLoc.clue = $scope.clue;
         var blob = PicStore.b64toBlob($scope.canvasURI.slice($scope.canvasURI.indexOf(',')+1), 'image/jpg');
-        SendPicAndLoc.sendPic(blob, function(){
+        SendPicAndLoc.sendPic(blob, null, function(){
           $scope.canvasURI=null;
           $scope.clue='';
           clearCanvas();
