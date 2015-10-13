@@ -1,7 +1,10 @@
-angular.module('treasureHunt.create', ['treasureHunt.services'])
+angular.module('treasureHunt.create', ['treasureHunt.services', 'treasureHunt.authService'])
 
-.controller('CreateCtrl', ['$scope', '$http', '$state', '$window', 'RequestFactory',
-  function($scope, $http, $state, $window, RequestFactory){
+.controller('CreateCtrl', ['$scope', '$http', '$state', '$window', 'RequestFactory', 'AuthFactory',
+  function($scope, $http, $state, $window, RequestFactory, AuthFactory){
+  this.getAuthState = function(){
+    return AuthFactory.getAuthState();
+  };
 
   this.createGame = function(gameName, gameDescription, makeGamePrivate){
     if ($scope.createGameForm.$valid) {

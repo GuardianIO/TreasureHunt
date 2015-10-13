@@ -1,4 +1,4 @@
-<div class="container" id="game" style="padding-bottom: 70px;">
+<div class="container" id="game" style="padding-top: 30px; padding-bottom: 70px;">
   <!-- Progress Bar -->
   <div class="progress">
     <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}">
@@ -25,8 +25,8 @@
     <div class="container-fluid" style="text-align: center">
       <!-- Collect the nav links, forms, and other content for toggling -->
         <ul class="nav navbar-nav">
-          <button class="btn btn-info btn-lg" ng-click="prev()">Prev</button>
-          <button class="btn btn-info btn-lg" ng-if="currentNode.found" ng-click="next()" ng-disabled="nextButtonGone">Next</button>
+          <button class="btn btn-info btn-lg" ng-diabled="currentNode===0" ng-click="prev()">Prev</button>
+          <button class="btn btn-info btn-lg" ng-enabled="currentNode.found" ng-click="next()" ng-disabled="nextButtonGone">Next</button>
           <!-- modal button -->
           <button ng-show="isLastNode" href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal">Done</button>
           <div class="giveup-btn">
