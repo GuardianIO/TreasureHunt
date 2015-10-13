@@ -4,7 +4,7 @@ angular.module('treasureHunt.games',['treasureHunt.services'])
     $scope.games=[];
     $scope.showFilter = false;
     $scope.orderByProp = "createdDate";
-    $scope.reversed = false;
+    $scope.reversed = "true";
 
     $scope.getAllGames = function(){
       RequestFactory.getGames().then(function(resp){
@@ -38,6 +38,14 @@ angular.module('treasureHunt.games',['treasureHunt.services'])
     };
 
     $scope.$watch('reversed', function(val){
-      console.log("reversed", val);
+      $scope.games.reverse();
+    });
+
+    $scope.$watch('orderByProp', function(val){
+      $scope.games.sort(function(a, b){ 
+        if($scope.reversed === "true"){
+          return a[$scope.orderByProp] > b[$scope.orderByProp];
+        }
+          return a[$scope.orderByProp] < b[$scope.orderByProp];});
     });
 }]);
