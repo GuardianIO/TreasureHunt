@@ -23,9 +23,6 @@ module.exports.downloadHandler = function(req, res){
 module.exports.uploadHandler = function(req, res){
   var form = new multiparty.Form();
   var params = {};
-  var longitude;
-  var latitude;
-  var gameId;
 
   form.on('field', function(name, value){
     var nodeData = JSON.parse(value);
@@ -44,7 +41,7 @@ module.exports.uploadHandler = function(req, res){
 
   form.on('close', function(){
     res.send("Uploading file ");
-  })
+  });
   form.parse(req);  
 };
 
@@ -78,6 +75,41 @@ module.exports.getGame = function(req, res){
     }
     res.send(results);
   })
+};
+
+module.exports.getNodePics = function(req, res){
+  var params = {};
+  params.gameId = req.body.gameId;
+  params.nodeId = req.body.nodeId;
+  db.getNodePics(params, function(results){
+    res.send(results);
+  });
+};
+
+module.exports.postNodePic = function(req, res){
+  var form = new multiparty.Form();
+  var params = {};
+  form.on('field', function(name, value){
+    var picData = JSON.parse(value);
+    params.gameId = picData.gameId;
+    params.nodeId = picData.nodeId;
+    params.comment = picData.comment;
+    params.userName = jwt.decode(picData.token, _secret);
+  });
+
+  form.on('part', function(part){
+    var today = Date.now();
+    var imgKey = today + '.png';
+    params.image = s3url + imgKey;
+    params.time = today;
+    db.postNodePic(params);
+    imgDB.saveImagePart(part, imgKey);
+  });
+
+  form.on('close', function(){
+    res.send("Uploading file ");
+  });
+  form.parse(req);  
 };
 
 module.exports.getGameInfo = function(req, res){

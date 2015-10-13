@@ -51,7 +51,7 @@ module.exports = {
         }
       });
   },
-  createNodeInfo: function(params, cb){
+  createNodeInfo: function(params){
     var insertStr = "INSERT INTO nodeInfo(lon, lat, image, clue, nodeId, gameId) VALUES(?,?,?,?,?,?)";
     var selectStr ="SELECT nodeId FROM nodeInfo WHERE gameId=(?) ORDER BY nodeId DESC LIMIT 1";
     var nodeId = 1;
@@ -88,7 +88,7 @@ module.exports = {
             console.error("[MYSQL]userRegister error ",err);
             cb({error : "username already exist"});
           }else{
-            cb(results);
+            cb({userName : params.userName});
           }
         });
       });
@@ -104,14 +104,14 @@ module.exports = {
         bcrypt.compare(params.password, results[0].password, function(err,res){
           console.log(res)
           if(res){
-            cb({res: res});
+            cb({userName: params.userName});
           }else{
-            cb({error : 'wrong password'});
+            cb({error: 'wrong password'});
           }
         });
         // console.log(results[0].password);
       }else{
-        cb('user does not exist');
+        cb({error: 'user does not exist'});
       }
     });
   },
@@ -260,6 +260,7 @@ module.exports = {
     connection.query(deleteStr, gameId, function(err, results){
       if(err){
         console.error('[MYSQL]updateGame delete error: ', err);
+        cb({error : err});
       }
       else{
         var insertArray = [];
@@ -275,11 +276,36 @@ module.exports = {
         connection.query(insertStr, insertArray, function(err, results){
           if(err){
             console.error('[MYSQL]updateGame insert error: ', err);
+            cb({error : err});
           }else{
             console.log(results);
             cb('update done!');
           }
         });
+      }
+    });
+  },
+
+  postNodePic: function(params){
+    var insertStr = 'INSERT INTO nodePics (gameId, nodeId, image, comment, uploadedTime, userName) VALUES(?,?,?,?,?,?)';
+    connection.query(insertStr, [params.gameId, params.nodeId, params.image, params.comment, params.time, params.userName], 
+      function(err, results){
+        if(err){
+          console.error('[MySQL]postNodePic error: ', err);
+        }else{
+          console.log(results);
+        }
+    });
+  },
+
+  getNodePics: function(params, cb){
+    var selectStr = "SELECT * FROM nodePics WHERE gameId = (?) and nodeId = (?)";
+    connecting.query(selectStr, [params.gameId, params.nodeId], function(err, results){
+      if(err){
+        console.error('[MYSQL]getNodePics error: ', err);
+        cb({error : err});
+      }else{
+        cb(results);
       }
     });
   }
