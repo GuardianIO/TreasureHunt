@@ -5,17 +5,7 @@ var db = require('./db/db.js');
 var _secret = 'BiGaCoRn';
 
 module.exports = {
-  checkGame:function(req, res, next){
-    // console.log('url', req.url);
-    db.getSingleGame(req.url.split('/')[1], function(err, results){
-      if(err){
-        res.send(500);
-      }else{
-        res.send(results);
-      }
-    });
-    next();
-  },
+
   // user progress will be stored in a cookie
   // if user does not have cookie process them as a new user
   checkPlayerStatus : function(req, res, next){

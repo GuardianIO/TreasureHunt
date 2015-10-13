@@ -28,10 +28,8 @@ app.post('/createGame', requestHandlers.createGame);
 app.post('/score', requestHandlers.sendScore);
 app.post('/update', requestHandlers.updateGame);
 
-app.post('/gameNode', function(req, res){
-  console.log('new gameNode: ', req.body);
-  res.sendStatus(200);
-});
+app.post('/userImages', requestHandlers.getNodePics);
+app.post('/newUserImage', requestHandlers.postNodePic);
 
 // invite players
 app.post('/invite', playerHandlers.invitePlayers);
