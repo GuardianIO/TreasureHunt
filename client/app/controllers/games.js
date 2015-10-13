@@ -2,6 +2,10 @@ angular.module('treasureHunt.games',['treasureHunt.services'])
 .controller('GamesCtrl', ['$scope', '$location', '$state', 'RequestFactory',
   function($scope, $location, $state, RequestFactory){
     $scope.games=[];
+    $scope.showFilter = false;
+    $scope.orderByProp = "createdDate";
+    $scope.reversed = "true";
+
     $scope.getAllGames = function(){
       RequestFactory.getGames().then(function(resp){
         $scope.games = resp;
@@ -26,5 +30,10 @@ angular.module('treasureHunt.games',['treasureHunt.services'])
     $scope.filterBySelectedCreator = function(creatorName){
       console.log(arguments);
       alert("filtering by " + creatorName);
+    };
+
+    $scope.toggleFilter = function(){
+      $scope.showFilter = !$scope.showFilter;
+      console.log($scope.showFilter)
     };
 }]);

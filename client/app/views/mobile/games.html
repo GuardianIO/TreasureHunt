@@ -1,20 +1,33 @@
+<!-- Games search input bar -->
+<div class="games-search-box container-fluid row">
+  <form>
+    <div class="col-xs-2"></div>
+      <div class="col-xs-8">
+        <input id="games-search-input" class="search-bar" ng-model="searchGame" placeholder="Search games"></input>
+      </div>
+    <div class="col-xs-2" style="padding-left: 0px">
+      <button class="btn game-list-filter-btn"><span class="glyphicon glyphicon-filter" ng-click="toggleFilter()"></span></button>
+    </div>    
+  </form>
+</div>
+
+<!-- Games search filter -->
+<div class="games-list-search-filter container" ng-show="showFilter">
+  <select class="games-filter form-control" ng-model="orderByProp">
+    <option value="createdDate">Date</option>
+    <option value="avgRating">Rating</option>
+    <option value="nodeCount"># of Checkpoints</option>
+  </select>
+  <select class="games-sortOrder form-control" ng-model="reversed">
+    <option value="false">Ascending</option>
+    <option value="true" selected>Descending</option>
+  </select> 
+</div> 
+
 <div class="game-list" ng-init='getAllGames()'>
-  
-  <!-- Games search input bar -->
-  <div class="games-search-box">
-    <input id="games-search-input" class="search-bar" style="width: 100%" ng-model="searchGame" placeholder="Search games"> 
-
-    <!-- Games search filter -->
-    <select class="games-filter" ng-model="orderByProp">
-      <option value="createdDate">Date</option>
-      <option value="avgRating">Rating</option>
-      <option value="nodeCount"># of Checkpoints</option>
-    </select>  
-  </div> 
-
 <!-- Game -->
   <div class="game-list-container">    
-    <div class="game-list-item-container" ng-click="gameInfo(game.gameId)" ng-repeat="game in games | filter:searchGame | orderBy: orderByProp">
+    <div class="game-list-item-container" ng-click="gameInfo(game.gameId)" ng-repeat="game in games | filter:searchGame | orderBy: orderByProp : Boolean(reversed)">
       <div class="game-list-item-body">
           <img class="game-list-item-image"  ng-if="game.image" ng-src="{{game.image}}">
         <div class="game-list-item-title" style="word-wrap: break-word; display: inline"><h4 style="display: inline">{{game.gameName | uppercase}} </h4><span style="word-wrap: break-word" ng-if="game.createdBy !== 'anon'" style="text-align: center"><p style="text-align: center; margin-bottom: 0px; display: inline-block"> by <a href="#" ng-click="filterBySelectedCreator(game.createdBy); $event.stopPropagation()">{{game.createdBy}}</a></p></span></div>

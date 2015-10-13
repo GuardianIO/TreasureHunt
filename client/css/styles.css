@@ -184,22 +184,44 @@
 }
 
 .game-list {
-  padding-top: 60px;
+  padding-top: 0px;
+  background-color: #F9F8DE;
 }
 
 .games-search-box {
-  width:90%;
-  margin: auto;
-  margin-bottom: 5px;
+  width:100%;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  background-color: #FD7B47;
   text-align: center;
+  padding-top: 5px;
 }
 
 .game-list-item-container {
   padding: 10px;
-  border: 1px solid black;
-  margin-bottom: 10px;
+  border: 1px solid rgb(183, 183, 183);
+  margin-bottom: 0px;
   /*background-color: #E6FFF2;*/
-  background-color: #FFFFE0;
+}
+
+.game-list-filter-btn {
+  padding: 8px 14px;
+  border: 1px solid white;
+  margin-top: 2px;
+}
+
+
+.games-list-search-filter {
+  text-align: center;
+  text-align: center;
+}
+
+.games-filter, .games-sortOrder {
+  width: 50%;
+  margin: auto;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 .game-list-item-body{
@@ -257,6 +279,7 @@
   width: 25%;
   margin-right: 15px;
   margin-bottom: 5px;
+  border-radius: 4px;
   overflow: hidden;
 }
 
