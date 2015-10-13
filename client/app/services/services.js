@@ -6,7 +6,7 @@ function($http, $location){
   var currentGame = {};
   var nutsArr = [];
   var nuts = {
-    grayNut: "img/nut-gray.png",
+    grayNut: "img/nut-gray-copy.png",
     fullNut: "img/nut-full.png",
     halfNut: "img/nut-half.png"
   }
