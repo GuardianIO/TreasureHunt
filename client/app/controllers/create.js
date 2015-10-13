@@ -8,7 +8,7 @@ angular.module('treasureHunt.create', ['treasureHunt.services', 'treasureHunt.au
 
   this.createGame = function(gameName, gameDescription, makeGamePrivate){
     if ($scope.createGameForm.$valid) {
-      console.log("sending to server to create game");
+      console.log(gameName, gameDescription, makeGamePrivate);
       var token = $window.localStorage.getItem('acorn');
 
       token = token || undefined;

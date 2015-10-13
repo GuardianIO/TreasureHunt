@@ -18,8 +18,8 @@
     </div>
 
     <!-- Option to make game private (game will not display on public games listing) -->
-    <div class="form-group" ng-if="c.getAuthState()">
-      <label>Make Game Private? </label><input type="checkbox" ng-model="makeGamePrivate"><br>
+    <div class="form-group" ng-show="c.getAuthState()">
+      <label style="margin-right: 10px;">Make Game Private? </label><input type="checkbox" style="transform: scale(1.5)" ng-model="makeGamePrivate"><br>
     </div>
     <div style="text-align: center">
       <button type="submit" class="btn btn-lg btn-success" ng-disabled="createGameForm.$invalid">Submit</button>  
