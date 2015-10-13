@@ -51,7 +51,7 @@ angular.module('treasureHunt', [
       views:{
         '':{
           templateUrl: mobileBrowser ? 'app/views/mobile/addNode.html' : 'app/views/desktop/addNode.html',
-          controller:'AddNode'
+          controller:'AddNodeCtrl'
         },
         'map@addNode':{
           templateUrl: 'app/views/mobile/map.html',
@@ -76,8 +76,16 @@ angular.module('treasureHunt', [
     })
     .state('game', {
       url:'/game/{id}',
-      templateUrl: 'app/views/mobile/game.html',
-      controller: 'GameCtrl'
+      views:{
+        '':{
+          templateUrl: 'app/views/mobile/game.html',
+          controller: 'GameCtrl'
+        },
+        'userImage@game':{
+          templateUrl: 'app/views/mobile/game.html',
+          controller: 'AddNodeCtrl'  
+        }
+      }
     })
     .state('gameInfo',{
       url:'/gameInfo/{id}',

@@ -1,6 +1,6 @@
 angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.pictureStorage', 'ngImgCrop', 'ui.router'])
 
-.controller('AddNode', ['$scope', '$location', 'SendPicAndLoc', '$interval', 'PicStore', '$state', '$stateParams',
+.controller('AddNodeCtrl', ['$scope', '$location', 'SendPicAndLoc', '$interval', 'PicStore', '$state', '$stateParams',
   function($scope, $location, SendPicAndLoc, $interval, PicStore, $state, $stateParams){
     //start requesting the user's location
     $scope.myCroppedImage = '';
