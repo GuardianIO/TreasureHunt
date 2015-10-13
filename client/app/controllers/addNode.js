@@ -9,6 +9,7 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     $scope.userCoords = {};
     $scope.canvasURI = null;
 
+
     function drawCanvas(canvas, ctx, img){
        var hRatio = canvas.width  / img.width    ;
        var vRatio =  canvas.height / img.height  ;
@@ -159,6 +160,24 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
       });
       img.src = $scope.canvasURI;
     };
+    
+    $scope.uploadUserImage = function(){
+      var blob = PicStore.b64toBlob($scope.canvasURI.slice($scope.canvasURI.indexOf(',')+1), 'image/jpg');
+      var data = {
+        comment:$scope.comment,
+        gameId: $scope.$parent.gameId,
+        nodeId: $scope.currentNode.nodeId,
+        token:localStorage.acorn
+      };
+
+      SendPicAndLoc.sendPic(blob, data, function(){ // sendPic method takes file blob, data object, and callback funciton
+        $scope.canvasURI=null;
+        $scope.comment='';
+        clearCanvas();
+      });
+    };
+
+    $scope.$on('uploadUserImage', $scope.uploadUserImage);
 
 }]);
 

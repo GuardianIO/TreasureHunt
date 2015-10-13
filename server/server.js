@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 
 app.post('/games', requestHandlers.getAllGames);
 
-app.post('/addWaypoint', requestHandlers.uploadHandler);
+app.post('/addNode', requestHandlers.uploadHandler);
 
 app.post('/gameInfo', requestHandlers.getGameInfo);
 app.post('/game', playerHandlers.checkPlayerStatus, requestHandlers.getGame);

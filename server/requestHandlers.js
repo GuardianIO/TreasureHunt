@@ -90,6 +90,7 @@ module.exports.postNodePic = function(req, res){
   var form = new multiparty.Form();
   var params = {};
   form.on('field', function(name, value){
+
     var picData = JSON.parse(value);
     params.gameId = picData.gameId;
     params.nodeId = picData.nodeId;

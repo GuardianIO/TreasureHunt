@@ -169,23 +169,19 @@ function($http, $location){
 .factory('SendPicAndLoc', ['$rootScope', '$http', '$location', 'Upload', 'RequestFactory',
   function($rootScope, $http, $location, Upload, RequestFactory){
 
-    function postPic(file, loc, clue, cb){
+    function postPic(file, data, url, cb){
       Upload.upload({
-        url:'/addWaypoint',
+        url:url,
         file: file,
-        data:{
-          gameId : RequestFactory.getGameId(),
-          latitude : loc.coords.latitude,
-          longitude : loc.coords.longitude,
-          clue: clue
-        }})
-        .success(function(data, status, headers, config){
-          cb();
-          console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
-        })
-        .error(function(data, status, headers, config){
-          console.log('error status: ', status);
-        })
+        data:data
+      })
+      .success(function(data, status, headers, config){
+        cb();
+        console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+      })
+      .error(function(data, status, headers, config){
+        console.log('error status: ', status);
+      })
     };
 
     return {
@@ -208,8 +204,23 @@ function($http, $location){
           )
         }
       },
-      sendPic:function(file, cb){
-        postPic(file, this.loc, this.clue,cb);
+      sendPic:function(file, data, cb){
+        if(data){
+          postPic(file, data, '/newUserImage', cb);
+        }else{
+          var data = {
+            gameId : RequestFactory.getGameId(),
+            latitude : loc.coords.latitude,
+            longitude : loc.coords.longitude,
+            clue: this.clue
+          };
+
+          data.latitude = this.loc.coords.latitude;
+          data.longitude = this.loc.coords.longitude;
+          data.clue = this.clue;
+
+          postPic(file, data, '/addNode', cb);
+        }
       },
       cancelWatch:function(){
         navigator.geolocation.clearWatch(this.watchId);

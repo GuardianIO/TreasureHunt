@@ -76,8 +76,16 @@ angular.module('treasureHunt', [
     })
     .state('game', {
       url:'/game/{id}',
-      templateUrl: 'app/views/mobile/game.html',
-      controller: 'GameCtrl'
+      views:{
+        '':{
+          templateUrl: 'app/views/mobile/game.html',
+          controller: 'GameCtrl'
+        },
+        'userImage@game':{
+          templateUrl: 'app/views/mobile/userImage.html',
+          controller: 'AddNodeCtrl'  
+        }
+      }
     })
     .state('gameInfo',{
       url:'/gameInfo/{id}',
