@@ -26,10 +26,11 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
       var canvas = document.getElementById('canvas');
       var ctx = canvas.getContext('2d');
       ctx.clearRect(0,0,canvas.width, canvas.height);
-      drawInitial();
+      $scope.drawInitial();
     };
 
     $scope.drawInitial = function(){
+      console.log('drawInitial');
       var canvas = document.getElementById('canvas');
       var ctx = canvas.getContext('2d');
       canvas.width = 500;
