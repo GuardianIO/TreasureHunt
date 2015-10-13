@@ -26,6 +26,7 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
       var canvas = document.getElementById('canvas');
       var ctx = canvas.getContext('2d');
       ctx.clearRect(0,0,canvas.width, canvas.height);
+      drawInitial();
     };
 
     $scope.drawInitial = function(){
@@ -85,7 +86,7 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
       if($scope.canvasURI){
         SendPicAndLoc.clue = $scope.clue;
         var blob = PicStore.b64toBlob($scope.canvasURI.slice($scope.canvasURI.indexOf(',')+1), 'image/jpeg');
-        SendPicAndLoc.sendPic(blob, function(){
+        SendPicAndLoc.sendPic(blob, null, function(){
           $scope.canSend = false;
           $scope.canvasURI=null;
           $scope.clue='';
