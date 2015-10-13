@@ -1,9 +1,22 @@
-<div ng-controller="AboutCtrl as ctrl">
+
+<form ng-controller="AboutCtrl as ctrl" id="aboutPage">
   <p>Meet the developers</p>
   <div class="col-xs-12 col-md-8">
-    <img class="profilePic" src="img/jimbo2.jpg"/>
-    <img class="profilePic" src="img/thomas2.jpg"/>
-    <img class="profilePic" src="img/zhao1.jpg"/>
-    <img class="profilePic" src="img/cindy1.jpg"/>
+    <div class="developer">
+      <a href="https://github.com/ccheung0926"><img class="profilePic" ng-src="img/cindy.png"/></a>
+      <p class="aboutText">Cindy Cheung</p>
+    </div>
+    <div class="developer">
+      <a href="https://github.com/codeCommode"><img  class="profilePic" ng-src="img/jimbo2.png"/></a>
+      <p class="aboutText">James Harlen</p></p>
+    </div>
+    <div class="developer">
+      <a href="https://github.com/tbutman"><img class="profilePic" ng-src="img/thomas4.png"/></a>
+      <p class="aboutText">Thomas Butman</p>
+    </div>
+    <div class="developer">
+      <a href="https://github.com/zzhan223"><img class="profilePic" ng-src="img/zhao1.png"/></a>
+      <p class="aboutText">Zhao Zhen</p>
+    </div>
   </div>
-</div>
+</form>
