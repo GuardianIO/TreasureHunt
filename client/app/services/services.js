@@ -171,9 +171,9 @@ function($http, $location){
 
     function postPic(file, data, url, cb){
       Upload.upload({
-        url:url,
+        url: url,
         file: file,
-        data:data
+        data: data
       })
       .success(function(data, status, headers, config){
         cb();
@@ -210,9 +210,6 @@ function($http, $location){
         }else{
           var data = {
             gameId : RequestFactory.getGameId(),
-            latitude : loc.coords.latitude,
-            longitude : loc.coords.longitude,
-            clue: this.clue
           };
 
           data.latitude = this.loc.coords.latitude;
