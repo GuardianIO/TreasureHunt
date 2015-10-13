@@ -53,7 +53,7 @@ angular.module('treasureHunt', [
       views:{
         '':{
           templateUrl: mobileBrowser ? 'app/views/mobile/addNode.html' : 'app/views/desktop/addNode.html',
-          controller:'AddNode'
+          controller:'AddNodeCtrl'
         },
         'map@addNode':{
           templateUrl: 'app/views/mobile/map.html',
