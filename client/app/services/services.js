@@ -81,7 +81,7 @@ function($http, $location){
     },
 
     getGames: function(token){
-      return $http.post('/games', {token : token}).then(function(resp){
+      return $http.post('/games', token).then(function(resp){
         return resp.data;
       });
     },

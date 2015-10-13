@@ -1,0 +1,20 @@
+<div ng-init="getLeaders();">
+  <div class="container">
+  <table>
+    <thead>
+      <tr>
+        <th> Rank </th>
+        <th> Username </th>
+        <th> Points </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="leader in leaders track by $index" ng-click="userProfile(leader.userName)">
+        <td>{{$index + 1}}</td>
+        <td>{{leader.userName}}</td>
+        <td>{{leader.macadamia}}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>

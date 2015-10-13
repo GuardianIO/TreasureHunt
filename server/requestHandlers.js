@@ -60,12 +60,16 @@ module.exports.createGame = function(req, res){
 };
 
 module.exports.getAllGames = function(req, res){
+  var params = {};
   if(req.body.token){
-    var creator = jwt.decode(req.body.token, _secret);
+    params.creator = jwt.decode(req.body.token, _secret);
+  }else if(req.body.userName){
+    console.log('userName: ', req.body.userName);
+    params.userName = req.body.userName;
   }
   db.showGames(function(results){
     res.send(results);
-  }, creator);
+  }, params);
 };
 
 module.exports.getGame = function(req, res){
