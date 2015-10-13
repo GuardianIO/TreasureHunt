@@ -4,7 +4,7 @@ angular.module('treasureHunt.games',['treasureHunt.services'])
     $scope.games=[];
     $scope.showFilter = false;
     $scope.orderByProp = "createdDate";
-    $scope.reversed = "true";
+    $scope.reversed = false;
 
     $scope.getAllGames = function(){
       RequestFactory.getGames().then(function(resp){
@@ -36,4 +36,8 @@ angular.module('treasureHunt.games',['treasureHunt.services'])
       $scope.showFilter = !$scope.showFilter;
       console.log($scope.showFilter)
     };
+
+    $scope.$watch('reversed', function(val){
+      console.log("reversed", val);
+    });
 }]);
