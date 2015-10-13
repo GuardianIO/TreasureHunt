@@ -253,7 +253,7 @@ module.exports = {
   },
 
   updateGame: function(params, cb){
-    var deleteStr = "DELETE FROM nodeInfo Where gameId = (?)";
+    var deleteStr = "DELETE FROM nodeInfo WHERE gameId = (?)";
     var insertStr = "INSERT INTO nodeInfo (lon, lat, image, clue, nodeId, gameId) VALUES";
     var gameId = params.gameId;
     var nodes = params.nodes;
@@ -300,7 +300,7 @@ module.exports = {
 
   getNodePics: function(params, cb){
     var selectStr = "SELECT * FROM nodePics WHERE gameId = (?) and nodeId = (?)";
-    connecting.query(selectStr, [params.gameId, params.nodeId], function(err, results){
+    connection.query(selectStr, [params.gameId, params.nodeId], function(err, results){
       if(err){
         console.error('[MYSQL]getNodePics error: ', err);
         cb({error : err});
@@ -308,5 +308,78 @@ module.exports = {
         cb(results);
       }
     });
+  },
+
+  macadamia: function(params, cb){
+    var insertMacadamia = "INSERT INTO MACADAMIA (userName, gameId, nodeId) VALUES (?,?,?)";
+    var checkCreatorStr = "SELECT createdBy FROM gameInfo WHERE gameId=(?)";
+    var updateScore = "UPDATE userInfo SET macadamia=macadamia+(?) WHERE userName = (?)";
+    var checkMacadamia = "SELECT * FROM MACADAMIA WHERE userName=(?) AND gameId=(?) AND nodeId=(?)"
+    if(params.macadamia<0){
+      connection.query(updateScore, [params.macadamia, params.userName], function(err, results){
+        if(err){
+          console.error('[MYSQL]macadamia minus point error: ', err);
+          cb({error:'error subtracting points'});
+        }
+      });
+    }else{
+      connection.query(checkCreatorStr, params.gameId, function(err, results){
+        if(err){
+          console.log('gameid',params.gameId);
+          console.error('[MYSQL]macadamia checkCreator error: ', err);
+          cb({error:'check game creator error'});
+        }else if(results[0]['createdBy'] !== params.userName){
+          connection.query(checkMacadamia, [params.userName, params.gameId, params.nodeId], function(err, results){
+            if(err){
+              console.error('[MYSQL]checkPoints error: ', err);
+              cb({error:'error checking points'});
+            }else{
+                console.log('check results should be empty',results);
+              if(results.length<1){
+                connection.query(updateScore, [params.macadamia, params.userName], function(err, results){
+                  if(err){
+                    console.error('[MYSQL]updateScore error: ', err);
+                  }else{
+                    connection.query(insertMacadamia, [params.userName, params.gameId, params.nodeId], function(err, results) {
+                      if(err){
+                        console.error('[MYSQL]insertMacadamia error: ', err);
+                        cb({error:'insertMacadamia error'});
+                      }else{
+                        console.log('results after adding to score: ',results);
+                        cb(results);
+                      }
+                    });
+                  }
+                });
+              }else{
+                cb({error:'already got a point'});
+              }
+            }
+          });
+        }else{
+          console.log('creator playing');
+          cb({error:'creator playing game, cannot give points'});
+        }
+      });
+    }
+    // connection.query(checkCreatorStr, params.gameId, function(err, results){
+    //   if(err){
+    //     console.log('gameid',params.gameId);
+    //     console.error('[MYSQL]macadamia checkCreator error: ', err);
+    //     cb({error:'check game creator error'});
+    //   }else if(results[0]['createdBy'] !== params.userName){
+    //     connection.query(updateScore, [params.macadamia, params.userName], function(err, results){
+    //       if(err){
+    //         console.error('[MYSQL]macadamia updateScore error: ', error);
+    //         cb({error: 'updateScore error'});
+    //       }else{
+    //         console.log('updateScore results: ',results);
+    //         cb(results);
+    //       }
+    //     });
+    //   }else{
+    //     cb({error:'user created the game'});
+    //   }
+    // });
   }
 };

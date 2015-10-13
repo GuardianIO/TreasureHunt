@@ -1,9 +1,8 @@
-angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
-.controller('GameCtrl', ['$scope', '$location', '$state', '$interval', 'RequestFactory', '$q', 'geo', '$cookies', '$rootScope', 
-  function($scope, $location, $state, $interval, RequestFactory, $q, geo, $cookies, $rootScope){
+angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies', 'treasureHunt.macaService'])
+.controller('GameCtrl', ['$scope', '$location', '$state', '$interval', 'RequestFactory', '$q', 'geo', '$cookies', '$rootScope', 'Macadamia',
+  function($scope, $location, $state, $interval, RequestFactory, $q, geo, $cookies, $rootScope, Macadamia){
     $scope.clue = '';
     $scope.numNodes = 0;
-    $scope.gameLength;
     $scope.currentNode = null;
     $scope.distance = NaN;
     $scope.isLastNode = false;
@@ -60,23 +59,29 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
           return 1800000 - (now - pistachio.timer);
         }
       }
-      $cookies.putObject('pistachio', { timer : now });
       return true;
     };
 
     $scope.getRoute = function(){
       var pistachio = showNodeTimer();
       if(typeof pistachio === 'boolean' ){
-        var lat = $scope.currentNode.lat;
-        var lon = $scope.currentNode.lon;
-      // If it's an iPhone..
-        if( (navigator.platform.indexOf("iPhone") != -1) 
-          || (navigator.platform.indexOf("iPod") != -1)
-          || (navigator.platform.indexOf("iPad") != -1)) {
-            window.open("maps://maps.google.com/maps?daddr="+lat+","+lon+"&amp;ll=");
-        }
-        else{
-          window.open("http://maps.google.com/maps?daddr="+lat+","+lon+"&amp;ll=");
+        var usePistachio = confirm("You are only allow to use\nthis once every 30 minutes.\nClick Okay to procede.");
+        console.log('cheater: ',usePistachio);
+        if(usePistachio){
+          var now = new Date().getTime();
+          $cookies.putObject('pistachio', { timer : now });
+          Macadamia.macadamiaMinus(gameId);    
+          var lat = $scope.currentNode.lat;
+          var lon = $scope.currentNode.lon;
+        // If it's an iPhone..
+          if( (navigator.platform.indexOf("iPhone") != -1) 
+            || (navigator.platform.indexOf("iPod") != -1)
+            || (navigator.platform.indexOf("iPad") != -1)) {
+              window.open("maps://maps.google.com/maps?daddr="+lat+","+lon+"&amp;ll=");
+          }
+          else{
+            window.open("http://maps.google.com/maps?daddr="+lat+","+lon+"&amp;ll=");
+          }
         }
       }else{
         pistachio = Math.floor(pistachio / 1000);
@@ -132,8 +137,11 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
       $cookies.putObject(gameId, {
         progress: $scope.currentNode.nodeId
       });
+      if($scope.currentNode.found !== true){
+        Macadamia.macadamiaPlus({gameId:gameId,nodeId:$scope.currentNode.nodeId});
+      }
       $scope.currentNode.found = true;
-      if($scope.currentNode.nodeId === $scope.gameLength){
+      if($scope.currentNode.nodeId === $scope.numNodes){
         $scope.isLastNode = true;
         $scope.nextButtonGone = true;
       }
@@ -168,7 +176,6 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies'])
         var currentNodeNum = $cookies.getObject(gameId) && $cookies.getObject(gameId).progress ? $cookies.getObject(gameId).progress : 1;
         RequestFactory.getGame(gameId, currentNodeNum, function(numNodes){
           $scope.numNodes = numNodes;
-          $scope.gameLength = numNodes;
           if(numNodes){
             $scope.currentNode = RequestFactory.getNode(currentNodeNum-1);
           }

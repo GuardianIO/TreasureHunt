@@ -48,6 +48,15 @@ CREATE TABLE userInfo (
 );
 
 /*****NODE PICS******/
+CREATE TABLE MACADAMIA (
+  userName VARCHAR(20),
+  gameId INT,
+  nodeId INT(3),
+  FOREIGN KEY (gameId) REFERENCES gameInfo(gameId),
+  FOREIGN KEY (userName) REFERENCES userInfo(userName)
+);
+
+/*****NODE PICS******/
 CREATE TABLE nodePics (
   gameId INT,
   nodeId INT(3),
