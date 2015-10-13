@@ -12,6 +12,14 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies', 'trea
     $scope.image = "../../../img/nut-gray.png"
     $scope.showImage = true;
     $scope.avg;
+    $scope.showUserImgCtrls = false;
+    var gameId = $location.url().split('/').pop();
+    $scope.gameId = gameId;
+    var gameNodeArr = [];
+    var interval;
+    $scope.uploadUserImage = function(){
+      console.log('parent (game)');
+    };
 
     $rootScope.$on('$locationChangeSuccess', function(event, newLocation, oldLocation) {
       $rootScope.oldLocation = oldLocation;
@@ -32,10 +40,6 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies', 'trea
       }
     });
 
-
-    var gameId = $location.url().split('/').pop();
-    var gameNodeArr = [];
-    var interval;
     function searching(notFound){
       if(notFound && $scope.currentNode){
         interval = $interval(function(){
@@ -170,6 +174,13 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies', 'trea
         $scope.progress = ((gameArrIndex/(gameNodeArr.length))*100).toString() + "%";
       }
     }
+
+    $scope.takeImageToggle = function(){
+      if($scope.showUserImgCtrls){
+        $scope.$broadcast('uploadUserImage');
+      }
+      $scope.showUserImgCtrls = !$scope.showUserImgCtrls;
+    };
 
     (function(){
       if(gameId){
