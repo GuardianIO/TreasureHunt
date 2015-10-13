@@ -22,6 +22,15 @@ module.exports = {
     next();
   },
 
+  macadamia: function(req, res){
+    var userName = jwt.decode(req.body.token, _secret);
+    var macadamia =req.body.macadamia;
+    var nodeId = req.body.nodeId;
+    var gameId = req.body.gameId;
+    db.macadamia({userName : userName, macadamia : macadamia, gameId : gameId, nodeId : nodeId}, function(results){
+      res.send(results);
+    });
+  },
   // sendResponse : function(req, res){
   //   var gameId = req.params.gameId;
   //   res.send("Accessing game with id: " + utils.encodeGameUrl({ gameId: gameId }));    

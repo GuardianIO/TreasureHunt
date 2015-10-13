@@ -37,7 +37,8 @@ app.post('/invite', playerHandlers.invitePlayers);
 app.post('/register', playerHandlers.register);
 app.post('/signIn', playerHandlers.signIn);
 app.post('/check', playerHandlers.checkToken);
-
+//user points
+app.post('/macadamia', playerHandlers.macadamia);
 // start server
 var server = app.listen( (process.env.PORT || 3000), function () {
   var host = server.address().address;
