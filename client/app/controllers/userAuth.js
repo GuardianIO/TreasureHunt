@@ -104,6 +104,10 @@ angular.module('treasureHunt.userAuth', ['treasureHunt.authService'])
 
     $scope.anon = function(){
       $location.path(url);
-    }
+    };
+
+    $scope.leader = function(){
+      $state.go('leaderBoard');
+    };
 
   }]);

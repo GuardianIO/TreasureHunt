@@ -27,6 +27,14 @@ angular.module('treasureHunt.macaService', [])
           console.log(res);
         });
       }
+    },
+    getLeaders : function(){
+      var token = $window.localStorage.getItem('acorn');
+      return $http.post('/leads', {
+        token : token
+      }).then(function(res){
+        return res;
+      });
     }
-  }
+  };
 }]);

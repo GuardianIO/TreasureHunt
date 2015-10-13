@@ -35,6 +35,12 @@ module.exports = {
   //   var gameId = req.params.gameId;
   //   res.send("Accessing game with id: " + utils.encodeGameUrl({ gameId: gameId }));    
   // },
+  getLeads: function(req, res){
+    var userName = jwt.decode(req.body.token, _secret);
+    db.getLeads({userName:userName}, function(results){
+      res.send(results);
+    });
+  },
 
   invitePlayers : function(req, res){
     // get array of email addresses from post request data 

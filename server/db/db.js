@@ -132,7 +132,7 @@ module.exports = {
   //list all games
 
   //retrieve the only the first image 
-  showGames: function(cb, creator){
+  showGames: function(cb, params){
     var queryStr = "SELECT DISTINCT \
         g.gameName, \
         g.gameId, \
@@ -157,8 +157,9 @@ module.exports = {
           FROM nodeInfo GROUP BY gameId ) AS i \
         ON i.gameId = n.gameId";
 
-    if(creator){
-      queryStr = queryStr + ' WHERE g.createdBy="' + creator +'"';
+    if(params.creator || params.userName){
+      var user = params.creator || params.userName;
+      queryStr = queryStr + ' WHERE g.createdBy="' + user +'"';
       // console.log(queryStr);
     }else{
       queryStr = queryStr + ' WHERE g.private = 0';
@@ -303,6 +304,18 @@ module.exports = {
     connection.query(selectStr, [params.gameId, params.nodeId], function(err, results){
       if(err){
         console.error('[MYSQL]getNodePics error: ', err);
+        cb({error : err});
+      }else{
+        cb(results);
+      }
+    });
+  },
+
+  getLeads: function(params, cb){
+    var leadSelect = "SELECT userName, macadamia FROM userInfo ORDER BY macadamia DESC";
+    connection.query(leadSelect, function(err, results){
+      if(err){
+        console.error('[MYSQL]select leader error: ', err);
         cb({error : err});
       }else{
         cb(results);

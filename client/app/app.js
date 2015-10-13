@@ -15,7 +15,9 @@ angular.module('treasureHunt', [
   'treasureHunt.about',
   'treasureHunt.editGame',
   'treasureHunt.myGames',
-  'treasureHunt.tutorial'
+  'treasureHunt.tutorial',
+  'treasureHunt.leader',
+  'treasureHunt.userPage'
 ])
 
 .config(['$stateProvider', '$urlRouterProvider', 
@@ -111,5 +113,15 @@ angular.module('treasureHunt', [
       url:'/tutorial',
       templateUrl: mobileBrowser ? 'app/views/mobile/tutorial.html' : 'app/views/desktop/tutorial.html',
       controller: 'TutorialCtrl'
+    })
+    .state('leaderBoard', {
+      url:'/leader',
+      templateUrl: mobileBrowser ? 'app/views/mobile/leader.html' : 'app/views/desktop/leader.html',
+      controller: 'leaderCtrl'
+    })
+    .state('user', {
+      url:'/user/{id}',
+      templateUrl: mobileBrowser ? 'app/views/mobile/myGames.html' : 'app/views/desktop/myGames.html',
+      controller: 'userPageCtrl'
     })
 }]);

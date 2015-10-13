@@ -17,7 +17,6 @@ app.use(bodyParser.json());
 // define routes
 // player will access game using a link with the gameId
 // a route can be handled using an array of callbacks
-
 app.post('/games', requestHandlers.getAllGames);
 
 app.post('/addNode', requestHandlers.uploadHandler);
@@ -39,6 +38,7 @@ app.post('/signIn', playerHandlers.signIn);
 app.post('/check', playerHandlers.checkToken);
 //user points
 app.post('/macadamia', playerHandlers.macadamia);
+app.post('/leads', playerHandlers.getLeads);
 // start server
 var server = app.listen( (process.env.PORT || 3000), function () {
   var host = server.address().address;
