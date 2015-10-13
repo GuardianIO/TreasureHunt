@@ -362,24 +362,5 @@ module.exports = {
         }
       });
     }
-    // connection.query(checkCreatorStr, params.gameId, function(err, results){
-    //   if(err){
-    //     console.log('gameid',params.gameId);
-    //     console.error('[MYSQL]macadamia checkCreator error: ', err);
-    //     cb({error:'check game creator error'});
-    //   }else if(results[0]['createdBy'] !== params.userName){
-    //     connection.query(updateScore, [params.macadamia, params.userName], function(err, results){
-    //       if(err){
-    //         console.error('[MYSQL]macadamia updateScore error: ', error);
-    //         cb({error: 'updateScore error'});
-    //       }else{
-    //         console.log('updateScore results: ',results);
-    //         cb(results);
-    //       }
-    //     });
-    //   }else{
-    //     cb({error:'user created the game'});
-    //   }
-    // });
   }
 };

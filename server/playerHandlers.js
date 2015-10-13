@@ -27,8 +27,6 @@ module.exports = {
     var macadamia =req.body.macadamia;
     var nodeId = req.body.nodeId;
     var gameId = req.body.gameId;
-    console.log('mac userName: ', userName);
-    console.log('mac gameId: ', req.body.gameId);
     db.macadamia({userName : userName, macadamia : macadamia, gameId : gameId, nodeId : nodeId}, function(results){
       res.send(results);
     });
