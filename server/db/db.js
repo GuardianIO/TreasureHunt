@@ -121,7 +121,7 @@ module.exports = {
           if(res){
             cb({userName: params.userName});
           }else{
-            cb({error: 'wrong password'});
+            cb({error: 'wrong password/username'});
           }
         });
         // console.log(results[0].password);
