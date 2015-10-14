@@ -102,7 +102,7 @@
                     <input required="" id="passwordinput" name="passwordinput" class="form-control" type="password" placeholder="********" class="input-medium" ng-model="signIn.password">
                   </div>
                 </div>
-            
+                <div ng-show="signIn.error">{{errorMsg}}</div>
                 <div class="control-group">
                   <label class="control-label" for="signin"></label>
                   <div class="controls"> 
@@ -138,7 +138,7 @@
                     <input id="reenterpassword" class="form-control" name="reenterpassword" type="password" placeholder="********" class="input-large" required="" ng-model="register.passwordRepeat">
                   </div>
                 </div>
-
+                <div ng-show="register.error">{{errorMsg}}</div>
                 <div ng-show="match">Passwords do not match! Try Again</div>
                 
                 <div class="control-group">

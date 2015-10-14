@@ -3,17 +3,20 @@ angular.module('treasureHunt.userAuth', ['treasureHunt.authService'])
   function($scope, $state, AuthFactory, $window, $location, $rootScope){
     $scope.signIn={
       userName : '',
-      password : ''
+      password : '',
+      error : false
     };
     $scope.register = {
       userName : '',
       password : '',
-      passwordRepeat : ''
+      passwordRepeat : '',
+      error : false
     };
     $scope.state={
       signedIn : false
     };
     $scope.match = false;
+    $scope.errorMsg = '';
 
     var url = $location.url().split('/').pop();
 
@@ -77,6 +80,10 @@ angular.module('treasureHunt.userAuth', ['treasureHunt.authService'])
             AuthFactory.setAuthState(res.data.auth);
             $('#loginModal').modal('toggle');
             $location.path(url);
+          }else if(res.data.error){
+            $scope.signIn.error = true;
+            $scope.errorMsg = res.data.error;
+            console.log('reg error: ', res.data.error);
           }
       });
     };
@@ -96,6 +103,10 @@ angular.module('treasureHunt.userAuth', ['treasureHunt.authService'])
               AuthFactory.setAuthState(res.data.auth);
               $('#loginModal').modal('toggle');
               $location.path(url);
+            }else if(res.data.error){
+              $scope.register.error = true;
+              $scope.errorMsg = res.data.error;
+              console.log('reg error: ', res.data.error);
             }
         });
       }
