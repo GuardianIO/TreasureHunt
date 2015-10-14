@@ -2,6 +2,10 @@ angular.module('treasureHunt.myGames',['treasureHunt.services'])
 .controller('myGamesCtrl', ['$scope', '$location', '$state', '$window', 'RequestFactory',
   function($scope, $location, $state, $window, RequestFactory){
     $scope.games=[];
+    $scope.showFilter = false;
+    $scope.orderByProp = "createdDate";
+    $scope.reversed = "true";
+
     $scope.getAllGames = function(){
       var token = $window.localStorage.getItem('acorn');
       RequestFactory.getGames({token:token}).then(function(resp){
@@ -24,4 +28,25 @@ angular.module('treasureHunt.myGames',['treasureHunt.services'])
       $state.go('editGame', {id: gameId});
     };
 
+    $scope.filterBySelectedCreator = function(creatorName){
+      console.log(arguments);
+      alert("filtering by " + creatorName);
+    };
+
+    $scope.toggleFilter = function(){
+      $scope.showFilter = !$scope.showFilter;
+      console.log($scope.showFilter)
+    };
+
+    $scope.$watch('reversed', function(val){
+      $scope.games.reverse();
+    });
+
+    $scope.$watch('orderByProp', function(val){
+      $scope.games.sort(function(a, b){ 
+        if($scope.reversed === "true"){
+          return a[$scope.orderByProp] > b[$scope.orderByProp];
+        }
+          return a[$scope.orderByProp] < b[$scope.orderByProp];});
+    });
 }]);

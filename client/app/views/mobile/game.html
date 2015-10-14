@@ -28,7 +28,7 @@
           <div ng-show="!showUserImgCtrls">
             <button class="btn btn-info btn-lg" ng-click="prev()">Prev</button>
             <button ng-show="signInState();" class="btn btn-info btn-lg" ng-click="takeImageToggle()" ng-disabled="!currentNode.found">Take Pic</button>
-            <button class="btn btn-info btn-lg" ng-if="currentNode.found" ng-click="next()" ng-hide="nextButtonGone">Next</button>
+            <button class="btn btn-info btn-lg" ng-if="currentNode.found" ng-click="next()" ng-disabled="nextButtonGone" ng-hide="isLastNode">Next</button>
             <!-- modal button -->
             <button ng-show="isLastNode" href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal">Done</button>
             <div class="giveup-btn">
