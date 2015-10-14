@@ -27,7 +27,7 @@
 <div class="game-list" ng-init='getAllGames()'>
 <!-- Game -->
   <div class="game-list-container">    
-    <div class="game-list-item-container" ng-click="gameInfo(game.gameId)" ng-repeat="game in games | filter:searchGame | orderBy: 'orderByProp' : reversed">orderBy {{ orderByProp }} reversed {{ reversed }}
+    <div class="game-list-item-container" ng-click="gameInfo(game.gameId)" ng-repeat="game in games | filter:searchGame | orderBy: 'orderByProp' : reversed">
       <div class="game-list-item-body">
           <img class="game-list-item-image"  ng-if="game.image" ng-src="{{game.image}}">
         <div class="game-list-item-title" style="word-wrap: break-word; display: inline"><h4 style="display: inline">{{game.gameName | uppercase}} </h4><span style="word-wrap: break-word" ng-if="game.createdBy !== 'anon'" style="text-align: center"><p style="text-align: center; margin-bottom: 0px; display: inline-block"> by <a href="#" ng-click="filterBySelectedCreator(game.createdBy); $event.stopPropagation()">{{game.createdBy}}</a></p></span></div>
