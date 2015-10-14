@@ -110,12 +110,14 @@ module.exports.postNodePic = function(req, res){
     params.image = s3url + imgKey;
     params.time = today;
     db.postNodePic(params);
-    imgDB.saveImagePart(part, imgKey);
+    imgDB.saveImagePart(part, imgKey, function(data){
+      res.send(data);
+    });
   });
 
-  form.on('close', function(){
-    res.send("Uploading file ");
-  });
+  // form.on('close', function(){
+  //   res.send("Uploading file ");
+  // });
   form.parse(req);  
 };
 
