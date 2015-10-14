@@ -1,22 +1,33 @@
 
-<form ng-controller="AboutCtrl as ctrl" id="aboutPage">
+<form ng-controller="AboutCtrl as ctrl" id="aboutPage" ng-init="ctrl.developers()">
   <p>Meet the developers</p>
   <div class="col-xs-12 col-md-8">
-    <div class="developer">
-      <a href="https://github.com/ccheung0926"><img class="profilePic" ng-src="img/cindy.png"/></a>
-      <p class="aboutText">Cindy Cheung</p>
+    <div class="developer" ng-repeat="creator in ctrl.creators">
+      <a href="{{creator.github}}"><img class="profilePic" ng-src="{{creator.img}}"/></a>
+      <p class="aboutText">{{creator.name}}</p>
+      <p class="aboutText">{{creator.position}}</p>
+      <p class="aboutText">Score: {{creator.macadamia}}</p>
     </div>
-    <div class="developer">
+   <!--  <div class="developer">
       <a href="https://github.com/codeCommode"><img  class="profilePic" ng-src="img/jimbo2.png"/></a>
-      <p class="aboutText">James Harlen</p></p>
+      <p class="aboutText">
+        James Harlen
+      <l>Score: {{creator.macadamia}}</l>
+      </p>
     </div>
     <div class="developer">
       <a href="https://github.com/tbutman"><img class="profilePic" ng-src="img/thomas4.png"/></a>
-      <p class="aboutText">Thomas Butman</p>
-    </div>
-    <div class="developer">
+      <p class="aboutText">
+        Thomas Butman
+        <l>Score: {{creator.macadamia}}</l>
+      </p>
+    </div> -->
+<!--     <div class="developer">
       <a href="https://github.com/zzhan223"><img class="profilePic" ng-src="img/zhao1.png"/></a>
-      <p class="aboutText">Zhao Zhen</p>
+      <p class="aboutText">
+      Zhao Zhen
+        <l>Score: {{creator.macadamia}}</l>
+      </p>
     </div>
-  </div>
+  </div> -->
 </form>

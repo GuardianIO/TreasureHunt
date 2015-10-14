@@ -162,6 +162,15 @@ function($http, $location){
         return currentGame.nodes[nodeNum];
       }
       return null;
+    },
+    getCreatorsData: function(cb){
+      $http.get('/about')
+      .then(function(results, err){
+        console.log('getCreatorsData fact', results.data);
+        cb(results.data);
+      }, function(err){
+        console.error(err);
+      });
     }
   }
 }])

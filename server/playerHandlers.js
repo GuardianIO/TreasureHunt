@@ -36,9 +36,7 @@ module.exports = {
   //   res.send("Accessing game with id: " + utils.encodeGameUrl({ gameId: gameId }));    
   // },
   getLeads: function(req, res){
-    if(req.body.token){
-      var userName = jwt.decode(req.body.token, _secret);
-    }
+    var userName = jwt.decode(req.body.token, _secret);
     db.getLeads({userName:userName}, function(results){
       res.send(results);
     });
@@ -62,7 +60,6 @@ module.exports = {
         var token = jwt.encode(req.body.userName, _secret);
         results.token = token;
         results.auth = true;
-        results.userName = req.body.userName
         res.send(results);
       }
     });
@@ -76,7 +73,6 @@ module.exports = {
         var token = jwt.encode(req.body.userName, _secret);
         results.token = token;
         results.auth = true;
-        results.userName = req.body.userName;
         res.send(results);
       }
     });
@@ -86,12 +82,15 @@ module.exports = {
   checkToken : function(req, res){
     console.log('trying to find token ', req.body.token);
     console.log('token length ', req.body.token.length);
-    var results = {};
-    results.userName = jwt.decode(req.body.token, _secret);
-    results.auth = true;
-    res.send(results);
-  }
+    res.send(true);
+  },
 
+  creatorsData: function(req, res){
+    db.creatorsData(function(results){
+      console.log(creatorsData, 'playerHandler creatorsData');
+      res.send(results);
+    });
+  }
 };
 
 // module.exports.checkGameCallbacks = [
