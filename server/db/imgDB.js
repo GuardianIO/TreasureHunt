@@ -13,9 +13,13 @@ module.exports.saveImagePart = function(part, key, cb){
     Body : part,
     ContentLength : part.byteCount
     }, function(err, data){
-      if(err) console.error('[S3]image upload error: ',err);
+      if(err){
+        console.error('[S3]image upload error: ',err);
+        cb({error:err})
+      }
       else {
         console.log('image upload complete', data);
+        cb({data:data});
       }
   });
 };

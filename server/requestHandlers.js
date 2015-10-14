@@ -36,12 +36,14 @@ module.exports.uploadHandler = function(req, res){
     var imgKey = Date.now() + '.png';
     params.imgKey = s3url + imgKey;
     db.createNodeInfo(params);
-    imgDB.saveImagePart(part, imgKey);
+    imgDB.saveImagePart(part, imgKey, function(data){
+      res.send(data);
+    });
   });
 
-  form.on('close', function(){
-    res.send("Uploading file ");
-  });
+  // form.on('close', function(){
+  //   res.send("Uploading file ");
+  // });
   form.parse(req);  
 };
 
