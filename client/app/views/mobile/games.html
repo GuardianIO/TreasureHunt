@@ -14,6 +14,7 @@
 <!-- Games search filter -->
 <div class="games-list-search-filter container" ng-show="showFilter">
   <select class="games-filter form-control" ng-model="orderByProp">
+    <option value="distance">Distance</option>
     <option value="createdDate">Date</option>
     <option value="avgRating">Rating</option>
     <option value="nodeCount"># of Checkpoints</option>
@@ -33,6 +34,8 @@
         <div class="game-list-item-title" style="word-wrap: break-word; display: inline"><h4 style="display: inline">{{game.gameName | uppercase}} </h4><span style="word-wrap: break-word" ng-if="game.createdBy !== 'anon'" style="text-align: center"><p style="text-align: center; margin-bottom: 0px; display: inline-block"> by <a href="#" ng-click="filterBySelectedCreator(game.createdBy); $event.stopPropagation()">{{game.createdBy}}</a></p></span></div>
         
         <div class="game-list-item-details">
+          <p class="game-list-item-field-description">Distance: <span class="game-list-item-field-value">{{game.distance | toFtMiles }}</span></p>
+
           <p class="game-list-item-field-description"># of Checkpoints: <span class="game-list-item-field-value">{{game.nodeCount}}</span></p>
 
           <p class="game-list-item-field-description">Rating: 
