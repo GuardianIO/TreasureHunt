@@ -14,8 +14,9 @@ angular.module('treasureHunt.map', ['ngMap', 'ui.router', 'treasureHunt.services
         var myMarker;
         function placeMarker(location) {
           if(location){
-            $scope.userCoords.latitude = location.J;
-            $scope.userCoords.longitude = location.M;
+            $scope.userCoords.latitude = location.lat;
+            $scope.userCoords.longitude = location.lng;
+            console.log('coords: ', $scope.userCoords);
           }
           if ( myMarker ) {
             myMarker.setPosition(location);
@@ -33,8 +34,13 @@ angular.module('treasureHunt.map', ['ngMap', 'ui.router', 'treasureHunt.services
         myMarker.setPosition(map.getCenter());
 
         google.maps.event.addListener(map, 'click', function(event) {
-              console.log(event.latLng);
-              placeMarker(event.latLng);
+              // console.log(event.latLng);
+              // console.log('lat func: ', event.latLng.lat());
+              var coords = {
+                lat : event.latLng.lat(),
+                lng : event.latLng.lng()
+              }
+              placeMarker(coords);
             }); 
         map.setCenter(myMarker.position);
         myMarker.setMap(map);

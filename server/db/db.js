@@ -78,7 +78,22 @@ module.exports = {
       }
     });
   },
-  userRegister: function(params,cb) {
+
+  checkUserName: function(params, cb){
+    var selectStr = "SELECT * FROM userInfo WHERE userName=(?)";
+    connection.query(selectStr, params.userName, function(err, results){
+      if(err){
+        console.error('[MYSQL]checkUserName error: ', err);
+        cb({error:'check user name error'});
+      }else if(results.length){
+        cb({userName: params.userName, auth : true});
+      }else{
+        cb({error: 'user does not exist'});
+      }
+    });
+  },
+
+  userRegister: function(params, cb) {
     var insertStr = "INSERT INTO userInfo(userName, password, macadamia) VALUES(?,?,0)";
 
     bcrypt.genSalt(params.userName.length , function(err, salt){

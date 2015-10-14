@@ -84,10 +84,11 @@ module.exports = {
 
 
   checkToken : function(req, res){
-    var results = {};
-    results.userName = jwt.decode(req.body.token, _secret);
-    results.auth = true;
-    res.send(results);
+    var data = {};
+    data.userName = jwt.decode(req.body.token, _secret);
+    db.checkUserName(data, function(results){
+      res.send(results);
+    });
   },
 
   creatorsData: function(req, res){
