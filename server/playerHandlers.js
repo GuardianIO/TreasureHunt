@@ -87,7 +87,7 @@ module.exports = {
 
   creatorsData: function(req, res){
     db.creatorsData(function(results){
-      console.log(creatorsData, 'playerHandler creatorsData');
+      console.log(results, 'playerHandler creatorsData');
       res.send(results);
     });
   }
