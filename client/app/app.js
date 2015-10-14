@@ -121,7 +121,7 @@ angular.module('treasureHunt', [
     })
     .state('user', {
       url:'/user/{id}',
-      templateUrl: mobileBrowser ? 'app/views/mobile/myGames.html' : 'app/views/desktop/myGames.html',
+      templateUrl: mobileBrowser ? 'app/views/mobile/games.html' : 'app/views/desktop/games.html',
       controller: 'userPageCtrl'
     })
 }]);
