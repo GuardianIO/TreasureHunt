@@ -36,7 +36,9 @@ module.exports = {
   //   res.send("Accessing game with id: " + utils.encodeGameUrl({ gameId: gameId }));    
   // },
   getLeads: function(req, res){
-    var userName = jwt.decode(req.body.token, _secret);
+    if(req.body.token){
+      var userName = jwt.decode(req.body.token, _secret);
+    }
     db.getLeads({userName:userName}, function(results){
       res.send(results);
     });
