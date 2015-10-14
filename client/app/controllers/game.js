@@ -1,4 +1,4 @@
-angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies', 'treasureHunt.macaService', 'treasureHunt.authService'])
+angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies', 'treasureHunt.macaService', 'treasureHunt.authService', 'treasureHunt.filters'])
 .controller('GameCtrl', ['$scope', '$location', '$state', '$interval', 'RequestFactory', '$q', 'geo', '$cookies', '$rootScope', 'Macadamia', 'AuthFactory',
   function($scope, $location, $state, $interval, RequestFactory, $q, geo, $cookies, $rootScope, Macadamia, AuthFactory){
     $scope.signInState = function(){

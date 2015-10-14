@@ -1,4 +1,4 @@
-angular.modules('treasureHunt.filters', [])
+angular.module('treasureHunt.filters', [])
 .filter('toFtMiles', [function(){
   var opts = ['1/8', '1/4', '3/8', '1/2', '5/8', '3/4', '7/8'];
   return function(input /* in meters */){
