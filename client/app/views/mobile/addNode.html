@@ -1,7 +1,7 @@
-<div id="singleNode" >
+<div id="singleNode" style="padding-top: 25px" >
   <div class="container" style="text-align: center">
     <div ng-show="!mapShow">
-    <canvas id="canvas" ng-click="getFile()" ng-init="drawInitial()">
+    <canvas id="canvas" ng-click="getFile()" ng-init="drawInitial()" style="margin-bottom: 10px; border-radius: 5px;">
     </canvas>
     <input type="file" id="fileInput" fileread="userFile" style="display: none;" />
     <div id="photo-options">
@@ -14,9 +14,17 @@
     </div>
 
     <textarea id="clue-textarea" ng-model="clue" placeholder="Clue or description..."></textarea>
-    <button class="btn btn-md btn-info" ng-show="status.canUpload" ng-disabled="!canvasURI" ng-click="send()">Add Another</button>
-    <button ng-show="!status.canUpload">Waiting for location...</button>
-    <button class="btn btn-md btn-success" ng-disabled="!canvasURI" ng-click="done()">I'm Done</button>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+      <div class="container-fluid" style="text-align: center">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+          <ul class="nav navbar-nav">
+            <button class="btn btn-lg btn-info" ng-show="status.canUpload" ng-disabled="!canvasURI" ng-click="send()">Add Another</button>
+            <button ng-show="!status.canUpload">Waiting for location...</button>
+            <button class="btn btn-lg btn-success" ng-disabled="!canvasURI" ng-click="done()">I'm Done!</button>
+          </ul>
+      </div><!-- /.container-fluid -->
+    </nav>
     <center>
     <div class="modal fade" id="cropModal" tabindex="-1" role="dialog" aria-labelledby="cropModal" aria-hidden="true">
       <div class="cropArea">
