@@ -1,4 +1,4 @@
-angular.module('treasureHunt.games',['treasureHunt.services'])
+angular.module('treasureHunt.games',['treasureHunt.services', 'treasureHunt.filters'])
 .controller('GamesCtrl', ['$scope', '$location', '$state', 'RequestFactory', 'SendPicAndLoc', 'geo',
   function($scope, $location, $state, RequestFactory, SendPicAndLoc, geo){
     $scope.games=[];
@@ -11,7 +11,7 @@ angular.module('treasureHunt.games',['treasureHunt.services'])
       RequestFactory.getGames().then(function(resp){
         $scope.games = resp;
         if(navigator && navigator.geolocation){
-          navigator.geolocation.watchPosition(function(data){
+          navigator.geolocation.getCurrentPosition(function(data){
             $scope.loc = data.coords;
             for(var i = 0; i < $scope.games.length; i++){
               var score = RequestFactory.averageRateInNuts($scope.games[i].avgRating);
@@ -19,6 +19,7 @@ angular.module('treasureHunt.games',['treasureHunt.services'])
               var distance = geo.distance($scope.loc.latitude, $scope.loc.longitude, $scope.games[i].lat, $scope.games[i].lon);
               $scope.games[i].distance = distance;
             }
+            $scope.$apply();
             console.log('games with distance: ', $scope.games);
           }, 
           function(err){
@@ -54,6 +55,7 @@ angular.module('treasureHunt.games',['treasureHunt.services'])
 
     $scope.$watch('reversed', function(val){
       $scope.games.reverse();
+      console.log($scope.games)
     });
 
     $scope.$watch('orderByProp', function(val){
