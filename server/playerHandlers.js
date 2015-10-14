@@ -36,9 +36,7 @@ module.exports = {
   //   res.send("Accessing game with id: " + utils.encodeGameUrl({ gameId: gameId }));    
   // },
   getLeads: function(req, res){
-    if(req.body.token){
-      var userName = jwt.decode(req.body.token, _secret);
-    }
+    var userName = jwt.decode(req.body.token, _secret);
     db.getLeads({userName:userName}, function(results){
       res.send(results);
     });
@@ -54,7 +52,7 @@ module.exports = {
     res.end("Invitations sent")
   },
 
-  register : function(req, res){
+register : function(req, res){
     db.userRegister(req.body, function(results){
       if(results.error){
         res.send(results);

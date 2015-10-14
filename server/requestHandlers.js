@@ -23,6 +23,9 @@ module.exports.downloadHandler = function(req, res){
 module.exports.uploadHandler = function(req, res){
   var form = new multiparty.Form();
   var params = {};
+  var longitude;
+  var latitude;
+  var gameId;
 
   form.on('field', function(name, value){
     var nodeData = JSON.parse(value);
@@ -40,10 +43,6 @@ module.exports.uploadHandler = function(req, res){
       res.send(data);
     });
   });
-
-  // form.on('close', function(){
-  //   res.send("Uploading file ");
-  // });
   form.parse(req);  
 };
 
@@ -62,16 +61,12 @@ module.exports.createGame = function(req, res){
 };
 
 module.exports.getAllGames = function(req, res){
-  var params = {};
   if(req.body.token){
-    params.creator = jwt.decode(req.body.token, _secret);
-  }else if(req.body.userName){
-    console.log('userName: ', req.body.userName);
-    params.userName = req.body.userName;
+    var creator = jwt.decode(req.body.token, _secret);
   }
   db.showGames(function(results){
     res.send(results);
-  }, params);
+  }, creator);
 };
 
 module.exports.getGame = function(req, res){
@@ -83,6 +78,7 @@ module.exports.getGame = function(req, res){
   })
 };
 
+<<<<<<< Updated upstream
 module.exports.getNodePics = function(req, res){
   var params = {};
   params.gameId = req.body.gameId;
@@ -143,5 +139,6 @@ module.exports.updateGame = function(req, res){
     res.send(results)
   });
 };
+
 
 
