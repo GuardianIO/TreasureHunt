@@ -198,6 +198,7 @@ module.exports = {
         g.gameName, \
         n.gameId, \
         g.description, \
+        g.createdBy, \
         g.createdDate, \
         c.nodeCount, \
         i.image, \

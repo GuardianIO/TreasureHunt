@@ -34,6 +34,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
           <ul class="nav navbar-nav">
             <button ng-click="playGame()" class="btn btn-lg btn-success">Start Game</button>
+            <button ng-show="isUser();" class="btn btn-lg btn-success" ng-click='edit();'>Edit Game</button>
           </ul>
       </div><!-- /.container-fluid -->
     </nav>

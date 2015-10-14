@@ -41,9 +41,8 @@ angular.module('treasureHunt.userAuth', ['treasureHunt.authService'])
       if(token){
         AuthFactory.checkState(token).then(
           function(res){
-            $scope.state.signedIn = res;
-            console.log('checkState data ',res.data);
-            AuthFactory.setAuthState(res.data);
+            $scope.state.signedIn = res.data.auth;
+            AuthFactory.setAuthState(res.data.auth);
         });
       }
     };
