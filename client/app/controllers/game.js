@@ -201,7 +201,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies', 'trea
     })();
 }])
 
-.filter('toFtMiles', function(){
+.filter('toFtMiles', [function(){
   var opts = ['1/8', '1/4', '3/8', '1/2', '5/8', '3/4', '7/8'];
   return function(input /* in meters */){
     if(typeof input === typeof 'string'){
@@ -219,4 +219,5 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies', 'trea
     }
     return '';
   }
-})
+}]);
+
