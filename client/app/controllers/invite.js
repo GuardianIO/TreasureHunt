@@ -1,6 +1,6 @@
 angular.module('treasureHunt.invite', ['treasureHunt.services'])
-  .controller('InviteCtrl', ['$scope', '$http', 'InvitePlayers',
-    function($scope, $http, InvitePlayers){
+  .controller('InviteCtrl', ['$scope', '$state', '$http', 'InvitePlayers',
+    function($scope, $state, $http, InvitePlayers){
       $scope.invitees = [];
 
       $scope.addToEmailList = function(inviteeEmailAddress){
@@ -16,6 +16,15 @@ angular.module('treasureHunt.invite', ['treasureHunt.services'])
           console.log("Sending invite to: " + $scope.invitees[i] + " (from controller)");
         }
         InvitePlayers.invitePlayers($scope.invitees);
+        var emailTotal = $scope.invitees.length;
+        if(emailTotal>1){          
+          var done = confirm(emailTotal+' invites sent.');
+        }else{
+          var done = confirm(emailTotal+' invite sent.');
+        }
+        if(done){
+          $state.go('games');
+        }
       }; 
 
       $scope.remove = function(emailAddress) { 
