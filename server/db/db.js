@@ -141,6 +141,7 @@ module.exports = {
         g.createdBy, \
         c.nodeCount, \
         i.image, \
+        i.lat, i.lon, \
         g.avgRating, \
         g.numOfRatings \
         FROM gameInfo AS g \
@@ -152,7 +153,7 @@ module.exports = {
           FROM nodeInfo GROUP BY gameId ) AS c \
         ON c.gameId = n.gameId \
         JOIN ( \
-          SELECT gameId, \
+          SELECT gameId, lat, lon, \
           image, MIN(nodeId) AS nodeId \
           FROM nodeInfo GROUP BY gameId ) AS i \
         ON i.gameId = n.gameId";
