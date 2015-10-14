@@ -1,20 +1,35 @@
 angular.module('treasureHunt.games',['treasureHunt.services'])
-.controller('GamesCtrl', ['$scope', '$location', '$state', 'RequestFactory',
-  function($scope, $location, $state, RequestFactory){
+.controller('GamesCtrl', ['$scope', '$location', '$state', 'RequestFactory', 'SendPicAndLoc', 'geo',
+  function($scope, $location, $state, RequestFactory, SendPicAndLoc, geo){
     $scope.games=[];
     $scope.showFilter = false;
     $scope.orderByProp = "createdDate";
     $scope.reversed = "true";
+    $scope.loc = {};
 
     $scope.getAllGames = function(){
       RequestFactory.getGames().then(function(resp){
         $scope.games = resp;
-        console.log('gamessss', $scope.games)
-        for(var i = 0; i < $scope.games.length; i++){
-          var score = RequestFactory.averageRateInNuts($scope.games[i].avgRating);
-          $scope.games[i].average = score;
+        if(navigator && navigator.geolocation){
+          navigator.geolocation.watchPosition(function(data){
+            $scope.loc = data.coords;
+            for(var i = 0; i < $scope.games.length; i++){
+              var score = RequestFactory.averageRateInNuts($scope.games[i].avgRating);
+              $scope.games[i].average = score;
+              var distance = geo.distance($scope.loc.latitude, $scope.loc.longitude, $scope.games[i].lat, $scope.games[i].lon);
+              $scope.games[i].distance = distance;
+            }
+            console.log('games with distance: ', $scope.games);
+          }, 
+          function(err){
+            if(err.code === 1){
+              alert('Please allow geolocation');
+            }
+          }, {
+            enableHighAccuracy:true
+          }
+          )
         }
-      console.log('average', $scope.games);
       });
     };
 

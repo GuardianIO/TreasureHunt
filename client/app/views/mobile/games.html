@@ -24,7 +24,7 @@
   </select> 
 </div> 
 
-<div class="game-list" ng-init='getAllGames()'>
+<div class="game-list" ng-init='getAllGames();'>
 <!-- Game -->
   <div class="game-list-container">    
     <div class="game-list-item-container" ng-click="gameInfo(game.gameId)" ng-repeat="game in games | filter:searchGame | orderBy: 'orderByProp' : reversed">
