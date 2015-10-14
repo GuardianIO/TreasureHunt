@@ -62,7 +62,7 @@ module.exports = {
         var token = jwt.encode(req.body.userName, _secret);
         results.token = token;
         results.auth = true;
-        results.userName = req.body.userName
+        results.userName = req.body.userName;
         res.send(results);
       }
     });
@@ -84,14 +84,18 @@ module.exports = {
 
 
   checkToken : function(req, res){
-    console.log('trying to find token ', req.body.token);
-    console.log('token length ', req.body.token.length);
     var results = {};
     results.userName = jwt.decode(req.body.token, _secret);
     results.auth = true;
     res.send(results);
-  }
+  },
 
+  creatorsData: function(req, res){
+    db.creatorsData(function(results){
+      console.log(results, 'playerHandler creatorsData');
+      res.send(results);
+    });
+  }
 };
 
 // module.exports.checkGameCallbacks = [

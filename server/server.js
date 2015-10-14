@@ -26,6 +26,7 @@ app.post('/game', playerHandlers.checkPlayerStatus, requestHandlers.getGame);
 app.post('/createGame', requestHandlers.createGame);
 app.post('/score', requestHandlers.sendScore);
 app.post('/update', requestHandlers.updateGame);
+app.get('/about', playerHandlers.creatorsData);
 
 app.post('/userImages', requestHandlers.getNodePics);
 app.post('/newUserImage', requestHandlers.postNodePic);

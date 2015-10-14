@@ -376,5 +376,18 @@ module.exports = {
         }
       });
     }
+  },
+
+  creatorsData: function(cb){
+    var queryStr = "SELECT userName, macadamia FROM userInfo WHERE userName in (?,?,?,?)";
+    connection.query(queryStr, ["cindy","jim","thomas","zhao"], function(err, results){
+      if(err){
+          console.error('[MYSQL]createData: ', err);
+          cb({error:'creatorData error'});
+      }
+      else{
+        cb(results);
+      }
+    });
   }
 };
