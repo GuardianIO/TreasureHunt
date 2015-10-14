@@ -1,6 +1,9 @@
-angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies', 'treasureHunt.macaService'])
-.controller('GameCtrl', ['$scope', '$location', '$state', '$interval', 'RequestFactory', '$q', 'geo', '$cookies', '$rootScope', 'Macadamia',
-  function($scope, $location, $state, $interval, RequestFactory, $q, geo, $cookies, $rootScope, Macadamia){
+angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies', 'treasureHunt.macaService', 'treasureHunt.authService'])
+.controller('GameCtrl', ['$scope', '$location', '$state', '$interval', 'RequestFactory', '$q', 'geo', '$cookies', '$rootScope', 'Macadamia', 'AuthFactory',
+  function($scope, $location, $state, $interval, RequestFactory, $q, geo, $cookies, $rootScope, Macadamia, AuthFactory){
+    $scope.signInState = function(){
+      return AuthFactory.getAuthState();
+    };
     $scope.clue = '';
     $scope.numNodes = 0;
     $scope.currentNode = null;
