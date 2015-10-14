@@ -17,7 +17,8 @@ angular.module('treasureHunt', [
   'treasureHunt.myGames',
   'treasureHunt.tutorial',
   'treasureHunt.leader',
-  'treasureHunt.userPage'
+  'treasureHunt.userPage',
+  'treasureHunt.filters'
 ])
 
 .config(['$stateProvider', '$urlRouterProvider', 

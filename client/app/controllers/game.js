@@ -1,4 +1,4 @@
-angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies', 'treasureHunt.macaService', 'treasureHunt.authService'])
+angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies', 'treasureHunt.macaService', 'treasureHunt.authService', 'treasureHunt.filters'])
 .controller('GameCtrl', ['$scope', '$location', '$state', '$interval', 'RequestFactory', '$q', 'geo', '$cookies', '$rootScope', 'Macadamia', 'AuthFactory',
   function($scope, $location, $state, $interval, RequestFactory, $q, geo, $cookies, $rootScope, Macadamia, AuthFactory){
     $scope.signInState = function(){
@@ -204,23 +204,4 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies', 'trea
     })();
 }])
 
-.filter('toFtMiles', [function(){
-  var opts = ['1/8', '1/4', '3/8', '1/2', '5/8', '3/4', '7/8'];
-  return function(input /* in meters */){
-    if(typeof input === typeof 'string'){
-      return input;
-    }else if(typeof input === typeof 0 && input === input){
-      input = input * 3.28084; // convert meters to feet
-      if(input < 660){
-        return Math.round(input / 10) * 10 + ' ft away!';
-      }else if(input < 5280){
-        return opts[Math.round(input / 660) - 1] + ' of a mile away!';
-      }
-      return Math.round((input/5280)* 10)/10  + ' miles away!';
-    }else if(input !== input){ // test for NaN
-      return 'an undetermined distance.';
-    }
-    return '';
-  }
-}]);
 
