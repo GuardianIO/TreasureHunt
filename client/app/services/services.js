@@ -217,10 +217,10 @@ function($http, $location){
         if(data.token){
           postPic(file, data, '/newUserImage', cb);
         }else{
-          var data = {
-            gameId : RequestFactory.getGameId(),
-          };
-
+          // var data = {
+          //   gameId : RequestFactory.getGameId(),
+          // };
+          data.gameId = RequestFactory.getGameId();
           // data.latitude = this.loc.coords.latitude;
           // data.longitude = this.loc.coords.longitude;
           data.clue = this.clue;

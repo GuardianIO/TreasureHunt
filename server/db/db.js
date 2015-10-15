@@ -55,6 +55,8 @@ module.exports = {
     var insertStr = "INSERT INTO nodeInfo(lon, lat, image, clue, nodeId, gameId) VALUES(?,?,?,?,?,?)";
     var selectStr ="SELECT nodeId FROM nodeInfo WHERE gameId=(?) ORDER BY nodeId DESC LIMIT 1";
     var nodeId = 1;
+    console.log('longitude: ', params.longitude);
+    console.log('latitude: ', params.latitude);
     // console.log('createTreasureInfo params',params);
     connection.query(selectStr, [params.gameId], function(err, results){
       if(err){
