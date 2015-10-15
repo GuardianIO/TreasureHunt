@@ -2,7 +2,7 @@ angular.module('treasureHunt.leader', ['treasureHunt.macaService'])
 .controller('leaderCtrl', ['$scope', '$state', 'Macadamia', 
 function($scope, $state, Macadamia){
   $scope.leaders;
-  $scope.gold='img/gold.png';
+  $scope.gold='img/golden_acorn1.png';
   $scope.getLeaders = function(){
     Macadamia.getLeaders().then(function(res){
       if(res.data.error){
