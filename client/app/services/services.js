@@ -221,8 +221,8 @@ function($http, $location){
             gameId : RequestFactory.getGameId(),
           };
 
-          data.latitude = this.loc.coords.latitude;
-          data.longitude = this.loc.coords.longitude;
+          // data.latitude = this.loc.coords.latitude;
+          // data.longitude = this.loc.coords.longitude;
           data.clue = this.clue;
 
           postPic(file, data, '/addNode', cb);
