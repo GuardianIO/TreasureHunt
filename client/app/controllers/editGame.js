@@ -1,5 +1,6 @@
 angular.module('treasureHunt.editGame', ['treasureHunt.services'])
-  .controller('EditGameCtrl', [ '$scope', '$location', '$state', 'RequestFactory', function( $scope, $location, $state, RequestFactory ){
+  .controller('EditGameCtrl', [ '$scope', '$location', '$state', '$timeout', 'RequestFactory', 
+    function( $scope, $location, $state, $timeout, RequestFactory ){
     var gameId = $location.url().split('/').pop();
 
     $scope.gameToEdit = {};
@@ -31,6 +32,9 @@ angular.module('treasureHunt.editGame', ['treasureHunt.services'])
       var nodes = $scope.gameToEdit.nodes;
       var currentIndex = nodes.indexOf(node);
 
+      if(currentIndex === 0){
+        return;
+      }
       $scope.removeNode(node);
       $scope.insertNode(node, currentIndex - 1);
     };
@@ -39,6 +43,9 @@ angular.module('treasureHunt.editGame', ['treasureHunt.services'])
       var nodes = $scope.gameToEdit.nodes;
       var currentIndex = nodes.indexOf(node);
 
+      if(currentIndex === nodes.length - 1){
+        return;
+      }
       $scope.removeNode(node);
       $scope.insertNode(node, currentIndex + 1);
     };
@@ -46,6 +53,7 @@ angular.module('treasureHunt.editGame', ['treasureHunt.services'])
     $scope.nodeCantBeMoved = function(node, direction){
       var nodes = $scope.gameToEdit.nodes;
       var currentIndex = nodes.indexOf(node);
+      console.log(currentIndex)
       var nonAllowedPositions = {
         up: 0,
         down: nodes.length - 1
