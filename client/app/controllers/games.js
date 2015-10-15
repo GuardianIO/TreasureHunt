@@ -10,12 +10,14 @@ angular.module('treasureHunt.games',['treasureHunt.services', 'treasureHunt.filt
     $scope.getAllGames = function(){
       RequestFactory.getGames().then(function(resp){
         $scope.games = resp;
+        for(var i = 0; i < $scope.games.length; i++){
+          var score = RequestFactory.averageRateInNuts($scope.games[i].avgRating);
+          $scope.games[i].average = score;
+        }
         if(navigator && navigator.geolocation){
           navigator.geolocation.getCurrentPosition(function(data){
             $scope.loc = data.coords;
             for(var i = 0; i < $scope.games.length; i++){
-              var score = RequestFactory.averageRateInNuts($scope.games[i].avgRating);
-              $scope.games[i].average = score;
               var distance = geo.distance($scope.loc.latitude, $scope.loc.longitude, $scope.games[i].lat, $scope.games[i].lon);
               $scope.games[i].distance = distance;
             }
