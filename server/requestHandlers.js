@@ -26,6 +26,7 @@ module.exports.uploadHandler = function(req, res){
 
   form.on('field', function(name, value){
     var nodeData = JSON.parse(value);
+    console.log('params in uploadHandler: ', nodeData);
     params.gameId = nodeData.gameId
     params.longitude = nodeData.longitude;
     params.latitude = nodeData.latitude;

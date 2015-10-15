@@ -214,15 +214,15 @@ function($http, $location){
         }
       },
       sendPic:function(file, data, cb){
-        if(data){
+        if(data.token){
           postPic(file, data, '/newUserImage', cb);
         }else{
-          var data = {
-            gameId : RequestFactory.getGameId(),
-          };
-
-          data.latitude = this.loc.coords.latitude;
-          data.longitude = this.loc.coords.longitude;
+          // var data = {
+          //   gameId : RequestFactory.getGameId(),
+          // };
+          data.gameId = RequestFactory.getGameId();
+          // data.latitude = this.loc.coords.latitude;
+          // data.longitude = this.loc.coords.longitude;
           data.clue = this.clue;
 
           postPic(file, data, '/addNode', cb);
