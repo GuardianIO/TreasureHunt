@@ -1,4 +1,5 @@
 angular.module('treasureHunt', [
+  'ngFx',
   'ngAnimate',
   'ngFileUpload',
   'ui.router',
