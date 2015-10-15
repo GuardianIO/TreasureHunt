@@ -1,33 +1,16 @@
 
 <form ng-controller="AboutCtrl as ctrl" id="aboutPage" ng-init="ctrl.developers()">
-  <p>Meet the developers</p>
-  <div class="col-xs-12 col-md-8">
+  <div>
+  <h2>Meet the developers & check their scores...</h2>
     <div class="developer" ng-repeat="creator in ctrl.creators">
-      <a href="{{creator.github}}"><img class="profilePic" ng-src="{{creator.img}}"/></a>
       <p class="aboutText">{{creator.name}}</p>
+      <img class="profilePic" ng-src="{{creator.img}}"/></a>
       <p class="aboutText">{{creator.position}}</p>
-      <p class="aboutText">Score: {{creator.macadamia}}</p>
+      <p>Score: {{creator.macadamia}}</p>
+      <a href="{{creator.linkedin}}"><img class="linkedinIcon" src="img/linkedin.png"/>
+      <a href="{{creator.github}}"><img class="githubIcon" src="img/github.png"/></a>
     </div>
-   <!--  <div class="developer">
-      <a href="https://github.com/codeCommode"><img  class="profilePic" ng-src="img/jimbo2.png"/></a>
-      <p class="aboutText">
-        James Harlen
-      <l>Score: {{creator.macadamia}}</l>
-      </p>
-    </div>
-    <div class="developer">
-      <a href="https://github.com/tbutman"><img class="profilePic" ng-src="img/thomas4.png"/></a>
-      <p class="aboutText">
-        Thomas Butman
-        <l>Score: {{creator.macadamia}}</l>
-      </p>
-    </div> -->
-<!--     <div class="developer">
-      <a href="https://github.com/zzhan223"><img class="profilePic" ng-src="img/zhao1.png"/></a>
-      <p class="aboutText">
-      Zhao Zhen
-        <l>Score: {{creator.macadamia}}</l>
-      </p>
-    </div>
-  </div> -->
+  </div>
 </form>
+
+<!-- class="col-xs-12 col-md-8" -->

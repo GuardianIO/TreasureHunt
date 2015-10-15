@@ -40,10 +40,6 @@ module.exports.uploadHandler = function(req, res){
       res.send(data);
     });
   });
-
-  // form.on('close', function(){
-  //   res.send("Uploading file ");
-  // });
   form.parse(req);  
 };
 
@@ -143,5 +139,6 @@ module.exports.updateGame = function(req, res){
     res.send(results)
   });
 };
+
 
 
