@@ -12,7 +12,31 @@
 }
 body{
   /*background: url(http://p.w3layouts.com/demos/profile_dropdown_menu/images/bg.png);*/
-  background: url(../img/bg.png);
+  background: url(../img/bg.png) fixed;
+}
+
+.btn {
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: #9A4526;
+  color: #EAC07C;
+}
+
+.btn-success{
+  background-color: #BF6f33;
+  border: 1px solid #9A4526;
+  color: lightbrown;
+}
+
+.btn-info {
+
+}
+
+.navbar.navbar-fixed-bottom {
+  background-color: #AB4F20;
+  border-top: 2px solid #BF6F33;
 }
 
 #navbar-headerID{
