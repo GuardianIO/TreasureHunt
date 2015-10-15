@@ -4,26 +4,20 @@
 <!-- EDIT GAME ROW ENTRY -->
 <div class="edit-game-row">
   <div class="edit-game-row"></div>
-  <div class="well" ng-repeat="node in gameToEdit.nodes">
-    <img class="edit-game-img" ng-src="{{node.image}}" alt="">
-    <div>{{ node.clue }}</div>
+  <div class="well repeat-animation" ng-repeat="node in gameToEdit.nodes">
+    <img class="edit-game-img" ng-src="{{node.image}}" alt="" style="float: left">
 
-    <a class="edit-game-close" ng-click="removeNode(node)"><span class="glyphicon glyphicon-remove"></span></a>    
-
-
-<!--     div*5gameId: gameId,
-    name:results.data[0].gameName,
-    description: results.data[0].description,
-    nodes:results.data -->
   <div class="change-node-position">
-    <span class="glyphicon glyphicon-arrow-up" ng-click="moveNodeUp(node)" ng-disable="nodeCantBeMoved(node, 'up')"></span>
-    <span class="glyphicon glyphicon-arrow-down" ng-click="moveNodeDown(node)" ng-disable="nodeCantBeMoved(node, 'down')"></span>
+    <span class="glyphicon glyphicon-arrow-up" style="font-size: 3em;" ng-click="moveNodeUp(node)" ng-disable="nodeCantBeMoved(node, 'up')"></span>
+    <span class="glyphicon glyphicon-arrow-down" style="font-size: 3em;" ng-click="moveNodeDown(node)" ng-disable="nodeCantBeMoved(node, 'down')"></span>
+    <span class="glyphicon glyphicon-remove" style="float: right; font-size: 3em; color: red" ng-click="removeNode(node)"></span>
+    
   </div>
+  <div style="clear: both;">{{ node.clue }}</div>
 </div>
 
 
 </div>
-
   <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid" style="text-align: center">
       <!-- Collect the nav links, forms, and other content for toggling -->

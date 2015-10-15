@@ -1,13 +1,22 @@
-.animate-enter, .animate-leave {
-  transition: 500ms ease-in all;
-  position: relative;
-  display: block;
-} 
-
-.animate-enter.animate-enter-active, .animate-leave {
-  left: 0;
+.person-move {
+    position: relative;
+    top: 26px;
 }
 
-.animate-leave.animate-leave-active, .animate-enter {
-  left: 500px;
+.person-move.person-move-active {
+    transition: all 0.5s ease;
+    top: 0;
+}
+
+.person-move + div {
+    /* cannot have transition on this element */
+    /*transition: all 1s ease;*/
+    position: relative;
+    top: -26px;
+}
+
+.person-move.person-move-active + div {
+    transition: all 0.5s ease;
+    position: relative;
+    top: 0;
 }
