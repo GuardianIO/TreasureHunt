@@ -214,7 +214,7 @@ function($http, $location){
         }
       },
       sendPic:function(file, data, cb){
-        if(data){
+        if(data.token){
           postPic(file, data, '/newUserImage', cb);
         }else{
           var data = {

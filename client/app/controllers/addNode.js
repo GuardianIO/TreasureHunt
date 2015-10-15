@@ -85,8 +85,12 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     $scope.send = function(){
       if($scope.canvasURI){
         SendPicAndLoc.clue = $scope.clue;
+        var data = {
+          latitude: $scope.userCoords.latitude,
+          longitude: $scope.userCoords.longitude
+        };
         var blob = PicStore.b64toBlob($scope.canvasURI.slice($scope.canvasURI.indexOf(',')+1), 'image/jpeg');
-        SendPicAndLoc.sendPic(blob, null, function(){
+        SendPicAndLoc.sendPic(blob, data, function(){
           $scope.canSend = false;
           $scope.canvasURI=null;
           $scope.clue='';
@@ -96,6 +100,7 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     };
     
     $scope.done = function(){
+      console.log('user coords: ', $scope.userCoords);
       var url = "invite";
 
       if( $stateParams.state === 'editGame'){
@@ -103,8 +108,12 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
       }
       if($scope.canvasURI){
         SendPicAndLoc.clue = $scope.clue;
+        var data = {
+          latitude: $scope.userCoords.latitude,
+          longitude: $scope.userCoords.longitude
+        };
         var blob = PicStore.b64toBlob($scope.canvasURI.slice($scope.canvasURI.indexOf(',')+1), 'image/jpg');
-        SendPicAndLoc.sendPic(blob, null, function(){
+        SendPicAndLoc.sendPic(blob, data, function(){
           $scope.canvasURI=null;
           $scope.clue='';
           clearCanvas();
@@ -164,6 +173,8 @@ angular.module('treasureHunt.addNode', ['treasureHunt.services', 'treasureHunt.p
     $scope.uploadUserImage = function(){
       var blob = PicStore.b64toBlob($scope.canvasURI.slice($scope.canvasURI.indexOf(',')+1), 'image/jpg');
       var data = {
+        latitude: $scope.userCoords.latitude,
+        longitude: $scope.userCoords.longitude,
         comment:$scope.comment,
         gameId: $scope.$parent.gameId,
         nodeId: $scope.currentNode.nodeId,
