@@ -78,7 +78,6 @@ module.exports.getGame = function(req, res){
   })
 };
 
-<<<<<<< Updated upstream
 module.exports.getNodePics = function(req, res){
   var params = {};
   params.gameId = req.body.gameId;

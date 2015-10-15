@@ -11,7 +11,8 @@
    font-style: italic; 
 }
 body{
-  background: url(http://p.w3layouts.com/demos/profile_dropdown_menu/images/bg.png);
+  /*background: url(http://p.w3layouts.com/demos/profile_dropdown_menu/images/bg.png);*/
+  background: url(../img/bg.png);
 }
 
 .drop-box {
@@ -414,29 +415,33 @@ body{
 }
 
 .profilePic{
-  width: 100px;
-  height: auto;
-  background: none; 
-  border: none;
+  max-width: 100px;
+}
+.linkedinIcon{
+  max-width: 30px;
+  padding-bottom: 1%;
+}
+.githubIcon{
+  max-width: 65px;
+  padding-bottom: 1%;
 }
 
-
 .developer {
-  margin: auto;
-  padding-left: 1em;
-  padding-top: 10px;
-  clear: left;  
-  border: 2px solid #fe9772;
-  border-top: 1px solid #fe9772;
+  border-top: 3px solid black;
 }
 #leader{
   background-color: antiquewhite;
 }
 .aboutText{
-  float: right;
+  float: left;
+  margin: auto;
+  margin-left:  auto;
+  width: 7em;
 }
-#aboutPage {
-  border:none;
+
+#aboutPage{
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 3%;
 }
 
 * html .clearfix             { zoom: 1; } /* IE6 */
