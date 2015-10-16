@@ -39,8 +39,18 @@ body{
   border-top: 2px solid #BF6F33;
 }
 
+.navbar-nav > li > a {
+  padding: 10px;
+  text-align: center;
+  font-size: 24px;
+}
+
 #navbar-headerID{
   background-color: #9a4526;
+}
+
+#menu-button > .icon-bar {
+  background-color: #823C18;
 }
 
 .slide-animation.ng-enter, .slide-animation.ng-leave {
@@ -73,8 +83,7 @@ body{
   left:-100px;
   opacity:0;
 }
- 
- 
+
 .repeat-animation.ng-enter, 
 .repeat-animation.ng-leave, 
 .repeat-animation.ng-move {
@@ -445,6 +454,10 @@ body{
   margin-bottom: 20px;
 }
 
+.giveup-btn {
+  color: #EAC68C;
+}
+
 .game-info-description p:first-child{
   font-weight: bold;
   margin-bottom: 0px;
@@ -464,7 +477,7 @@ body{
 
 #menu-button{
   background-color: #EAC68C;
-  border: 1px solid black;
+  border: 1px solid #823C18;
 }
 
 .brandname {
@@ -516,6 +529,11 @@ body{
 .edit-game-img {
   width: 50px;
   height: 50px;
+  margin-right: 15px;
+}
+
+.edit-game-move-arrow {
+  color: #BF6f33;
 }
 
 .test-border {
@@ -523,6 +541,12 @@ body{
 }
 .edit-game-row-item {
   display: inline-block;
+}
+
+#edit-game-remove-btn {
+  float: right; 
+  font-size: 3em;
+  color: #9a4526;
 }
 
 .clearfix:after {

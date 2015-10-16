@@ -1,18 +1,18 @@
-<div ng-init="getLeaders();">
+<div style="margin-top:20px;" ng-init="getLeaders();">
   <div class="container">
   <table class="table table-striped table-bordered table-hover" id='leader'>
     <thead>
       <tr>
-        <th> Rank </th>
-        <th> Username </th>
-        <th> Points </th>
+        <th style="text-align: center"> Rank </th>
+        <th style="text-align: center"> Username </th>
+        <th style="text-align: center"> Points </th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="leader in leaders track by $index" ng-click="userProfile(leader.userName)" >
-        <td><span ng-if="$index>0">{{$index + 1}}</span><img ng-src='{{gold}}' style="width:30px;height:30px;" ng-if="$index===0"></td>
-        <td>{{leader.userName}}</td>
-        <td>{{leader.macadamia}}</td>
+        <td align="center"><span ng-if="$index>0">{{$index + 1}}</span><img ng-src='{{gold}}' style="width:30px;height:30px;" ng-if="$index===0"></td>
+        <td align="center">{{leader.userName}}</td>
+        <td align="center">{{leader.macadamia}}</td>
       </tr>
     </tbody>
   </table>
