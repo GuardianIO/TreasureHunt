@@ -16,6 +16,7 @@
   "dependencies": {
     "ng-img-crop": "ngImgCrop#~0.3.2",
     "ngmap": "~1.13.12",
-    "ngFx": "~1.1.0"
+    "ngFx": "~1.1.0",
+    "bootstrap": "~3.3.5"
   }
 }
