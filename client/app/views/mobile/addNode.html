@@ -3,6 +3,7 @@
     <div ng-show="!mapShow">
     <canvas id="canvas" ng-click="getFile()" ng-init="drawInitial()" style="margin-bottom: 10px; border-radius: 5px;">
     </canvas>
+    <div class="loadingWheel" ng-show="loading"><img ng-src='{{loadingWheel}}'></div>
     <input type="file" id="fileInput" fileread="userFile" style="display: none;" />
     <div id="photo-options">
       <button class="btn btn-info clearfix" ng-click="getFile()"><span class=" glyphicon glyphicon-camera"></span></button>      
@@ -12,7 +13,6 @@
       <button class="btn btn-info clearfix" ng-click="getManualLocation()"><span class="glyphicon glyphicon-map-marker"></span></button>
 
     </div>
-
     <textarea id="clue-textarea" ng-model="clue" placeholder="Clue or description..."></textarea>
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
