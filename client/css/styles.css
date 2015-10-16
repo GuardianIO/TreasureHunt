@@ -248,10 +248,6 @@ body{
   width: 90%;
 }
 
-/*.gameInfo {
-  height: 80vw;
-}*/
-
 #gameInfo {
   text-align: center;
   width: 90%;
@@ -280,6 +276,13 @@ body{
 .game-info {
   /*float: right;*/
   overflow: hidden;
+  text-align: center;
+  text-size:large;
+}
+
+.node-arrived-check {
+  color:green;
+  font-size: 100px;
 }
 
 .node-info {
