@@ -16,6 +16,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies', 'trea
     $scope.showImage = true;
     $scope.avg;
     $scope.showUserImgCtrls = false;
+    $scope.distanceClass = "node-closer";
     var gameId = $location.url().split('/').pop();
     $scope.gameId = gameId;
     var gameNodeArr = [];
@@ -158,6 +159,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies', 'trea
       $scope.$apply(function(){
         var coords = data.coords;
         var distance = geo.distance(coords.latitude, coords.longitude, $scope.currentNode.lat, $scope.currentNode.lon);
+        $scope.distanceClass = distance < $scope.distance ? 'node-closer' : 'node-farther'; 
         $scope.distance = distance;
         if(distance < 25){
           if($scope.currentProgress === undefined || $scope.currentNode.nodeId >= $scope.currentProgress){
