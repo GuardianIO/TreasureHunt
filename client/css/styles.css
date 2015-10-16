@@ -182,6 +182,8 @@ body{
   margin-left: 10px;
 }  
 
+clue-well
+
 #games {
 }
 
@@ -285,9 +287,22 @@ body{
   overflow: hidden;
 }
 
+.node-info {
+  background-color: #EAC68C;
+  border:1px solid #9a4526;
+}
+
 .game-list {
   padding-top: 0px;
   background-color: #F9F8DE;
+}
+
+.node-closer {
+  color:green;
+}
+
+.node-farther {
+  color:red;
 }
 
 .games-search-box {
