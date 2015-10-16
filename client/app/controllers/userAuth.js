@@ -120,4 +120,10 @@ angular.module('treasureHunt.userAuth', ['treasureHunt.authService'])
       $state.go('leaderBoard');
     };
 
+    $scope.showFullMenu = false;
+
+    $scope.toggleMenu = function(){
+      $scope.showFullMenu = !$scope.showFullMenu;
+    }
+
   }]);

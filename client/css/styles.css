@@ -39,6 +39,12 @@ body{
   border-top: 2px solid #BF6F33;
 }
 
+.navbar-nav > li > a {
+  padding: 10px;
+  text-align: center;
+  font-size: 24px;
+}
+
 #navbar-headerID{
   background-color: #9a4526;
 }

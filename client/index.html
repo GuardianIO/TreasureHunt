@@ -60,14 +60,15 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#/">Home <span class="sr-only">(current)</span></a></li>
-            <li ng-click="leader();"><a>LeaderBoard</a></li>
-            <li ng-click="create();"><a>Create</a></li>
+            <li class="active"><a href="#/">Home <span class="glyphicon glyphicon-home"></span><span class="sr-only">(current)</span></a></li>
             <li><a href="#/games">Games</a></li>
+            <li ng-click="create();"><a>Create</a></li>
             <li ng-show="state.signedIn" ng-click="myGames();"><a>My Games</a></li>
-            <li><a href="#/about">About</a></li>
-            <li ng-show="!state.signedIn"><a data-toggle="modal" data-target="#loginModal">Sign In/Register</a></li>
-            <li ng-show="state.signedIn" ng-click="signOut();"><a>Sign out</a></li>
+            <li ng-click="leader();"><a>Leader Board <span class="glyphicon glyphicon-list-alt"></span></a></li>
+            <li ng-show="!state.signedIn"><a data-toggle="modal" data-target="#loginModal">Sign In/Register <span class="glyphicon glyphicon-user"></span></a></li>
+            <li ng-show="state.signedIn" ng-click="signOut();"><a>Sign out <span class="glyphicon glyphicon-user"></span></a></li>
+            <li id="#sub-menu"><a href="#" data-toggle="collapse" data-target="#sub-menu"><span class="glyphicon glyphicon-option-horizontal"></span></a></li>
+            <!-- <li><a href="#/about">About</a></li>               -->
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
