@@ -43,6 +43,10 @@ body{
   background-color: #9a4526;
 }
 
+#menu-button > .icon-bar {
+  background-color: #823C18;
+}
+
 .slide-animation.ng-enter, .slide-animation.ng-leave {
     -webkit-transition: 0.5s linear all;
     -moz-transition: 0.5s linear all;
@@ -468,7 +472,7 @@ body{
 
 #menu-button{
   background-color: #EAC68C;
-  border: 1px solid black;
+  border: 1px solid #823C18;
 }
 
 .brandname {
