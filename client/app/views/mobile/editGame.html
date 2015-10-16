@@ -1,10 +1,10 @@
-<div class="container edit-game-nodes" ng-init="getGame()" style="padding-bottom: 70px; padding-top: 15px">
+<div class="container edit-game-nodes" ng-init="getGame(); disableNgfx();" style="padding-bottom: 70px; padding-top: 15px">
 <h1 class="view-header" style="word-wrap: break-word">{{ gameToEdit.name | uppercase}}</h1>
 
 <!-- EDIT GAME ROW ENTRY -->
 <div class="edit-game-row">
   <div class="edit-game-row"></div>
-  <div class="well fx-fade-down-big fx-speed-2000" ng-repeat="node in gameToEdit.nodes">
+  <div class="well" ng-class="{'fx-fade-down-big': ngfxEnabled, 'fx-speed-1500': ngfxEnabled}" ng-click="disableNgfx()"  ng-repeat="node in gameToEdit.nodes">
     <img class="edit-game-img" ng-src="{{node.image}}" alt="" style="float: left">
 
   <div class="change-node-position">

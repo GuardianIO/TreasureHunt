@@ -4,6 +4,7 @@ angular.module('treasureHunt.editGame', ['treasureHunt.services'])
     var gameId = $location.url().split('/').pop();
 
     $scope.gameToEdit = {};
+    $scope.ngfxEnabled = true;
 
     $scope.getGame = function(){
       RequestFactory.getEditGame(gameId, function(game){
@@ -75,5 +76,11 @@ angular.module('treasureHunt.editGame', ['treasureHunt.services'])
     RequestFactory.setGameId(gameId);
     console.log('gameid:',gameId)
     $state.go('addNode', { state: 'editGame', gameId: gameId });
+   };
+
+   $scope.disableNgfx = function(){
+    $timeout(function(){
+      $scope.ngfxEnabled = false;
+    }, 500);
    };
 }]);
