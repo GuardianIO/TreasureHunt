@@ -1,4 +1,4 @@
-<div class="container edit-game-nodes" ng-init="getGame()" style="padding-bottom: 70px;">
+<div class="container edit-game-nodes" ng-init="getGame()" style="padding-bottom: 70px; padding-top: 15px">
 <h1 class="view-header" style="word-wrap: break-word">{{ gameToEdit.name | uppercase}}</h1>
 
 <!-- EDIT GAME ROW ENTRY -->
@@ -8,9 +8,9 @@
     <img class="edit-game-img" ng-src="{{node.image}}" alt="" style="float: left">
 
   <div class="change-node-position">
-    <span class="glyphicon glyphicon-arrow-up" style="font-size: 3em;" ng-click="moveNodeUp(node)" ng-disable="nodeCantBeMoved(node, 'up')"></span>
-    <span class="glyphicon glyphicon-arrow-down" style="font-size: 3em;" ng-click="moveNodeDown(node)" ng-disable="nodeCantBeMoved(node, 'down')"></span>
-    <span class="glyphicon glyphicon-remove" style="float: right; font-size: 3em; color: red" ng-click="removeNode(node)"></span>
+    <span class="glyphicon glyphicon-arrow-up edit-game-move-arrow" style="font-size: 3em;" ng-click="moveNodeUp(node)" ng-disable="nodeCantBeMoved(node, 'up')"></span>
+    <span class="glyphicon glyphicon-arrow-down edit-game-move-arrow" style="font-size: 3em;" ng-click="moveNodeDown(node)" ng-disable="nodeCantBeMoved(node, 'down')"></span>
+    <span id="edit-game-remove-btn" class="glyphicon glyphicon-remove-circle" ng-click="removeNode(node)"></span>
     
   </div>
   <div style="clear: both;">{{ node.clue }}</div>
