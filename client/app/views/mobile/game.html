@@ -12,10 +12,10 @@
     <img id="game-info-img" data-toggle="modal" data-target="#imageClueModal" ng-src={{currentNode.image}}>
 
     <!-- Checkpoint Details -->
-    <div class="gameInfo">
-      <div>Clue: {{currentNode.clue}}</div><br>
-      <div>Checkpoint {{currentNode.nodeId}} of {{numNodes}} is <b>{{distance | toFtMiles}}</b></div><br>
-      <div ng-if="currentNode.found">Awesome! You found it!</div><br>
+    <div class="game-info">
+      <h3>{{currentNode.clue}}</h3>
+     <div ng-show="currentNode.found"><span class="glyphicon glyphicon-ok-circle node-arrived-check"></span></div>
+     <h3 ng-show="!currentNode.found" ng-class="distanceClass" >{{distance | toFtMiles}}</h3>
     </div>    
   </div>
 </div>
