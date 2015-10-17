@@ -149,6 +149,7 @@ angular.module('treasureHunt.game', ['treasureHunt.services', 'ngCookies', 'trea
         Macadamia.macadamiaPlus({gameId:gameId,nodeId:$scope.currentNode.nodeId});
       }
       $scope.currentNode.found = true;
+      $scope.distance = NaN;
       if($scope.currentNode.nodeId === $scope.numNodes){
         $scope.isLastNode = true;
         $scope.nextButtonGone = true;
