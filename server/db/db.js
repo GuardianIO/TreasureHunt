@@ -175,10 +175,13 @@ module.exports = {
           FROM nodeInfo GROUP BY gameId ) AS i \
         ON i.gameId = n.gameId";
 
-    if(params.creator || params.userName){
-      var user = params.creator || params.userName;
-      queryStr = queryStr + ' WHERE g.createdBy="' + user +'"';
+    if(params.creator){
+      var user = params.creator;
+      queryStr = queryStr + ' WHERE g.createdBy="' + user + '"';
       // console.log(queryStr);
+    }else if(params.userName){
+      var user = params.userName;
+      queryStr = queryStr + ' WHERE g.createdBy="' + user + '" AND g.private=0';
     }else{
       queryStr = queryStr + ' WHERE g.private = 0';
     }

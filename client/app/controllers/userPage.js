@@ -7,7 +7,8 @@ angular.module('treasureHunt.userPage',['treasureHunt.services'])
     $scope.reversed = "true";
     console.log('stateparams: ', $state.params);
     $scope.getAllGames = function(){
-      RequestFactory.getGames({userName:$state.params.id}).then(function(resp){
+      var token = $window.localStorage.getItem('acorn');
+      RequestFactory.getGames({userName:$state.params.id,token:token}).then(function(resp){
         $scope.games = resp;
         $scope.nutsArr = [];
         for(var i = 0; i < $scope.games.length; i++){
