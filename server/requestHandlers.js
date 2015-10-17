@@ -60,10 +60,11 @@ module.exports.createGame = function(req, res){
 
 module.exports.getAllGames = function(req, res){
   var params = {};
-  console.log('req: ', req.body.token);
+  console.log('req: ', req.body);
   if(req.body.token){
     params.creator = jwt.decode(req.body.token, _secret);
-  }else if(req.body.userName){
+  }
+  if(req.body.userName){
     console.log('userName: ', req.body.userName);
     params.userName = req.body.userName;
   }
