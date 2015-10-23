@@ -1,2 +1,1 @@
-# treasureHunt
-mobile web app for treasure hunting
+SquirrelSearch is a browser-based, mobile-first application that enables users to create and share geo-tagged photo-based scavenger hunts. Please cehck out http://squirrelsearch.us for a product demo.
