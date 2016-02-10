@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
+var jasmine = require('gulp-jasmine');
 
 var paths = [
     './client/app/services/*.js',
@@ -23,6 +24,11 @@ gulp.task('build', function(){
     .pipe(concat('main.js'))
     .pipe(uglify())
     .pipe(gulp.dest('./client/'));
+});
+
+gulp.task('test', function(){
+  return gulp.src('server/spec/server.js')
+             .pipe(jasmine());
 });
 
 gulp.task('watch', ['concat'], function(){
