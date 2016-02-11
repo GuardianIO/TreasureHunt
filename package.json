@@ -1,7 +1,7 @@
 {
   "name": "file_dealer",
   "version": "1.0.0",
-  "description": "Scavenger hunt for techies",
+  "description": "Repsonsive treasure hunt app for mobile use",
   "main": "index.js",
   "dependencies": {
     "aws-sdk": "^2.2.4",
@@ -22,20 +22,21 @@
     "gulp-uglify": "^1.4.1",
     "gulp-util": "^3.0.6",
     "jasmine": "^2.3.2",
-    "request": "^2.69.0"
+    "request": "^2.69.0",
+    "request-promise": "^2.0.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "gulp test",
     "start": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GuardianIO/fileDealer.git"
+    "url": "git+https://github.com/GuardianIO/treasureHunt.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/GuardianIO/fileDealer/issues"
+    "url": "https://github.com/GuardianIO/treasureHunt/issues"
   },
-  "homepage": "https://github.com/GuardianIO/fileDealer#readme"
+  "homepage": "https://github.com/GuardianIO/treasureHunt#readme"
 }
